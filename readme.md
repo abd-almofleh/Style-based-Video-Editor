@@ -25,7 +25,7 @@ Install [VS code python extension](https://marketplace.visualstudio.com/items?it
 ![dsfgs](./images/VsCodePythonExtensionPreview.png 'Jupyter Notebook in vs code')
 
 ## 9. Have fun
-
+skladhfjkahfkjshadkjfh
 # Notes
 ## 1. Comments
 **Comments** is very **important** please comment every thing that can be **confusing** to the others.
