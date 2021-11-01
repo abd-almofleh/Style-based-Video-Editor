@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "style_based_Video_Editor", "style_based_Video_Editor\style_based_Video_Editor.csproj", "{BF675EAA-FD73-4986-9741-5563C4260F4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Style-based Video Editor GUI", "Style-based Video Editor GUI.csproj", "{E901A225-21BF-402D-B835-1299A0335909}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BF675EAA-FD73-4986-9741-5563C4260F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF675EAA-FD73-4986-9741-5563C4260F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF675EAA-FD73-4986-9741-5563C4260F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF675EAA-FD73-4986-9741-5563C4260F4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E901A225-21BF-402D-B835-1299A0335909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E901A225-21BF-402D-B835-1299A0335909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E901A225-21BF-402D-B835-1299A0335909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E901A225-21BF-402D-B835-1299A0335909}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {461C0167-23A5-43D3-8E8B-5F972231E40C}
+		SolutionGuid = {7190215E-2311-469A-A73C-AFA609A4950F}
 	EndGlobalSection
 EndGlobal

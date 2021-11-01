@@ -1,5 +1,5 @@
 ﻿
-namespace style_based_Video_Editor
+namespace Style_based_Video_Editor_GUI
 {
     partial class Form1
     {

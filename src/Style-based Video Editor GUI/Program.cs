@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace style_based_Video_Editor
+namespace Style_based_Video_Editor_GUI
 {
     static class Program
     {

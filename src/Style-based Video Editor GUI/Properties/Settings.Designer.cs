@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace style_based_Video_Editor.Properties
+namespace Style_based_Video_Editor_GUI.Properties
 {
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("style_based_Video_Editor")]
+[assembly: AssemblyTitle("Style-based Video Editor GUI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("style_based_Video_Editor")]
+[assembly: AssemblyProduct("Style-based Video Editor GUI")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bf675eaa-fd73-4986-9741-5563c4260f4c")]
+[assembly: Guid("e901a225-21bf-402d-b835-1299a0335909")]
 
 // Version information for an assembly consists of the following four values:
 //

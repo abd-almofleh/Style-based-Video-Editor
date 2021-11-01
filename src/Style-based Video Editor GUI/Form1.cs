@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace style_based_Video_Editor
+namespace Style_based_Video_Editor_GUI
 {
     public partial class Form1 : Form
     {

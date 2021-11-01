@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BF675EAA-FD73-4986-9741-5563C4260F4C}</ProjectGuid>
+    <ProjectGuid>{E901A225-21BF-402D-B835-1299A0335909}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>style_based_Video_Editor</RootNamespace>
-    <AssemblyName>style_based_Video_Editor</AssemblyName>
+    <RootNamespace>Style_based_Video_Editor_GUI</RootNamespace>
+    <AssemblyName>Style-based Video Editor GUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
