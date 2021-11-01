@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "style_based_Video_Editor", "style_based_Video_Editor\style_based_Video_Editor.csproj", "{BF675EAA-FD73-4986-9741-5563C4260F4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF675EAA-FD73-4986-9741-5563C4260F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF675EAA-FD73-4986-9741-5563C4260F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF675EAA-FD73-4986-9741-5563C4260F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF675EAA-FD73-4986-9741-5563C4260F4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {461C0167-23A5-43D3-8E8B-5F972231E40C}
+	EndGlobalSection
+EndGlobal
