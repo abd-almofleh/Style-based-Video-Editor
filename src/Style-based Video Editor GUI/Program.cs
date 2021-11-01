@@ -16,7 +16,7 @@ namespace Style_based_Video_Editor_GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Forms.Main());
         }
     }
 }

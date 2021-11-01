@@ -1,7 +1,7 @@
 ﻿
-namespace Style_based_Video_Editor_GUI
+namespace Style_based_Video_Editor_GUI.Forms
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -32,10 +32,9 @@ namespace Style_based_Video_Editor_GUI
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Text = "Main";
         }
 
         #endregion
     }
 }
-
