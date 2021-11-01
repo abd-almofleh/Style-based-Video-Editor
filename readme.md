@@ -28,7 +28,7 @@ Install [VS code python extension](https://marketplace.visualstudio.com/items?it
 
 # Notes
 ## 1. Comments
-**Comments** is very **important** please comment every thing that can be **confusing** to the others.
+**Comments** is very **important** please comment every thing that can be **confusing** to others.
 ## 2. Markdown in the notebooks
 **Markdown** every **section** of the code in the note book so we can know what is this section (like an **index**)
 ## 3. Libraries installations
