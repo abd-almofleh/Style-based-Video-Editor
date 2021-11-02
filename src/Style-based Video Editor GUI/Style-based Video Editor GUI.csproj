@@ -79,16 +79,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Helper.cs" />
-    <Compile Include="Forms\Main.cs">
+    <Compile Include="Forms\OpenVideo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="Forms\OpenVideo.Designer.cs">
+      <DependentUpon>OpenVideo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\OpenVideo.resx">
+      <DependentUpon>OpenVideo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
