@@ -78,10 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\Helper.cs" />
-    <Compile Include="Classes\Video.cs" />
-    <Compile Include="Exceptions\VideoFileNotSupported.cs" />
     <Compile Include="Forms\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
