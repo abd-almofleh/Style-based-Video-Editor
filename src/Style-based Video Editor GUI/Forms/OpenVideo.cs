@@ -7,7 +7,7 @@ namespace Style_based_Video_Editor_GUI.Forms
 {
   public partial class OpenVideo : Form
   {
-    internal Classes.Video VideoFile;
+    internal string VideoPath;
 
     public OpenVideo()
     {
@@ -37,7 +37,8 @@ namespace Style_based_Video_Editor_GUI.Forms
 
       if (OpenFile.FileName == "") return;
 
-      VideoFile = new Classes.Video(OpenFile.FileName);
+      Classes.Video VideoFile = new Classes.Video(OpenFile.FileName);
+      VideoPath = OpenFile.FileName;
       PathText.Text = OpenFile.FileName;
       VideoPreview.SetMedia(VideoFile.video);
       VideoPreview.Play();

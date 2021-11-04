@@ -32,13 +32,14 @@ namespace Style_based_Video_Editor_GUI.Forms
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.OpenFile = new System.Windows.Forms.ToolStripMenuItem();
-      this.VideoPath = new System.Windows.Forms.Label();
-      this.VideoPlayer = new Vlc.DotNet.Forms.VlcControl();
-      this.PlayPause = new System.Windows.Forms.Button();
       this.PlayerGroup = new System.Windows.Forms.GroupBox();
+      this.PlayPause = new System.Windows.Forms.Button();
+      this.VideoPlayer = new LibVLCSharp.WinForms.VideoView();
+      this.OpenExample = new System.Windows.Forms.ToolStripMenuItem();
+      this.Scenes = new System.Windows.Forms.GroupBox();
       this.menuStrip1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.VideoPlayer)).BeginInit();
       this.PlayerGroup.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.VideoPlayer)).BeginInit();
       this.SuspendLayout();
       // 
       // menuStrip1
@@ -48,14 +49,15 @@ namespace Style_based_Video_Editor_GUI.Forms
             this.fileToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(946, 24);
       this.menuStrip1.TabIndex = 0;
       this.menuStrip1.Text = "menuStrip1";
       // 
       // fileToolStripMenuItem
       // 
       this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenFile});
+            this.OpenFile,
+            this.OpenExample});
       this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
       this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
       this.fileToolStripMenuItem.Text = "File";
@@ -63,33 +65,20 @@ namespace Style_based_Video_Editor_GUI.Forms
       // OpenFile
       // 
       this.OpenFile.Name = "OpenFile";
-      this.OpenFile.Size = new System.Drawing.Size(103, 22);
+      this.OpenFile.Size = new System.Drawing.Size(180, 22);
       this.OpenFile.Text = "Open";
       this.OpenFile.Click += new System.EventHandler(this.OpenFile_Click);
       // 
-      // VideoPath
+      // PlayerGroup
       // 
-      this.VideoPath.AutoSize = true;
-      this.VideoPath.Location = new System.Drawing.Point(13, 28);
-      this.VideoPath.Name = "VideoPath";
-      this.VideoPath.Size = new System.Drawing.Size(106, 13);
-      this.VideoPath.TabIndex = 1;
-      this.VideoPath.Text = "Open vidoe to start...";
-      // 
-      // VideoPlayer
-      // 
-      this.VideoPlayer.Anchor = System.Windows.Forms.AnchorStyles.Top;
-      this.VideoPlayer.BackColor = System.Drawing.Color.Black;
-      this.VideoPlayer.Location = new System.Drawing.Point(6, 19);
-      this.VideoPlayer.Name = "VideoPlayer";
-      this.VideoPlayer.Size = new System.Drawing.Size(298, 204);
-      this.VideoPlayer.Spu = -1;
-      this.VideoPlayer.TabIndex = 2;
-      this.VideoPlayer.Text = "vlcControl1";
-      this.VideoPlayer.VlcLibDirectory = null;
-      this.VideoPlayer.VlcMediaplayerOptions = null;
-      this.VideoPlayer.VlcLibDirectoryNeeded += new System.EventHandler<Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs>(this.VideoPlayer_VlcLibDirectoryNeeded);
-      this.VideoPlayer.EndReached += new System.EventHandler<Vlc.DotNet.Core.VlcMediaPlayerEndReachedEventArgs>(this.VideoPlayer_EndReached);
+      this.PlayerGroup.Controls.Add(this.VideoPlayer);
+      this.PlayerGroup.Controls.Add(this.PlayPause);
+      this.PlayerGroup.Location = new System.Drawing.Point(12, 27);
+      this.PlayerGroup.Name = "PlayerGroup";
+      this.PlayerGroup.Size = new System.Drawing.Size(310, 279);
+      this.PlayerGroup.TabIndex = 4;
+      this.PlayerGroup.TabStop = false;
+      this.PlayerGroup.Text = "Player";
       // 
       // PlayPause
       // 
@@ -98,39 +87,55 @@ namespace Style_based_Video_Editor_GUI.Forms
       this.PlayPause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
       this.PlayPause.FlatAppearance.BorderSize = 0;
       this.PlayPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-      this.PlayPause.Location = new System.Drawing.Point(136, 229);
+      this.PlayPause.Location = new System.Drawing.Point(137, 228);
       this.PlayPause.Name = "PlayPause";
       this.PlayPause.Size = new System.Drawing.Size(38, 37);
       this.PlayPause.TabIndex = 3;
       this.PlayPause.UseVisualStyleBackColor = false;
       this.PlayPause.Click += new System.EventHandler(this.PlayPause_Click);
       // 
-      // PlayerGroup
+      // VideoPlayer
       // 
-      this.PlayerGroup.Controls.Add(this.VideoPlayer);
-      this.PlayerGroup.Controls.Add(this.PlayPause);
-      this.PlayerGroup.Location = new System.Drawing.Point(478, 28);
-      this.PlayerGroup.Name = "PlayerGroup";
-      this.PlayerGroup.Size = new System.Drawing.Size(310, 278);
-      this.PlayerGroup.TabIndex = 4;
-      this.PlayerGroup.TabStop = false;
-      this.PlayerGroup.Text = "Player";
+      this.VideoPlayer.BackColor = System.Drawing.Color.Black;
+      this.VideoPlayer.Location = new System.Drawing.Point(7, 19);
+      this.VideoPlayer.MediaPlayer = null;
+      this.VideoPlayer.Name = "VideoPlayer";
+      this.VideoPlayer.Size = new System.Drawing.Size(297, 203);
+      this.VideoPlayer.TabIndex = 4;
+      this.VideoPlayer.Text = "videoView1";
+      // 
+      // OpenExample
+      // 
+      this.OpenExample.Name = "OpenExample";
+      this.OpenExample.Size = new System.Drawing.Size(180, 22);
+      this.OpenExample.Text = "Open Example";
+      this.OpenExample.Click += new System.EventHandler(this.OpenExample_Click);
+      // 
+      // Scenes
+      // 
+      this.Scenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.Scenes.Location = new System.Drawing.Point(13, 313);
+      this.Scenes.Name = "Scenes";
+      this.Scenes.Size = new System.Drawing.Size(921, 200);
+      this.Scenes.TabIndex = 5;
+      this.Scenes.TabStop = false;
+      this.Scenes.Text = "Scenes";
       // 
       // Dashboard
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 450);
+      this.ClientSize = new System.Drawing.Size(946, 525);
+      this.Controls.Add(this.Scenes);
       this.Controls.Add(this.PlayerGroup);
-      this.Controls.Add(this.VideoPath);
       this.Controls.Add(this.menuStrip1);
       this.MainMenuStrip = this.menuStrip1;
       this.Name = "Dashboard";
       this.Text = "Style-based Video Editor";
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.VideoPlayer)).EndInit();
       this.PlayerGroup.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.VideoPlayer)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -141,9 +146,10 @@ namespace Style_based_Video_Editor_GUI.Forms
     private System.Windows.Forms.MenuStrip menuStrip1;
     private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem OpenFile;
-    private System.Windows.Forms.Label VideoPath;
-    private Vlc.DotNet.Forms.VlcControl VideoPlayer;
     private System.Windows.Forms.Button PlayPause;
     private System.Windows.Forms.GroupBox PlayerGroup;
+    private LibVLCSharp.WinForms.VideoView VideoPlayer;
+    private System.Windows.Forms.ToolStripMenuItem OpenExample;
+    private System.Windows.Forms.GroupBox Scenes;
   }
 }
