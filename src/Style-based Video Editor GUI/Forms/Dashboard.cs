@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using LibVLCSharp.Shared;
 using System.Threading;
+using System.Drawing;
 
 namespace Style_based_Video_Editor_GUI.Forms
 {
@@ -82,24 +83,62 @@ namespace Style_based_Video_Editor_GUI.Forms
     }
     private void DetectScenes()
     {
+      ScenesGroup.Controls.Clear();
       Label detecting = new Label
       {
         Font = new System.Drawing.Font("Microsoft Sans Serif", 18, System.Drawing.FontStyle.Bold),
         Text = "Detecting...",
         AutoSize = true
       };
-      Scenes.Controls.Add(detecting);
-      detecting.Left = (Scenes.Width / 2) - (detecting.Width / 2);
-      detecting.Top = (Scenes.Height / 2) - (detecting.Height / 2);
+      ScenesGroup.Controls.Add(detecting);
+      detecting.Left = (ScenesGroup.Width / 2) - (detecting.Width / 2);
+      detecting.Top = (ScenesGroup.Height / 2) - (detecting.Height / 2);
       detecting.BringToFront();
       new Thread(() =>
       {
-        Scenes.Invoke((MethodInvoker)delegate
+        SelectedVideo.detectScenes();
+        ScenesGroup.Invoke((MethodInvoker)delegate
         {
-          SelectedVideo.detectScenes();
-          Scenes.Controls.Clear();
+          FlowLayoutPanel panel = new FlowLayoutPanel
+          {
+            AutoScroll = true,
+            FlowDirection = FlowDirection.LeftToRight,
+            WrapContents = false,
+            Dock = DockStyle.Fill,
+          };
+          ScenesGroup.Controls.Clear();
+          ScenesGroup.Controls.Add(panel);
+
+          foreach (var item in SelectedVideo.scenes)
+          {
+            FlowLayoutPanel colmne = new FlowLayoutPanel
+            {
+              AutoScroll = false,
+              FlowDirection = FlowDirection.TopDown,
+              WrapContents = false,
+              Height = (int)(panel.Height - panel.Height * 0.2),
+              AutoSize = true,
+              BorderStyle = BorderStyle.FixedSingle
+            };
+
+            PictureBox p = new PictureBox();
+            p.Image = Image.FromFile(item.Image.FullName);
+            p.SizeMode = PictureBoxSizeMode.Zoom;
+            p.Height = (int)(panel.Height - panel.Height * 0.2);
+
+            Label label = new Label();
+            label.Text = "Scene " + item.SceneNumber;
+            label.Width = p.Width;
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Font = new Font("Microsoft Sans Serif", 12);
+
+            colmne.Controls.Add(label);
+            colmne.Controls.Add(p);
+            panel.Controls.Add(colmne);
+
+
+          }
         });
-        Console.WriteLine("clear");
       }).Start();
     }
   }

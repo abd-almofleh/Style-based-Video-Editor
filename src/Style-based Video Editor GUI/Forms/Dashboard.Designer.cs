@@ -32,11 +32,11 @@ namespace Style_based_Video_Editor_GUI.Forms
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.OpenFile = new System.Windows.Forms.ToolStripMenuItem();
-      this.PlayerGroup = new System.Windows.Forms.GroupBox();
-      this.PlayPause = new System.Windows.Forms.Button();
-      this.VideoPlayer = new LibVLCSharp.WinForms.VideoView();
       this.OpenExample = new System.Windows.Forms.ToolStripMenuItem();
-      this.Scenes = new System.Windows.Forms.GroupBox();
+      this.PlayerGroup = new System.Windows.Forms.GroupBox();
+      this.VideoPlayer = new LibVLCSharp.WinForms.VideoView();
+      this.PlayPause = new System.Windows.Forms.Button();
+      this.ScenesGroup = new System.Windows.Forms.GroupBox();
       this.menuStrip1.SuspendLayout();
       this.PlayerGroup.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.VideoPlayer)).BeginInit();
@@ -65,9 +65,16 @@ namespace Style_based_Video_Editor_GUI.Forms
       // OpenFile
       // 
       this.OpenFile.Name = "OpenFile";
-      this.OpenFile.Size = new System.Drawing.Size(180, 22);
+      this.OpenFile.Size = new System.Drawing.Size(151, 22);
       this.OpenFile.Text = "Open";
       this.OpenFile.Click += new System.EventHandler(this.OpenFile_Click);
+      // 
+      // OpenExample
+      // 
+      this.OpenExample.Name = "OpenExample";
+      this.OpenExample.Size = new System.Drawing.Size(151, 22);
+      this.OpenExample.Text = "Open Example";
+      this.OpenExample.Click += new System.EventHandler(this.OpenExample_Click);
       // 
       // PlayerGroup
       // 
@@ -79,6 +86,16 @@ namespace Style_based_Video_Editor_GUI.Forms
       this.PlayerGroup.TabIndex = 4;
       this.PlayerGroup.TabStop = false;
       this.PlayerGroup.Text = "Player";
+      // 
+      // VideoPlayer
+      // 
+      this.VideoPlayer.BackColor = System.Drawing.Color.Black;
+      this.VideoPlayer.Location = new System.Drawing.Point(7, 19);
+      this.VideoPlayer.MediaPlayer = null;
+      this.VideoPlayer.Name = "VideoPlayer";
+      this.VideoPlayer.Size = new System.Drawing.Size(297, 203);
+      this.VideoPlayer.TabIndex = 4;
+      this.VideoPlayer.Text = "videoView1";
       // 
       // PlayPause
       // 
@@ -94,39 +111,24 @@ namespace Style_based_Video_Editor_GUI.Forms
       this.PlayPause.UseVisualStyleBackColor = false;
       this.PlayPause.Click += new System.EventHandler(this.PlayPause_Click);
       // 
-      // VideoPlayer
+      // ScenesGroup
       // 
-      this.VideoPlayer.BackColor = System.Drawing.Color.Black;
-      this.VideoPlayer.Location = new System.Drawing.Point(7, 19);
-      this.VideoPlayer.MediaPlayer = null;
-      this.VideoPlayer.Name = "VideoPlayer";
-      this.VideoPlayer.Size = new System.Drawing.Size(297, 203);
-      this.VideoPlayer.TabIndex = 4;
-      this.VideoPlayer.Text = "videoView1";
-      // 
-      // OpenExample
-      // 
-      this.OpenExample.Name = "OpenExample";
-      this.OpenExample.Size = new System.Drawing.Size(180, 22);
-      this.OpenExample.Text = "Open Example";
-      this.OpenExample.Click += new System.EventHandler(this.OpenExample_Click);
-      // 
-      // Scenes
-      // 
-      this.Scenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.Scenes.Location = new System.Drawing.Point(13, 313);
-      this.Scenes.Name = "Scenes";
-      this.Scenes.Size = new System.Drawing.Size(921, 200);
-      this.Scenes.TabIndex = 5;
-      this.Scenes.TabStop = false;
-      this.Scenes.Text = "Scenes";
+      this.ScenesGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.ScenesGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.ScenesGroup.Location = new System.Drawing.Point(13, 313);
+      this.ScenesGroup.Name = "ScenesGroup";
+      this.ScenesGroup.Size = new System.Drawing.Size(921, 200);
+      this.ScenesGroup.TabIndex = 5;
+      this.ScenesGroup.TabStop = false;
+      this.ScenesGroup.Text = "Scenes";
       // 
       // Dashboard
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(946, 525);
-      this.Controls.Add(this.Scenes);
+      this.Controls.Add(this.ScenesGroup);
       this.Controls.Add(this.PlayerGroup);
       this.Controls.Add(this.menuStrip1);
       this.MainMenuStrip = this.menuStrip1;
@@ -150,6 +152,6 @@ namespace Style_based_Video_Editor_GUI.Forms
     private System.Windows.Forms.GroupBox PlayerGroup;
     private LibVLCSharp.WinForms.VideoView VideoPlayer;
     private System.Windows.Forms.ToolStripMenuItem OpenExample;
-    private System.Windows.Forms.GroupBox Scenes;
+    private System.Windows.Forms.GroupBox ScenesGroup;
   }
 }
