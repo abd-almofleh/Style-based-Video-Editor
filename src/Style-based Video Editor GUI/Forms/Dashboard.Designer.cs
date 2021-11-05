@@ -219,8 +219,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // label8
       // 
-      this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.label8.AutoSize = true;
       this.label8.Location = new System.Drawing.Point(4, 171);
@@ -232,8 +232,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // label6
       // 
-      this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.label6.AutoSize = true;
       this.label6.Location = new System.Drawing.Point(4, 103);
@@ -245,8 +245,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // label3
       // 
-      this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.label3.AutoSize = true;
       this.label3.Location = new System.Drawing.Point(4, 1);
@@ -258,8 +258,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // label4
       // 
-      this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.label4.AutoSize = true;
       this.label4.Location = new System.Drawing.Point(4, 35);
@@ -271,8 +271,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // label5
       // 
-      this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.label5.AutoSize = true;
       this.label5.Location = new System.Drawing.Point(4, 69);
@@ -284,8 +284,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // label7
       // 
-      this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.label7.AutoSize = true;
       this.label7.Location = new System.Drawing.Point(4, 137);
@@ -297,8 +297,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // SceneNumber
       // 
-      this.SceneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.SceneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.SceneNumber.AutoSize = true;
       this.SceneNumber.Location = new System.Drawing.Point(153, 1);
@@ -310,8 +310,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // StartTime
       // 
-      this.StartTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.StartTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.StartTime.AutoSize = true;
       this.StartTime.Location = new System.Drawing.Point(153, 35);
@@ -323,8 +323,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // EndTime
       // 
-      this.EndTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.EndTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.EndTime.AutoSize = true;
       this.EndTime.Location = new System.Drawing.Point(153, 69);
@@ -336,8 +336,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // Length
       // 
-      this.Length.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.Length.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.Length.AutoSize = true;
       this.Length.Location = new System.Drawing.Point(153, 103);
@@ -349,8 +349,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // StartFrame
       // 
-      this.StartFrame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.StartFrame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.StartFrame.AutoSize = true;
       this.StartFrame.Location = new System.Drawing.Point(153, 137);
@@ -362,8 +362,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // EndFrame
       // 
-      this.EndFrame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      this.EndFrame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.EndFrame.AutoSize = true;
       this.EndFrame.Location = new System.Drawing.Point(153, 171);
@@ -442,7 +442,7 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // ScenesGroup
       // 
-      this.ScenesGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+      this.ScenesGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.ScenesGroup.Controls.Add(this.ScenesListMessage);
       this.ScenesGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -483,6 +483,7 @@ namespace Style_based_Video_Editor_GUI.Forms
       this.MainMenuStrip = this.menuStrip1;
       this.Name = "Dashboard";
       this.Text = "Style-based Video Editor";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Dashboard_FormClosing);
       this.Load += new System.EventHandler(this.Dashboard_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();

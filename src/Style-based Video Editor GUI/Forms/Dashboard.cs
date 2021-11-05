@@ -224,6 +224,9 @@ namespace Style_based_Video_Editor_GUI.Forms
       if (exampleVideos.Length > 0) OpenExample.Enabled = true;
     }
 
-
+    private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      _mp.Stop();
+    }
   }
 }
