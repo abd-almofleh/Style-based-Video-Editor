@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Style_based_Video_Editor_GUI.Classes
 {
-  class Scene
+  public class Scene
   {
     uint sceneNumber;
 

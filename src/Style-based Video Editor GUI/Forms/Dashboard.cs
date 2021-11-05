@@ -46,6 +46,7 @@ namespace Style_based_Video_Editor_GUI.Forms
           PlayPause.BackgroundImage = Properties.Resources.play_button;
           _mp.Pause();
           break;
+        case VLCState.NothingSpecial:
         case VLCState.Paused:
           PlayPause.BackgroundImage = Properties.Resources.pause_button;
           _mp.Play();
@@ -72,13 +73,14 @@ namespace Style_based_Video_Editor_GUI.Forms
     private void PreviewVideo(string path)
     {
       SelectedVideo = new Video(path);
-      PlayerGroup.Text = SelectedVideo.video.Name.Substring(0, SelectedVideo.video.Name.LastIndexOf('.')) + " - " + "preview";
+      PlayerGroup.Text = SelectedVideo.video.Name.Substring(0, SelectedVideo.video.Name.LastIndexOf('.')) + " - Preview";
       Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + " - " + SelectedVideo.video.Name;
       DetectScenes();
 
       PlayPause.BackgroundImage = Properties.Resources.pause_button;
       _mp.Media = new Media(_libVLC, SelectedVideo.video.FullName);
-      _mp.Play();
+      PlayerGroup.Controls.Remove(ScenePreviewMessage);
+      //_mp.Play();
 
     }
     private void DetectScenes()
@@ -86,7 +88,7 @@ namespace Style_based_Video_Editor_GUI.Forms
       ScenesGroup.Controls.Clear();
       Label detecting = new Label
       {
-        Font = new System.Drawing.Font("Microsoft Sans Serif", 18, System.Drawing.FontStyle.Bold),
+        Font = new Font("Microsoft Sans Serif", 18, System.Drawing.FontStyle.Bold),
         Text = "Detecting...",
         AutoSize = true
       };
@@ -111,35 +113,26 @@ namespace Style_based_Video_Editor_GUI.Forms
 
           foreach (var item in SelectedVideo.scenes)
           {
-            FlowLayoutPanel colmne = new FlowLayoutPanel
-            {
-              AutoScroll = false,
-              FlowDirection = FlowDirection.TopDown,
-              WrapContents = false,
-              Height = (int)(panel.Height - panel.Height * 0.2),
-              AutoSize = true,
-              BorderStyle = BorderStyle.FixedSingle
-            };
-
-            PictureBox p = new PictureBox();
-            p.Image = Image.FromFile(item.Image.FullName);
-            p.SizeMode = PictureBoxSizeMode.Zoom;
-            p.Height = (int)(panel.Height - panel.Height * 0.2);
-
-            Label label = new Label();
-            label.Text = "Scene " + item.SceneNumber;
-            label.Width = p.Width;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Font = new Font("Microsoft Sans Serif", 12);
-
-            colmne.Controls.Add(label);
-            colmne.Controls.Add(p);
-            panel.Controls.Add(colmne);
-
-
+            UserContoles.Scene scenePanel = new UserContoles.Scene(item, panel.Height);
+            scenePanel.Click += ScenePanelClick;
+            panel.Controls.Add(scenePanel);
           }
         });
       }).Start();
+    }
+
+
+    private void ScenePanelClick(object sender, EventArgs e)
+    {
+      Scene selectedScene = ((UserContoles.Scene)sender).scene;
+      _mp.Media = new Media(_libVLC, selectedScene.Video.FullName);
+      if (AutoPlay.Checked) _mp.Play();
+    }
+
+    private void Dashboard_Load(object sender, EventArgs e)
+    {
+      // ! for debugging only
+      OpenExample.PerformClick();
     }
   }
 }
