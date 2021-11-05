@@ -73,10 +73,12 @@ namespace Style_based_Video_Editor_GUI.Forms
 
     private void SelectVideo(string path)
     {
+      closeVideo();
       SelectedVideo = new Video(path);
       Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + " - " + SelectedVideo.video.Name;
       PreviewVideo();
       DetectScenes();
+
 
     }
 
@@ -86,6 +88,7 @@ namespace Style_based_Video_Editor_GUI.Forms
       PlayPause.BackgroundImage = Properties.Resources.play_button;
       _mp.Media = new Media(_libVLC, SelectedVideo.video.FullName);
       SceneVideoPreview.Controls.Remove(ScenePreviewMessage);
+      ScenePreviewMessage.SendToBack();
       //_mp.Play();
 
     }
@@ -147,6 +150,8 @@ namespace Style_based_Video_Editor_GUI.Forms
             scenePanel.Click += ScenePanelClick;
             panel.Controls.Add(scenePanel);
           }
+          closeVideoToolStripMenuItem.Enabled = true;
+
         });
       }).Start();
     }
@@ -162,6 +167,27 @@ namespace Style_based_Video_Editor_GUI.Forms
       // ! for debugging only
       //OpenExample.PerformClick();
     }
+    private void closeVideo()
+    {
+      SceneVideoPreview.Controls.Add(ScenePreviewMessage);
+      SceneInfo.Controls.Add(SceneInfoMessage);
+      SceneInfoMessage.BringToFront();
+      ScenePreviewMessage.BringToFront();
+      _mp.Stop();
+      _mp.Media = null;
+      SceneImagePreview.Image = null;
+      ScenesGroup.Controls.Clear();
+      ScenesGroup.Controls.Add(ScenesListMessage);
+      GC.Collect();
+      SelectedVideo = null;
+      closeVideoToolStripMenuItem.Enabled = false;
 
+
+    }
+
+    private void closeVideoToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      closeVideo();
+    }
   }
 }

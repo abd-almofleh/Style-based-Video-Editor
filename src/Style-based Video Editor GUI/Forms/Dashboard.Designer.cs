@@ -33,6 +33,7 @@ namespace Style_based_Video_Editor_GUI.Forms
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.OpenFile = new System.Windows.Forms.ToolStripMenuItem();
       this.OpenExample = new System.Windows.Forms.ToolStripMenuItem();
+      this.closeVideoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.VideoPlayer = new LibVLCSharp.WinForms.VideoView();
       this.Tabs = new System.Windows.Forms.TabControl();
       this.SceneTab = new System.Windows.Forms.TabPage();
@@ -59,7 +60,7 @@ namespace Style_based_Video_Editor_GUI.Forms
       this.AutoPlay = new System.Windows.Forms.CheckBox();
       this.PlayPause = new System.Windows.Forms.Button();
       this.ScenesGroup = new System.Windows.Forms.GroupBox();
-      this.label1 = new System.Windows.Forms.Label();
+      this.ScenesListMessage = new System.Windows.Forms.Label();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.menuStrip1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.VideoPlayer)).BeginInit();
@@ -89,7 +90,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenFile,
-            this.OpenExample});
+            this.OpenExample,
+            this.closeVideoToolStripMenuItem});
       this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
       this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
       this.fileToolStripMenuItem.Text = "File";
@@ -97,16 +99,25 @@ namespace Style_based_Video_Editor_GUI.Forms
       // OpenFile
       // 
       this.OpenFile.Name = "OpenFile";
-      this.OpenFile.Size = new System.Drawing.Size(151, 22);
+      this.OpenFile.Size = new System.Drawing.Size(180, 22);
       this.OpenFile.Text = "Open";
       this.OpenFile.Click += new System.EventHandler(this.OpenFile_Click);
       // 
       // OpenExample
       // 
       this.OpenExample.Name = "OpenExample";
-      this.OpenExample.Size = new System.Drawing.Size(151, 22);
+      this.OpenExample.Size = new System.Drawing.Size(180, 22);
       this.OpenExample.Text = "Open Example";
       this.OpenExample.Click += new System.EventHandler(this.OpenExample_Click);
+      // 
+      // closeVideoToolStripMenuItem
+      // 
+      this.closeVideoToolStripMenuItem.Enabled = false;
+      this.closeVideoToolStripMenuItem.Name = "closeVideoToolStripMenuItem";
+      this.closeVideoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.closeVideoToolStripMenuItem.Text = "Close Video";
+      this.closeVideoToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+      this.closeVideoToolStripMenuItem.Click += new System.EventHandler(this.closeVideoToolStripMenuItem_Click);
       // 
       // VideoPlayer
       // 
@@ -432,7 +443,7 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       this.ScenesGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.ScenesGroup.Controls.Add(this.label1);
+      this.ScenesGroup.Controls.Add(this.ScenesListMessage);
       this.ScenesGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.ScenesGroup.Location = new System.Drawing.Point(9, 6);
       this.ScenesGroup.Name = "ScenesGroup";
@@ -441,15 +452,15 @@ namespace Style_based_Video_Editor_GUI.Forms
       this.ScenesGroup.TabStop = false;
       this.ScenesGroup.Text = "Scenes List";
       // 
-      // label1
+      // ScenesListMessage
       // 
-      this.label1.AutoSize = true;
-      this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label1.Location = new System.Drawing.Point(296, 86);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(342, 29);
-      this.label1.TabIndex = 0;
-      this.label1.Text = "Open a file to see the scenes...";
+      this.ScenesListMessage.AutoSize = true;
+      this.ScenesListMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.ScenesListMessage.Location = new System.Drawing.Point(296, 86);
+      this.ScenesListMessage.Name = "ScenesListMessage";
+      this.ScenesListMessage.Size = new System.Drawing.Size(342, 29);
+      this.ScenesListMessage.TabIndex = 0;
+      this.ScenesListMessage.Text = "Open a file to see the scenes...";
       // 
       // tabPage2
       // 
@@ -507,7 +518,7 @@ namespace Style_based_Video_Editor_GUI.Forms
     private System.Windows.Forms.GroupBox SceneVideoPreview;
     private System.Windows.Forms.GroupBox ScenesGroup;
     private System.Windows.Forms.Button PlayPause;
-    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Label ScenesListMessage;
     private System.Windows.Forms.Panel ScenePreviewMessage;
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.CheckBox AutoPlay;
@@ -528,5 +539,6 @@ namespace Style_based_Video_Editor_GUI.Forms
     private System.Windows.Forms.Label EndFrame;
     private System.Windows.Forms.Panel SceneInfoMessage;
     private System.Windows.Forms.Label label9;
+    private System.Windows.Forms.ToolStripMenuItem closeVideoToolStripMenuItem;
   }
 }
