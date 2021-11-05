@@ -156,7 +156,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Example Videos\rise of the tomb raeder.mp4" />
     <Content Include="Example Videos\SYRIAN Hardcore Memes %282%29.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -168,6 +167,7 @@
     <Error Condition="!Exists('packages\VideoLAN.LibVLC.Windows.3.0.16\build\VideoLAN.LibVLC.Windows.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\VideoLAN.LibVLC.Windows.3.0.16\build\VideoLAN.LibVLC.Windows.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(SolutionDir)Example Videos" "$(TargetDir)Example Videos" /E /I</PostBuildEvent>
+    <PostBuildEvent>rm -r "$(TargetDir)Example Videos"
+xcopy /Y "$(SolutionDir)Example Videos" "$(TargetDir)Example Videos" /E /I</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -205,13 +205,25 @@ namespace Style_based_Video_Editor_GUI.Forms
     private void LoadExample()
     {
       DirectoryInfo videoDirectory = new DirectoryInfo(@"./Example Videos");
+      if (!videoDirectory.Exists) return;
       FileInfo[] files = Constants.supportedVideoTypes.SelectMany(ext => videoDirectory.GetFiles("*." + ext)).ToArray();
       exampleVideos = new Video[files.Length];
       for (int i = 0; i < files.Length; i++)
       {
         exampleVideos[i] = new Video(files[i]);
+        ToolStripMenuItem example = new ToolStripMenuItem($"Open {exampleVideos[i].video.Name}");
+        example.Tag = i;
+
+        example.Click += (object sender, EventArgs e) =>
+        {
+          int index = (int)((ToolStripMenuItem)sender).Tag;
+          SelectVideo(exampleVideos[index]);
+        };
+        OpenExample.DropDownItems.Add(example);
       }
       if (exampleVideos.Length > 0) OpenExample.Enabled = true;
     }
+
+
   }
 }
