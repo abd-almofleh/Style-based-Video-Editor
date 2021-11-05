@@ -23,9 +23,8 @@ namespace Style_based_Video_Editor_GUI.Forms
       _mp = new MediaPlayer(_libVLC);
       VideoPlayer.MediaPlayer = _mp;
       _mp.Stopped += (object sender, EventArgs e) => { PlayPause.BackgroundImage = Properties.Resources.play_button; };
+      _mp.EndReached += (object sender, EventArgs e) => { PlayPause.BackgroundImage = Properties.Resources.play_button; };
     }
-
-
 
     private void OpenFile_Click(object sender, EventArgs e)
     {
@@ -33,7 +32,7 @@ namespace Style_based_Video_Editor_GUI.Forms
       DialogResult dialogResult = openVideo.ShowDialog();
       if (dialogResult != DialogResult.OK) return;
 
-      PreviewVideo(openVideo.VideoPath);
+      SelectVideo(openVideo.VideoPath);
     }
 
     private void PlayPause_Click(object sender, EventArgs e)
@@ -68,21 +67,52 @@ namespace Style_based_Video_Editor_GUI.Forms
     private void OpenExample_Click(object sender, EventArgs e)
     {
       string path = @"D:\Videos\SYRIAN Hardcore Memes (2).mp4";
-      PreviewVideo(path);
+      SelectVideo(path);
+
     }
-    private void PreviewVideo(string path)
+
+    private void SelectVideo(string path)
     {
       SelectedVideo = new Video(path);
-      PlayerGroup.Text = SelectedVideo.video.Name.Substring(0, SelectedVideo.video.Name.LastIndexOf('.')) + " - Preview";
       Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + " - " + SelectedVideo.video.Name;
+      PreviewVideo();
       DetectScenes();
 
-      PlayPause.BackgroundImage = Properties.Resources.pause_button;
+    }
+
+    private void PreviewVideo()
+    {
+      SceneVideoPreview.Text = SelectedVideo.video.Name.Substring(0, SelectedVideo.video.Name.LastIndexOf('.')) + " - Preview";
+      PlayPause.BackgroundImage = Properties.Resources.play_button;
       _mp.Media = new Media(_libVLC, SelectedVideo.video.FullName);
-      PlayerGroup.Controls.Remove(ScenePreviewMessage);
+      SceneVideoPreview.Controls.Remove(ScenePreviewMessage);
       //_mp.Play();
 
     }
+    private void PreviewVideo(Scene scene)
+    {
+      if (_mp.State != VLCState.Ended) _mp.Stop();
+      SceneInfo.Controls.Remove(SceneInfoMessage);
+
+      SceneNumber.Text = scene.SceneNumber.ToString("000");
+      StartTime.Text = scene.StartTime.ToString(@"mm\:ss");
+      EndTime.Text = scene.EndTime.ToString(@"mm\:ss");
+      Length.Text = (scene.EndTime - scene.StartTime).ToString(@"mm\:ss");
+      StartFrame.Text = scene.StartFrame.ToString();
+      EndFrame.Text = scene.EndFrame.ToString();
+      SceneImagePreview.Image = Image.FromFile(scene.Image.FullName);
+      _mp.Media = new Media(_libVLC, scene.Video.FullName);
+      if (AutoPlay.Checked)
+      {
+        _mp.Play();
+        PlayPause.BackgroundImage = Properties.Resources.pause_button;
+      }
+      else
+        PlayPause.BackgroundImage = Properties.Resources.play_button;
+
+
+    }
+
     private void DetectScenes()
     {
       ScenesGroup.Controls.Clear();
@@ -121,18 +151,17 @@ namespace Style_based_Video_Editor_GUI.Forms
       }).Start();
     }
 
-
     private void ScenePanelClick(object sender, EventArgs e)
     {
       Scene selectedScene = ((UserContoles.Scene)sender).scene;
-      _mp.Media = new Media(_libVLC, selectedScene.Video.FullName);
-      if (AutoPlay.Checked) _mp.Play();
+      PreviewVideo(selectedScene);
     }
 
     private void Dashboard_Load(object sender, EventArgs e)
     {
       // ! for debugging only
-      OpenExample.PerformClick();
+      //OpenExample.PerformClick();
     }
+
   }
 }

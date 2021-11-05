@@ -18,7 +18,7 @@ namespace Style_based_Video_Editor_GUI.UserContoles
       InitializeComponent();
       Title.Text = "Scene " + scene.SceneNumber;
       ImageBox.Image = Image.FromFile(scene.Image.FullName);
-      ImageBox.Height = (int)(height - height * 0.6);
+      ImageBox.Height = (int)(height - height * 0.65);
       Title.Width = ImageBox.Width;
       this.scene = scene;
       ImageBox.Click += eventClick;
