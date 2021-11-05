@@ -105,6 +105,7 @@ namespace Style_based_Video_Editor_GUI.Forms
       // 
       // OpenExample
       // 
+      this.OpenExample.Enabled = false;
       this.OpenExample.Name = "OpenExample";
       this.OpenExample.Size = new System.Drawing.Size(180, 22);
       this.OpenExample.Text = "Open Example";

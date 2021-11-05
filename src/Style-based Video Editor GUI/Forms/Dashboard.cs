@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using LibVLCSharp.Shared;
 using System.Threading;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 
 namespace Style_based_Video_Editor_GUI.Forms
 {
@@ -15,6 +17,7 @@ namespace Style_based_Video_Editor_GUI.Forms
 
     private Video SelectedVideo;
 
+    private Video[] exampleVideos;
     public Dashboard()
     {
       InitializeComponent();
@@ -66,8 +69,7 @@ namespace Style_based_Video_Editor_GUI.Forms
 
     private void OpenExample_Click(object sender, EventArgs e)
     {
-      string path = @"D:\Videos\SYRIAN Hardcore Memes (2).mp4";
-      SelectVideo(path);
+      SelectVideo(exampleVideos[0]);
 
     }
 
@@ -75,6 +77,16 @@ namespace Style_based_Video_Editor_GUI.Forms
     {
       closeVideo();
       SelectedVideo = new Video(path);
+      Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + " - " + SelectedVideo.video.Name;
+      PreviewVideo();
+      DetectScenes();
+
+
+    }
+    private void SelectVideo(Video videoFile)
+    {
+      closeVideo();
+      SelectedVideo = videoFile;
       Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name + " - " + SelectedVideo.video.Name;
       PreviewVideo();
       DetectScenes();
@@ -166,6 +178,7 @@ namespace Style_based_Video_Editor_GUI.Forms
     {
       // ! for debugging only
       //OpenExample.PerformClick();
+      LoadExample();
     }
     private void closeVideo()
     {
@@ -188,6 +201,17 @@ namespace Style_based_Video_Editor_GUI.Forms
     private void closeVideoToolStripMenuItem_Click(object sender, EventArgs e)
     {
       closeVideo();
+    }
+    private void LoadExample()
+    {
+      DirectoryInfo videoDirectory = new DirectoryInfo(@"./Example Videos");
+      FileInfo[] files = Constants.supportedVideoTypes.SelectMany(ext => videoDirectory.GetFiles("*." + ext)).ToArray();
+      exampleVideos = new Video[files.Length];
+      for (int i = 0; i < files.Length; i++)
+      {
+        exampleVideos[i] = new Video(files[i]);
+      }
+      if (exampleVideos.Length > 0) OpenExample.Enabled = true;
     }
   }
 }
