@@ -1,13 +1,27 @@
 ﻿using System;
 
-
 namespace Style_based_Video_Editor_GUI.Classes
 {
-    static class Helper
+  internal static class Helper
+  {
+    public static void VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
     {
-       public static  void VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
-        {
-            e.VlcLibDirectory = new System.IO.DirectoryInfo(System.IO.Path.Combine(".", "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
-        }
+      e.VlcLibDirectory = new System.IO.DirectoryInfo(System.IO.Path.Combine(".", "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
     }
+
+    public static void RunCMDCommand(string command)
+    {
+      System.Diagnostics.Process process = new System.Diagnostics.Process();
+      process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+      process.StartInfo.FileName = "cmd.exe";
+      process.StartInfo.Arguments = $"/C {command}";
+      process.StartInfo.UseShellExecute = false;
+      process.StartInfo.RedirectStandardOutput = true;
+      process.StartInfo.CreateNoWindow = true;
+      process.Start();
+      process.WaitForExit();// Waits here for the process to exit.
+      string output = process.StandardOutput.ReadToEnd();
+      Console.WriteLine(output);
+    }
+  }
 }
