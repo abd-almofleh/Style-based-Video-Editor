@@ -1,5 +1,6 @@
 result/*
 videos/*
 keyframes/*
+src/weights/*
 scenes/*
 .vscode
