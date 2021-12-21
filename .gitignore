@@ -3,3 +3,4 @@ videos/*
 keyframes/*
 scenes/*
 .vscode
+__pycache__
