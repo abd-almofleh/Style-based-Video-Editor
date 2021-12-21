@@ -4,3 +4,4 @@ keyframes/*
 src/weights/*
 scenes/*
 .vscode
+__pycache__
