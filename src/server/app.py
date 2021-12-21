@@ -6,7 +6,6 @@ from api.routes import create_routes
 def get_flask_app() -> app.Flask:
 
     flask_app = Flask(__name__)
-    flask_app.config['UPLOAD_FOLDER'] = "upload"
     flask_app.config['MAX_CONTENT_PATH'] = "20000000"
     api = Api(app=flask_app)
 

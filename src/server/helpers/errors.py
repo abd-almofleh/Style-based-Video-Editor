@@ -2,6 +2,22 @@
 from flask import Response, jsonify
 
 
+def file_is_reqired() -> Response:
+    output = {
+        "error": {"msg": "You must upload an image."}}
+    resp = jsonify({'result': output})
+    resp.status_code = 400
+    return resp
+
+
+def extention_allowed_only(extention) -> Response:
+    output = {
+        "error": {"msg": "Only these extentions is allowed {}.".format(extention)}}
+    resp = jsonify({'result': output})
+    resp.status_code = 400
+    return resp
+
+
 def unauthorized() -> Response:
     output = {"error":
               {"msg": "401 error: The email or password provided is invalid."}
