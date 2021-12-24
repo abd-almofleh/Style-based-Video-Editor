@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Style_based_Video_Editor_GUI.Windows"
         mc:Ignorable="d"
-        Title="Style-based Video Editor" Height="650" Width="1000" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+        Title="Style-based Video Editor" Height="650" Width="1000" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" FontFamily="Times New Roman">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -73,6 +73,70 @@
                             </Grid>
                         </Border>
                         <Border Grid.Row="1" BorderThickness="1" BorderBrush="#FF666666" Padding="5" Margin="0,5,0,0" >
+                            <Grid>
+                            <TabControl x:Name="Info" Visibility="Collapsed">
+                                <TabItem x:Name="VideoInfo" Header="Video Info">
+                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
+                                        <Grid x:Name="VideoPropeties" ShowGridLines="True" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="25"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Content="Video Number" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
+                                            <Label x:Name="VideoNumber" Content="#VideoNumber" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1"/>
+
+                                        </Grid>
+                                    </ScrollViewer>
+
+                                </TabItem>
+                                <TabItem x:Name="SceneInfo" Header="Scene Info" Visibility="Collapsed">
+                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
+                                        <Grid x:Name="ScenePropeties" ShowGridLines="True" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="25"/>
+                                                <RowDefinition Height="25"/>
+                                                <RowDefinition Height="25"/>
+                                                <RowDefinition Height="25"/>
+                                                <RowDefinition Height="25"/>
+                                                <RowDefinition Height="25"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Content="Scene Number" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
+                                            <Label x:Name="SceneNumber" Content="#SceneNumber" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1"/>
+
+                                            <Label Content="Start Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="1"/>
+                                            <Label x:Name="StartTime" Content="#StartTime" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="1"/>
+
+                                            <Label Content="End Time" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="2"/>
+                                            <Label x:Name="EndTime" Content="#EndTime" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="2"/>
+
+                                            <Label Content="Length" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="3"/>
+                                            <Label x:Name="Length" Content="#Length" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="3"/>
+
+                                            <Label Content="Start Frame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="4"/>
+                                            <Label x:Name="StartFrame" Content="#StartFrame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="4"/>
+
+                                            <Label Content="End Frame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="5"/>
+                                            <Label x:Name="EndFrame" Content="#EndFrame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="5"/>
+
+                                        </Grid>
+                                    </ScrollViewer>
+
+                                </TabItem>
+                            </TabControl>
+                            <Label x:Name="InfoMessage"  Content="Select Video to preview..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                                
+                            </Grid>
+                            
+
                         </Border>
                     </Grid>
                 </Grid>

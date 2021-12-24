@@ -89,7 +89,7 @@ namespace Style_based_Video_Editor_GUI.Windows
           FontFamily = new FontFamily("Times New Roman"),
           FontSize = 24,
           FontWeight = FontWeights.Bold,
-          Content = "Detecting..."+i,
+          Content = "Detecting...",
           HorizontalAlignment = HorizontalAlignment.Stretch,
           VerticalAlignment = VerticalAlignment.Stretch,
           HorizontalContentAlignment = HorizontalAlignment.Center,
@@ -168,31 +168,40 @@ namespace Style_based_Video_Editor_GUI.Windows
               ScenesLabels.Children.Add(ll);
 
             }
-
         }
-        //for (int i = 0; i < videos[index].scenes.Length; i++)
-        //{
-    
-
-        //}
-
       });
     }
 
 
     internal void LoadVideo(int videoIndex, int sceneIndex)
     {
+      InfoMessage.Visibility = Visibility.Collapsed;
+      Info.Visibility = Visibility.Visible;
       SelectedVideo = videoIndex;
       SelectedScene = sceneIndex;
       if (SelectedScene == -1)
       {
         VideoPlayer.Source = new Uri(videos[SelectedVideo].video.FullName);
+        SceneInfo.Visibility = Visibility.Collapsed;
+        VideoInfo.IsSelected = true;
       }
       else
       {
-        VideoPlayer.Source = new Uri(videos[SelectedVideo].scenes[SelectedScene].Video.FullName);
+        SceneInfo.Visibility = Visibility.Visible;
+        SceneInfo.IsSelected = true;
+        Scene scene = videos[SelectedVideo].scenes[SelectedScene];
+        VideoPlayer.Source = new Uri(scene.Video.FullName);
+        SceneNumber.Content = sceneIndex + 1;
+        SceneNumber.Content = scene.SceneNumber.ToString("000");
+        StartTime.Content = scene.StartTime.ToString(@"mm\:ss");
+        EndTime.Content = scene.EndTime.ToString(@"mm\:ss");
+        Length.Content = (scene.EndTime - scene.StartTime).ToString(@"mm\:ss");
+        StartFrame.Content = scene.StartFrame.ToString();
+        EndFrame.Content = scene.EndFrame.ToString();
 
       }
+      VideoNumber.Content = SelectedVideo + 1;
+
 
     }
 
