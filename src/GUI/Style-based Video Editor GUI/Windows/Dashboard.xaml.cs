@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using Style_based_Video_Editor_GUI.Classes;
+using System.IO;
+using System.Threading;
 
 namespace Style_based_Video_Editor_GUI.Windows
 {
@@ -21,18 +25,239 @@ namespace Style_based_Video_Editor_GUI.Windows
   /// </summary>
   public partial class Dashboard : Window
   {
+    bool _isPlaying = false;
+    bool isDragging = false;
+    DispatcherTimer timer;
+    private Video [] videos;
+
+    private int SelectedVideo;
+    private int SelectedScene;
+
+    public bool IsPlaying
+    {
+      get
+      {
+        return _isPlaying;
+      }
+      set
+      {
+        if (value)
+        {
+          PlayPause.Content = "Pause";
+          timer.Start();
+          VideoPlayer.Play();
+        }
+        else
+        {
+          PlayPause.Content = "Play";
+          timer.Stop();
+          VideoPlayer.Pause();
+
+        }
+        _isPlaying = value;
+      }
+    }
 
     public Dashboard()
     {
       InitializeComponent();
+      timer = new DispatcherTimer();
+      IsPlaying = false;
+      timer.Interval = TimeSpan.FromMilliseconds(200);
+      timer.Tick += Timer_Tick;
     }
+
 
     private void Open_Click(object sender, RoutedEventArgs e)
     {
       OpenVideos openWindow = new OpenVideos();
       bool? x = openWindow.ShowDialog();
+      if (x == null || x == false) return;
 
+      videos = openWindow.Videos.ToArray();
+      PreviewVideos();
+    }
+    void PreviewVideos()
+    {
+      for (int i = 0; i < videos.Length; i++)
+      {
+        VideoGrid.RowDefinitions.Add(new RowDefinition());
+        Contorles.VideoPreview videoPreview = new Contorles.VideoPreview($"Video {i + 1}", videos[i].thumbnail, i,-1);
+        videoPreview.SetValue(Grid.RowProperty, i+1);
+        Label detecting = new Label
+        {
+          FontFamily = new FontFamily("Times New Roman"),
+          FontSize = 24,
+          FontWeight = FontWeights.Bold,
+          Content = "Detecting..."+i,
+          HorizontalAlignment = HorizontalAlignment.Stretch,
+          VerticalAlignment = VerticalAlignment.Stretch,
+          HorizontalContentAlignment = HorizontalAlignment.Center,
+          VerticalContentAlignment = VerticalAlignment.Center
+        };
+        detecting.SetValue(Grid.ColumnProperty, 1);
+        detecting.SetValue(Grid.RowProperty, i + 1);
+
+        VideoGrid.Children.Add(videoPreview);
+        VideoGrid.Children.Add(detecting);
+
+
+        Thread t = new Thread(detect);
+        t.IsBackground = true;
+        t.Start(i);
+      }
 
     }
+    readonly object OoO = new object();
+    readonly object oOo = new object();
+    void detect(object param)
+    {
+      int index = (int)param;
+      videos[index].detectScenes();
+      this.Dispatcher.Invoke(()=>
+      {
+        Grid g = new Grid();
+        g.ShowGridLines = true;
+        lock (OoO){
+          foreach (object elemet in VideoGrid.Children)
+          {
+            Label l = elemet as Label;
+            if (l == null) continue;
+            if ((int)l.GetValue(Grid.ColumnProperty) == 1 && (int)l.GetValue(Grid.RowProperty) == index + 1)
+            {
+              VideoGrid.Children.Remove(l);
+              VideoGrid.Children.Add(g);
+              g.SetValue(Grid.ColumnProperty, 1);
+              g.SetValue(Grid.RowProperty, index + 1);
+              break;
+            }
+          }
+        }
+        Scene [] Scenes = videos[index].scenes;
+        for (int i = 0; i < Scenes.Length; i++)
+        {
+          ColumnDefinition c = new ColumnDefinition();
+          c.Width = new GridLength(100, GridUnitType.Pixel); ;
+          g.ColumnDefinitions.Add(c);
+          Contorles.VideoPreview videoPreview = new Contorles.VideoPreview("", Scenes[i].Image,index, i);
+          
+          videoPreview.SetValue(Grid.ColumnProperty, i);
+          g.Children.Add(videoPreview);
+        }
+
+        lock (oOo)
+        {
+          int SceneCount = Scenes.Length;
+          int labelsCount = ScenesLabels.Children.Count;
+          if (SceneCount > labelsCount)
+            for (int i = labelsCount ; i < SceneCount; i++)
+            {
+              ColumnDefinition c = new ColumnDefinition();
+              c.Width = new GridLength(100, GridUnitType.Pixel); ;
+              ScenesLabels.ColumnDefinitions.Add(c);
+
+              Label ll = new Label
+              {
+                Content = $"Scene { i + 1}",
+                VerticalContentAlignment = VerticalAlignment.Center,
+                HorizontalContentAlignment = HorizontalAlignment.Center,
+                FontSize = 14,
+                FontWeight = FontWeights.Bold
+              };
+              ll.SetValue(Grid.ColumnProperty, i);
+              ScenesLabels.Children.Add(ll);
+
+            }
+
+        }
+        //for (int i = 0; i < videos[index].scenes.Length; i++)
+        //{
+    
+
+        //}
+
+      });
+    }
+
+
+    internal void LoadVideo(int videoIndex, int sceneIndex)
+    {
+      SelectedVideo = videoIndex;
+      SelectedScene = sceneIndex;
+      if (SelectedScene == -1)
+      {
+        VideoPlayer.Source = new Uri(videos[SelectedVideo].video.FullName);
+      }
+      else
+      {
+        VideoPlayer.Source = new Uri(videos[SelectedVideo].scenes[SelectedScene].Video.FullName);
+
+      }
+
+    }
+
+    #region Player Controls
+    private void Timer_Tick(object sender, EventArgs e)
+    {
+      if (!isDragging)
+        Seek.Value = VideoPlayer.Position.TotalSeconds;
+
+    }
+
+    private void Seek_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+    {
+      isDragging = true;
+    }
+
+    private void Seek_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+    {
+      isDragging = false;
+      VideoPlayer.Position = TimeSpan.FromSeconds(Seek.Value);
+
+    }
+    private void Mute_Click(object sender, RoutedEventArgs e)
+    {
+      Mute.Content = VideoPlayer.IsMuted ? "Mute" : "Unmute";
+      VideoPlayer.IsMuted = !VideoPlayer.IsMuted;
+    }
+
+    private void PlayPause_Click(object sender, RoutedEventArgs e)
+    {
+      if (VideoPlayer.Source == null) return;
+
+      IsPlaying = !IsPlaying;
+    }
+
+    private void VideoPlayer_MediaOpened(object sender, RoutedEventArgs e)
+    {
+      if (VideoPlayer.NaturalDuration.HasTimeSpan)
+      {
+        TimeSpan ts = VideoPlayer.NaturalDuration.TimeSpan;
+        Seek.Maximum = ts.TotalSeconds;
+      }
+      IsPlaying = true;
+      VideoControles.IsEnabled = true;
+
+    }
+    #endregion Player Controls
+
+    private void OpenExamples_Click(object sender, RoutedEventArgs e)
+    {
+      DirectoryInfo dir = new DirectoryInfo(@"G:\UN\conputer\Videos\Funny");
+      FileInfo [] files =  dir.GetFiles();
+      videos = new Video[5];
+      for (int i = 0; i < 5; i++)
+      {
+        videos[i] = new Video(files[i], Helper.GenerateThumbnail(files[i].FullName), new Duration());
+      }
+      PreviewVideos();
+    }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+      OpenExamples_Click(null, null);
+    }
   }
+
+
 }

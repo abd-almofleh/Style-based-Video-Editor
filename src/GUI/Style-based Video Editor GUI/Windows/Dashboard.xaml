@@ -5,21 +5,79 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Style_based_Video_Editor_GUI.Windows"
         mc:Ignorable="d"
-        Title="Style-based Video Editor" Height="450" Width="800">
+        Title="Style-based Video Editor" Height="650" Width="1000" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
 
-        <Menu Height="22" Name="menu1" VerticalAlignment="Top" Background="WhiteSmoke" BorderThickness="2" Margin="-2,-2,-2,0" Padding="5,0">
+        <Menu Background="WhiteSmoke" Padding="5,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch">
             <Menu.BitmapEffect>
                 <DropShadowBitmapEffect Opacity="0.5" Direction="16" />
             </Menu.BitmapEffect>
-            <MenuItem Header="_File">
-                <MenuItem Header="Open" x:Name="Open" Click="Open_Click"/>
-                <MenuItem Header="Open Examples" />
+            <MenuItem Header="_File" FontFamily="Times New Roman">>
+                <MenuItem Header="Open" x:Name="Open" Click="Open_Click" />
+                <MenuItem Header="Open Examples" x:Name="OpenExamples" Click="OpenExamples_Click" />
                 <MenuItem Header="Close Video"  />
-
-
             </MenuItem>
 
         </Menu>
+        <TabControl Grid.Row="1" Margin="0,5,0,0">
+            <TabItem Header="Videos" FontFamily="Times New Roman">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="350"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="1" BorderBrush="#FF666666" Padding="5" Margin="0,0,5,0" >
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                            <Grid x:Name="VideoGrid" ShowGridLines="True" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Videos" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="14" FontWeight="Bold" />
+                                <Grid x:Name="ScenesLabels" ShowGridLines="True" Grid.Column="1" />
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+                    <Grid Grid.Column="1" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="225"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="1" BorderBrush="#FF666666" Padding="5" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="25"/>
+                                </Grid.RowDefinitions>
+                                <MediaElement x:Name="VideoPlayer"  LoadedBehavior="Manual" MediaOpened="VideoPlayer_MediaOpened"/>
+                                <Grid x:Name="VideoControles" IsEnabled="False" Grid.Row="2" VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="60"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button x:Name="PlayPause" Content="Play" Click="PlayPause_Click" />
+                                    <Slider x:Name="Seek" Grid.Column="1" Margin="5,0" VerticalAlignment="Center" Thumb.DragStarted="Seek_DragStarted" Thumb.DragCompleted="Seek_DragCompleted" />
+                                    <Button x:Name="Mute" Content="Mute" Grid.Column="2" Click="Mute_Click" />
+                                </Grid>
+
+
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="1" BorderThickness="1" BorderBrush="#FF666666" Padding="5" Margin="0,5,0,0" >
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
     </Grid>
 </Window>

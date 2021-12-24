@@ -80,6 +80,9 @@
     <Compile Include="Classes\Helper.cs" />
     <Compile Include="Classes\Scene.cs" />
     <Compile Include="Classes\Video.cs" />
+    <Compile Include="Contorles\VideoPreview.xaml.cs">
+      <DependentUpon>VideoPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Contorles\Shot.xaml.cs">
       <DependentUpon>Shot.xaml</DependentUpon>
     </Compile>
@@ -87,6 +90,10 @@
     <Compile Include="Windows\OpenVideos.xaml.cs">
       <DependentUpon>OpenVideos.xaml</DependentUpon>
     </Compile>
+    <Page Include="Contorles\VideoPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Contorles\Shot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

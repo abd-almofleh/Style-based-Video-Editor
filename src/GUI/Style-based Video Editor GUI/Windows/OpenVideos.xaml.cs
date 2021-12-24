@@ -1,20 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Style_based_Video_Editor_GUI.Windows
@@ -28,7 +18,8 @@ namespace Style_based_Video_Editor_GUI.Windows
     bool isDragging = false;
     DispatcherTimer timer;
     List<Classes.Video> videos = new List<Classes.Video>(Classes.Constants.MAX_SHOTS); 
-    public bool IsPlaying { 
+    internal List<Classes.Video> Videos{ get => videos; }
+    bool IsPlaying { 
       get 
       {
         return _isPlaying;
@@ -86,7 +77,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         Contorles.Shot shot = new Contorles.Shot(Thumbnail, "".ToString(), videos.Count);
         shot.SetValue(Grid.ColumnProperty, videos.Count);
         Shots.Children.Add(shot);
-        videos.Add(new Classes.Video(videoPath, Thumbnail));
+        videos.Add(new Classes.Video(videoPath, Thumbnail,new Duration()));
 
       }
       return;
@@ -157,7 +148,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         Contorles.Shot shot = new Contorles.Shot( Thumbnail, VideoPlayer.NaturalDuration.TimeSpan.ToString(), videos.Count);
         shot.SetValue(Grid.ColumnProperty, videos.Count);
         Shots.Children.Add(shot);
-        videos.Add(new Classes.Video(VideoPath.Text, Thumbnail));
+        videos.Add(new Classes.Video(VideoPath.Text, Thumbnail, VideoPlayer.NaturalDuration));
 
         VideoPlayer.Source = null;
         PlayPause.Content = "Play";

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Style_based_Video_Editor_GUI.Windows"
         mc:Ignorable="d"
-        Title="Open Videos" Height="493" Width="563.365">
+        Title="Open Videos" Height="500" Width="570" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid Margin="10" >
             <Grid.RowDefinitions>
