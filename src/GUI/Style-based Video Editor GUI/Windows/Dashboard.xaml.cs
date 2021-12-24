@@ -14,17 +14,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Style_based_Video_Editor_GUI
+namespace Style_based_Video_Editor_GUI.Windows
 {
   /// <summary>
-  /// Interaction logic for MainWindow.xaml
+  /// Interaction logic for Dashboard.xaml
   /// </summary>
-  public partial class MainWindow : Window
+  public partial class Dashboard : Window
   {
 
-    public MainWindow()
+    public Dashboard()
     {
       InitializeComponent();
+    }
+
+    private void Open_Click(object sender, RoutedEventArgs e)
+    {
+      OpenVideos openWindow = new OpenVideos();
+      bool? x = openWindow.ShowDialog();
+
+
     }
   }
 }

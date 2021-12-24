@@ -5,19 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Style_based_Video_Editor_GUI.Windows"
         mc:Ignorable="d"
-        Title="Open Videos" Height="450" Width="563.365">
+        Title="Open Videos" Height="493" Width="563.365">
     <Grid>
-        <Grid Margin="10">
+        <Grid Margin="10" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.25*"/>
+                <RowDefinition Height="25"/>
                 <RowDefinition/>
+                <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
-            <StackPanel Height="25" Orientation="Horizontal">
-                <TextBox Height="25" TextWrapping="Wrap" Text="TextBox" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Auto"/>
-                <Button Content="Button" HorizontalContentAlignment="Right"/>
-                <Button Content="Button" HorizontalContentAlignment="Right"/>
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="VideoPath" Height="25" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Center" IsReadOnly="True" Margin="0,0,10,0"/>
+                <Button x:Name="Open"  Content="Open" Margin="0,0,5,0" Grid.Column="1" Click="Open_Click"/>
+                <Button x:Name="Add" Content="Add" Grid.Column="2" IsEnabled="False" Margin="5,0,0,0" Click="Add_Click"/>
+            </Grid>
+            <MediaElement x:Name="VideoPlayer" Grid.Row="1" Margin="0,10,0,0" LoadedBehavior="Manual" MediaOpened="VideoPlayer_MediaOpened"/>
+            <Grid x:Name="VideoControles" IsEnabled="False" Grid.Row="2" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="PlayPause"  Content="Play" Margin="0,0,5,0" Height="25" Click="PlayPause_Click"/>
+                <Slider x:Name="Seek" Thumb.DragStarted="Seek_DragStarted" Thumb.DragCompleted="Seek_DragCompleted" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center" />
+                <Button x:Name="Mute" Content="Mute" Margin="0" Height="25"  Grid.Column="2" Click="Mute_Click"/>
+            </Grid>
+            <Border BorderBrush="Black" Grid.Row="3" BorderThickness="1" Margin="0,5" Padding="3,0">
+                <Grid x:Name="Shots"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal"  Grid.Row="4">
+                <Button x:Name="Finish" IsEnabled="False" Content="Finish" Margin="0,0,10,0" Width="50" FontWeight="Bold" Click="Finish_Click"/>
+                <Button x:Name="Cancel"  Content="Cancel" Width="50" Click="Cancel_Click"/>
+
             </StackPanel>
+
         </Grid>
 
     </Grid>

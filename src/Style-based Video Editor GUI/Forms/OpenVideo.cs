@@ -28,9 +28,6 @@ namespace Style_based_Video_Editor_GUI.Forms
         DefaultExt = "MP4",
         Filter = $"Video files ({filter})|{filter}",
         FilterIndex = 2,
-        RestoreDirectory = true,
-
-        ShowReadOnly = true
       };
 
       OpenFile.ShowDialog();
