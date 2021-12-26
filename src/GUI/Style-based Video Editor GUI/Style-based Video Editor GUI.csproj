@@ -41,6 +41,9 @@
     <Reference Include="LibVLCSharp.WPF, Version=3.6.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\LibVLCSharp.WPF.3.6.4\lib\net461\LibVLCSharp.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp, Version=106.15.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.106.15.0\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -57,6 +60,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -80,6 +84,7 @@
     <Compile Include="Classes\Helper.cs" />
     <Compile Include="Classes\Scene.cs" />
     <Compile Include="Classes\Video.cs" />
+    <Compile Include="Classes\Web.cs" />
     <Compile Include="Contorles\VideoPreview.xaml.cs">
       <DependentUpon>VideoPreview.xaml</DependentUpon>
     </Compile>
@@ -138,6 +143,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Structs\Tag.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

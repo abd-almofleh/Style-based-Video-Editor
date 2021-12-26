@@ -9,5 +9,8 @@
     {
       return "[" + string.Join(",", array) + "]";
     }
+    public static string SERVER_URL = "http://127.0.0.1";
+    public static int SERVER_PORT = 5000;
+
   }
 }

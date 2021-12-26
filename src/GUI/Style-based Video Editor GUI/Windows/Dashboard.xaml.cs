@@ -187,9 +187,11 @@ namespace Style_based_Video_Editor_GUI.Windows
       }
       else
       {
+        Scene scene = videos[SelectedVideo].scenes[SelectedScene];
+
         SceneInfo.Visibility = Visibility.Visible;
         SceneInfo.IsSelected = true;
-        Scene scene = videos[SelectedVideo].scenes[SelectedScene];
+
         VideoPlayer.Source = new Uri(scene.Video.FullName);
         SceneNumber.Content = sceneIndex + 1;
         SceneNumber.Content = scene.SceneNumber.ToString("000");
@@ -198,7 +200,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         Length.Content = (scene.EndTime - scene.StartTime).ToString(@"mm\:ss");
         StartFrame.Content = scene.StartFrame.ToString();
         EndFrame.Content = scene.EndFrame.ToString();
-
+        scene.DetectObjects();
       }
       VideoNumber.Content = SelectedVideo + 1;
 
