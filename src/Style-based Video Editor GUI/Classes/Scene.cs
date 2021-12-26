@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RestSharp;
 
 namespace Style_based_Video_Editor_GUI.Classes
 {
@@ -30,6 +31,7 @@ namespace Style_based_Video_Editor_GUI.Classes
     public FileInfo Video { get => video; }
     public FileInfo Image { get => image; }
 
+    internal List<Structs.Tag> Objects = new List<Structs.Tag>();
 
     public Scene(uint sceneNumber, uint startFrame, uint endFrame, TimeSpan startTime, TimeSpan endTime, string scenesDir)
     {
@@ -42,6 +44,15 @@ namespace Style_based_Video_Editor_GUI.Classes
       this.endTime = endTime;
       this.image = new FileInfo(scenesDir + "/images/" + sceneNumber.ToString("000") + ".jpg");
       this.video = new FileInfo(scenesDir + "/videos/" + sceneNumber.ToString("000") + ".mp4");
+    }
+
+    public void DetectObjects()
+    {
+      RestRequest request = new RestRequest(Web.ObjectDetectionRoute,DataFormat.Json);
+      request.AddFile("image", Image.FullName);
+      Objects =Web.post(request);
+      foreach(var x in Objects)
+        Console.WriteLine($"tag: {x.tag}, score: {x.score}");
     }
 
   }
