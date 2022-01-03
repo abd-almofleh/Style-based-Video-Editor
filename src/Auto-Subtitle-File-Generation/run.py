@@ -8,11 +8,12 @@ this script
 
 from generator import generator
 from config import STTInferenceConfig
+import os
 
 if __name__ == '__main__':
         
     # Choose the target file path to generate subtitles.
-    target_file_name = r'C:/Users/Omar/Downloads/Auto-Subtitle-File-Generation-main/o2.mp4'
+    target_file_name = r"./Video/o2.mp4"
     
     # Choose your output file name.
     output_file_name = 'a.ass'

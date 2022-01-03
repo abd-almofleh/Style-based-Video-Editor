@@ -62,7 +62,6 @@ def check_type(file_path):
     Returns:
         is_video: Whether the file is a video or an audio.
     """
-    
     assert (Path(file_path).exists()) and (Path(file_path).is_file()), "Your input file path is not valid or the file doesn't exist."
     
     is_video = False
@@ -99,13 +98,11 @@ def extract_audio(file_path, format: str="wav"):
     
     
     import subprocess
-
-    command = "ffmpeg -y -i "+file_path+" -ab 160k -ac 2 -ar 44100 -vn tmp.wav"
     
+    mv_audio_file = str(Path("temp").joinpath("temp.wav").absolute())    
+    command = "ffmpeg -y -i "+file_path+" -ab 160k -ac 2 -ar 44100 -vn "+ mv_audio_file
     subprocess.call(command, shell=True)
-    
-    mv_audio_file = Path(file_path).parent / 'tmp.wav'
-    
+        
     # mv = mp.VideoFileClip(file_path)
     # assert mv!=None, "Unable to extract any information from the video clip."
     
