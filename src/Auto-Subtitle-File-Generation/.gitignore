@@ -31,3 +31,8 @@ scripts
 
 # models for Speech to Text
 model-*
+
+video/*
+model
+models
+stt
