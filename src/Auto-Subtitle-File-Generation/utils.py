@@ -36,7 +36,6 @@ def mono_load(path, sr=32000, mono=True):
     
     start = time.time()
     
-    print(f"Loading file: {path}")
     y, c = librosa.load(path, sr=sr, mono=mono)
     
     end = time.time()
@@ -75,7 +74,7 @@ def check_type(file_path):
             mimestart = mimestart.split("/")[0]
         except RuntimeError as e:
             print(e)
-            print("Unrecognizable file type. Is the file format valid? (Using mimetypes)\n")    
+            
         
         assert mimestart=="video" or mimestart=="audio", "Input file format unrecognizable as video or audio (using mimetypes).\n"
         
@@ -94,7 +93,6 @@ def extract_audio(file_path, format: str="wav"):
         mv_audio_file: Audio file path extracted.
     """
     
-    print(f"Extracting audio from {file_path}")
     
     
     import subprocess
@@ -118,7 +116,6 @@ def extract_audio(file_path, format: str="wav"):
     #     print("\nNote: Moviepy failed to resolve your video path. Currently Use Path as string for moviepy to work.\n")
     #     mv.audio.write_audiofile(str(mv_audio_file))
      
-    print(f"Extraction Successful! Writing {Path(mv_audio_file).stat().st_size} in {mv_audio_file}.")
     
     return mv_audio_file
 

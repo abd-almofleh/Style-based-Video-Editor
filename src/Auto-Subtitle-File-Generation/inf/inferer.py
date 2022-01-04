@@ -201,7 +201,7 @@ def get_inference(targ_file_path, params_path, fname, lang, post_process=True, o
         device = torch.device("cpu")
         
     model = inferer if inferer else Pannscnn14attInferer
-    print(f"Inferencing using model: {model.__name__}...\n")      
+    print(f"Inferencing using model:\n")      
     
     fname = fname if fname else "current"
     out_file = f"{output_folder}/{fname}.csv"

@@ -21,11 +21,11 @@ def generator(targ, fname, sub_format: str="ass", lang: str="eng", post=True, ou
 
     if ("ass" in fname) or (sub_format=="ass") or (sub_format==".ass"):
         encoder = ASSEncoder(df, "*eng")
-    
+    r
     if ("srt" in fname) or (sub_format=="srt") or (sub_format==".srt"):
         encoder = SRTEncoder(df)
         
-    print(f"Calling encoder to generate the final output...\n") 
+   
     encoder.generate(fname)
-    print(f"All procedures done! Subtitle file generated.\n")
+   
 
