@@ -4,3 +4,4 @@ keyframes/*
 scenes/*
 .vscode
 src/sntementAnalysis/LSTM/Models/*
+src/MergeVideos/Videos/*

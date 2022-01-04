@@ -1,0 +1,1 @@
+ffmpeg -i "__temp__.mp4" -metadata title="New Title" -c:v copy -c:a copy -c:s copy "final_video.mp4"
