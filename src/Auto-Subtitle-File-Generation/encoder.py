@@ -309,7 +309,7 @@ class SRTEncoder(Encoder):
                 f.write("\n")
                 f.write(timeline)
                 f.write("\n")
-                f.write(text)
+                f.write(str(text))
                 f.write("\n")
 
                 f.write("\n")

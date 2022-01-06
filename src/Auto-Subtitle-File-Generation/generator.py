@@ -8,7 +8,8 @@ from inf.inferer import get_inference
 from encoder import ASSEncoder, SRTEncoder
 from config import INFERENCE_PARAMS_PATH, INF_OUTPUT_FOLDER_ABS
 
-def generator(targ, fname, sub_format: str="ass", lang: str="eng", post=True, output_folder=INF_OUTPUT_FOLDER_ABS):
+
+def generator(targ, fname, sub_format: str = "ass", lang: str = "eng", post=True, output_folder=INF_OUTPUT_FOLDER_ABS):
     print(output_folder)
     get_inference(targ_file_path=targ,
                   params_path=INFERENCE_PARAMS_PATH,
@@ -19,13 +20,10 @@ def generator(targ, fname, sub_format: str="ass", lang: str="eng", post=True, ou
 
     df = pd.read_csv(f"{output_folder}/{fname}.csv")
 
-    if ("ass" in fname) or (sub_format=="ass") or (sub_format==".ass"):
+    if ("ass" in fname) or (sub_format == "ass") or (sub_format == ".ass"):
         encoder = ASSEncoder(df, "*eng")
-    r
-    if ("srt" in fname) or (sub_format=="srt") or (sub_format==".srt"):
-        encoder = SRTEncoder(df)
-        
-   
-    encoder.generate(fname)
-   
 
+    if ("srt" in fname) or (sub_format == "srt") or (sub_format == ".srt"):
+        encoder = SRTEncoder(df)
+
+    encoder.generate(fname)
