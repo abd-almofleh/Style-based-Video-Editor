@@ -4,3 +4,4 @@ torchaudio
 librosa
 moviepy
 vosk
+DeepFace
