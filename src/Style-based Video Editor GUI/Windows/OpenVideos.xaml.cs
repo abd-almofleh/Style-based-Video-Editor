@@ -61,27 +61,6 @@ namespace Style_based_Video_Editor_GUI.Windows
 
     private void Open_Click(object sender, RoutedEventArgs e)
     {
-      goto A;
-      string[] s = {
-        "Facebook 262328884292048",
-        "Facebook 263415364135135",
-        "Facebook 274891436369126",
-        "Facebook 324464314745171",
-        "Facebook 789740457864064",
-      };
-      for (int i = 0; i < 5; i++)
-      {
-        string videoPath = $@"G:\UN\conputer\Videos\Funny\{s[i]}.mp4";
-        Shots.ColumnDefinitions.Add(new ColumnDefinition());
-        FileInfo Thumbnail = Classes.Helper.GenerateThumbnail(videoPath);
-        Contorles.Shot shot = new Contorles.Shot(Thumbnail, "".ToString(), videos.Count);
-        shot.SetValue(Grid.ColumnProperty, videos.Count);
-        Shots.Children.Add(shot);
-        videos.Add(new Classes.Video(videoPath, Thumbnail,new Duration()));
-
-      }
-      return;
-      A:
       string filter = Classes.Constants.SUPPORTED_VIDEO_TYPES.Aggregate("", (prev, current) => prev + (prev != "" ? ";" : "") + "*." + current);
 
       OpenFileDialog openFileDialog = new OpenFileDialog

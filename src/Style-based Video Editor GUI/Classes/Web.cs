@@ -18,6 +18,13 @@ namespace Style_based_Video_Editor_GUI.Classes
     {
       Server.UseSerializer(() => new JsonSerializer {RootElement="result" });
       IRestResponse<Dictionary<string, double>> response = Server.Post<Dictionary<string, double>>(request);
+      // TODO: add a status to the dash board
+      if (!response.IsSuccessful)
+      {
+        Console.WriteLine(response.ErrorMessage);
+        return new List<Structs.Tag>();
+      }
+
       List<Structs.Tag> Objects = new List<Structs.Tag>(response.Data.Count);
       foreach(string key in response.Data.Keys)
       {

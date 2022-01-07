@@ -148,5 +148,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)ExampleVideos\*" "$(ProjectDir)$(OutDir)ExampleVideos" /S /E /D /i /C</PostBuildEvent>
+  </PropertyGroup>
 </Project>
