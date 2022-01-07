@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Style_based_Video_Editor_GUI.Windows"
         mc:Ignorable="d"
-        Title="Style-based Video Editor" Height="650" Width="1000" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" FontFamily="Times New Roman">
+        Title="Style-based Video Editor" Height="650" Width="1000" WindowStartupLocation="CenterScreen" FontFamily="Times New Roman">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -16,7 +16,7 @@
             <Menu.BitmapEffect>
                 <DropShadowBitmapEffect Opacity="0.5" Direction="16" />
             </Menu.BitmapEffect>
-            <MenuItem Header="_File" FontFamily="Times New Roman">>
+            <MenuItem Header="_File" FontFamily="Times New Roman">
                 <MenuItem Header="Open" x:Name="Open" Click="Open_Click" />
                 <MenuItem Header="Open Examples" x:Name="OpenExamples" Click="OpenExamples_Click" />
                 <MenuItem Header="Close Video"  />

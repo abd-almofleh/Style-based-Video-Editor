@@ -254,19 +254,15 @@ namespace Style_based_Video_Editor_GUI.Windows
 
     private void OpenExamples_Click(object sender, RoutedEventArgs e)
     {
-      DirectoryInfo dir = new DirectoryInfo(@"G:\UN\conputer\Videos\Funny");
-      FileInfo [] files =  dir.GetFiles();
-      videos = new Video[5];
-      for (int i = 0; i < 5; i++)
+      DirectoryInfo dir = new DirectoryInfo(@"./ExampleVideos");
+      FileInfo [] files =  dir.GetFiles("*.mp4");
+      int exampleCount = files.Length >= 5 ? 5 : files.Length;
+      videos = new Video[exampleCount];
+      for (int i = 0; i < videos.Length; i++)
       {
         videos[i] = new Video(files[i], Helper.GenerateThumbnail(files[i].FullName), new Duration());
       }
       PreviewVideos();
-    }
-
-    private void Window_Loaded(object sender, RoutedEventArgs e)
-    {
-      OpenExamples_Click(null, null);
     }
   }
 
