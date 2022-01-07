@@ -1,0 +1,9 @@
+torch
+torchvision
+torchaudio
+librosa
+moviepy
+vosk
+DeepFace
+opencv-python
+dlib

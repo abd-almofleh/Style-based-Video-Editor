@@ -1,3 +1,9 @@
 result/*
 videos/*
+keyframes/*
+src/server/weights/*
+src/server/uploads/*
+scenes/*
 .vscode
+__pycache__
+.vs
