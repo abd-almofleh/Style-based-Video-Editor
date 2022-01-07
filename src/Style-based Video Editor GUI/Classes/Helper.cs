@@ -35,7 +35,7 @@ namespace Style_based_Video_Editor_GUI.Classes
       string ThumbnailPath = DateTime.Now.Ticks.ToString() + ".jpg";
       FileInfo file = new FileInfo(Path.Combine(ThumbnailDirectory.Name, ThumbnailPath));
       if (file.Exists) file.Delete();
-      string command = $"ffmpeg -i \"{VideoPath.FullName}\" -ss 00:00:07 -vframes 1 -f image2 -vcodec mjpeg \"{file.FullName}\"";
+      string command = $"ffmpeg -i \"{VideoPath.FullName}\" -ss 00:00:07 -vframes 1 -f image2 -vcodec mjpeg \"{file.FullName}\" -y";
 
       CMDResult result = RunCMDCommand(command);
       if (result.ExitCode != 0) throw new Exception($"Error NO. {result.ExitCode}:Command {result.Command},Message: {result.OutputMessage}");
