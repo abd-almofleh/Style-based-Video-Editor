@@ -151,6 +151,6 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)ExampleVideos\*" "$(ProjectDir)$(OutDir)ExampleVideos" /S /E /D /i /C</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(ProjectDir)ExampleVideos\*" "$(ProjectDir)$(OutDir)ExampleVideos" /S /E /D /i /C /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>
