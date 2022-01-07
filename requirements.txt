@@ -5,3 +5,5 @@ librosa
 moviepy
 vosk
 DeepFace
+opencv-python
+dlib
