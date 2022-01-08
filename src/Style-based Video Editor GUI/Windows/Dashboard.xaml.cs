@@ -175,7 +175,7 @@ namespace Style_based_Video_Editor_GUI.Windows
 
     internal void LoadVideo(int videoIndex, int sceneIndex)
     {
-      InfoMessage.Visibility = Visibility.Collapsed;
+      VideoInfoMessage.Visibility = Visibility.Collapsed;
       Info.Visibility = Visibility.Visible;
       SelectedVideo = videoIndex;
       SelectedScene = sceneIndex;
@@ -183,6 +183,7 @@ namespace Style_based_Video_Editor_GUI.Windows
       {
         VideoPlayer.Source = new Uri(videos[SelectedVideo].video.FullName);
         SceneInfo.Visibility = Visibility.Collapsed;
+        SceneTag.Visibility = Visibility.Collapsed;
         VideoInfo.IsSelected = true;
       }
       else
@@ -200,11 +201,76 @@ namespace Style_based_Video_Editor_GUI.Windows
         Length.Content = (scene.EndTime - scene.StartTime).ToString(@"mm\:ss");
         StartFrame.Content = scene.StartFrame.ToString();
         EndFrame.Content = scene.EndFrame.ToString();
-        scene.DetectObjects();
+        Tags.RowDefinitions.Clear();
+        Tags.Children.Clear();
+        SceneTag.Header = $"Scene Tags";
+        SceneTag.Visibility = Visibility.Visible;
+
+        if (scene.Objects == null)
+          scene.DetectObjects(this);
+        else
+          showTags(scene.Objects);
       }
       VideoNumber.Content = SelectedVideo + 1;
 
 
+    }
+    internal void showTags(List<Structs.Tag> tags)
+    {
+      Tags.RowDefinitions.Clear();
+      Tags.Children.Clear();
+      SceneTag.Header = $"Scene Tags ({tags.Count()} tags)";
+      SceneTag.Visibility = Visibility.Visible;
+      RowDefinition row = new RowDefinition();
+      row.Height = new GridLength(25, GridUnitType.Pixel); ;
+      Tags.RowDefinitions.Add(row);
+
+      Label label = new Label
+      {
+        Content = "Tag",
+        HorizontalAlignment = HorizontalAlignment.Center,
+        VerticalAlignment = VerticalAlignment.Center,
+        FontSize = 14f,
+        FontWeight = FontWeights.Bold
+      };
+      Tags.Children.Add(label);
+
+      label = new Label
+      {
+        Content = "Score",
+        HorizontalAlignment = HorizontalAlignment.Center,
+        VerticalAlignment = VerticalAlignment.Center,
+        FontSize = 14f,
+        FontWeight = FontWeights.Bold
+
+      };
+      label.SetValue(Grid.ColumnProperty, 1);
+      Tags.Children.Add(label);
+
+
+      foreach (var tag in tags)
+      {
+        RowDefinition c = new RowDefinition();
+        c.Height = new GridLength(25, GridUnitType.Pixel); ;
+        Tags.RowDefinitions.Add(c);
+        Label key = new Label();
+        key.Content = tag.tag;
+        key.HorizontalAlignment = HorizontalAlignment.Center;
+        key.VerticalAlignment = VerticalAlignment.Center;
+        key.FontSize = 14f;
+        key.SetValue(Grid.RowProperty, Tags.RowDefinitions.Count() - 1);
+        Tags.Children.Add(key);
+        Label value = new Label();
+        value.Content = tag.score.ToString("0.00");
+        value.HorizontalAlignment = HorizontalAlignment.Center;
+        value.VerticalAlignment = VerticalAlignment.Center;
+        value.FontSize = 14f;
+        value.SetValue(Grid.RowProperty, Tags.RowDefinitions.Count() - 1);
+        value.SetValue(Grid.ColumnProperty, 1);
+        Tags.Children.Add(value);
+
+
+      }
     }
 
     #region Player Controls
@@ -264,6 +330,7 @@ namespace Style_based_Video_Editor_GUI.Windows
       }
       PreviewVideos();
     }
+
   }
 
 
