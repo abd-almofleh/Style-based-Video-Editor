@@ -7,3 +7,6 @@ vosk
 DeepFace
 opencv-python
 dlib
+flask
+flask_restful
+tf2_yolov4
