@@ -75,7 +75,7 @@
                         <Border Grid.Row="1" BorderThickness="1" BorderBrush="#FF666666" Padding="5" Margin="0,5,0,0" >
                             <Grid>
                             <TabControl x:Name="Info" Visibility="Collapsed">
-                                <TabItem x:Name="VideoInfo" Header="Video Info">
+                                <TabItem x:Name="VideoInfo" Header="Video Info" Visibility="Visible">
                                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
                                         <Grid x:Name="VideoPropeties" ShowGridLines="True" >
                                             <Grid.RowDefinitions>
@@ -131,8 +131,37 @@
                                     </ScrollViewer>
 
                                 </TabItem>
-                            </TabControl>
-                            <Label x:Name="InfoMessage"  Content="Select Video to preview..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                                <TabItem x:Name="SceneTag" Header="Scene Tags" Visibility="Collapsed">
+                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
+                                        <Grid x:Name="Tags" ShowGridLines="True" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="25"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                        </Grid>
+                                    </ScrollViewer>
+
+                                </TabItem>
+                                <TabItem x:Name="PersonsTab" Header="Scene Tags" Visibility="Collapsed">
+                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
+                                        <Grid x:Name="Persons" ShowGridLines="True" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="25"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                        </Grid>
+                                    </ScrollViewer>
+
+                                </TabItem>
+
+                                </TabControl>
+                            <Label x:Name="VideoInfoMessage" Content="Select Video to preview..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
                                 
                             </Grid>
                             

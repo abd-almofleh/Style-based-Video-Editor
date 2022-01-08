@@ -32,7 +32,7 @@ namespace Style_based_Video_Editor_GUI.Classes
     public FileInfo Video { get => video; }
     public FileInfo Image { get => image; }
 
-    internal List<Structs.Tag> Objects = new List<Structs.Tag>();
+    internal List<Structs.Tag> Objects;
 
     public Scene(uint sceneNumber, uint startFrame, uint endFrame, TimeSpan startTime, TimeSpan endTime, string scenesDir)
     {
@@ -47,16 +47,18 @@ namespace Style_based_Video_Editor_GUI.Classes
       this.video = new FileInfo(scenesDir + "/videos/" + sceneNumber.ToString("000") + ".mp4");
     }
 
-    public void DetectObjects()
+    public void DetectObjects(Windows.Dashboard window)
     {
       Thread t = new Thread(() =>
       {
         RestRequest request = new RestRequest(Web.ObjectDetectionRoute, DataFormat.Json);
         request.AddFile("image", Image.FullName);
         Objects = Web.post(request);
-        foreach (var x in Objects)
-          Console.WriteLine($"tag: {x.tag}, score: {x.score}");
+        window.Dispatcher.Invoke(() =>
+        {
+          window.showTags(Objects);
 
+        });
       });
       t.Start();
     }

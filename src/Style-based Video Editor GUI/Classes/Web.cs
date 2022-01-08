@@ -22,7 +22,7 @@ namespace Style_based_Video_Editor_GUI.Classes
       if (!response.IsSuccessful)
       {
         Console.WriteLine(response.ErrorMessage);
-        return new List<Structs.Tag>();
+        return null;
       }
 
       List<Structs.Tag> Objects = new List<Structs.Tag>(response.Data.Count);

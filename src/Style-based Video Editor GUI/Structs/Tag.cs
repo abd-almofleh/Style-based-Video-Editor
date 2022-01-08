@@ -15,5 +15,9 @@ namespace Style_based_Video_Editor_GUI.Structs
             this.tag = tag;
             this.score = score;
         }
-    }
+        public override string ToString()
+        {
+          return $"Tag: {this.tag}, Score: {this.score}";
+        }
+  }
 }
