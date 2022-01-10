@@ -33,6 +33,7 @@ namespace Style_based_Video_Editor_GUI.Classes
     public FileInfo Image { get => image; }
 
     internal List<Structs.Tag> Objects;
+    internal List<Person> Persons;
 
     public Scene(uint sceneNumber, uint startFrame, uint endFrame, TimeSpan startTime, TimeSpan endTime, string scenesDir)
     {
@@ -51,15 +52,40 @@ namespace Style_based_Video_Editor_GUI.Classes
     {
       Thread t = new Thread(() =>
       {
-        RestRequest request = new RestRequest(Web.ObjectDetectionRoute, DataFormat.Json);
-        request.AddFile("image", Image.FullName);
-        Objects = Web.post(request);
+        Objects = Web.DetectObjects(Image.FullName);
         window.Dispatcher.Invoke(() =>
         {
           window.showTags(Objects);
+        });
+      });
+      t.IsBackground = true;
+      t.Start();
+    }
+
+    public void DetectPersons(Windows.Dashboard window)
+    {
+      Console.WriteLine("Detecting Faces");
+      Thread t = new Thread(() =>
+      {
+        Console.WriteLine(Image.FullName);
+        string []paths = Web.DetectFaces(Image.FullName);
+        return;
+        List<Person> Persons = new List<Person>(paths.Length);
+        //foreach (string value in paths)
+        //{
+        //  Persons.Add(new Person(value,this));
+        //}
+        foreach (var item in paths)
+        {
+          Console.WriteLine(item);
+        }
+        window.Dispatcher.Invoke(() =>
+        {
+          //window.showTags(Objects);
 
         });
       });
+      t.IsBackground = true;
       t.Start();
     }
 

@@ -82,6 +82,7 @@
     <Compile Include="Classes\CMDResult.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\Helper.cs" />
+    <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\Scene.cs" />
     <Compile Include="Classes\Video.cs" />
     <Compile Include="Classes\Web.cs" />
@@ -151,6 +152,6 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)ExampleVideos\*" "$(ProjectDir)$(OutDir)ExampleVideos" /S /E /D /i /C /Y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(ProjectDir)ExampleVideos\*" "$(ProjectDir)$(OutDir)ExampleVideos" /S /E /D /i /C</PostBuildEvent>
   </PropertyGroup>
 </Project>

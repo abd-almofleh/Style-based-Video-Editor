@@ -110,6 +110,7 @@ namespace Style_based_Video_Editor_GUI.Windows
     }
     readonly object OoO = new object();
     readonly object oOo = new object();
+
     void detect(object param)
     {
       int index = (int)param;
@@ -205,7 +206,10 @@ namespace Style_based_Video_Editor_GUI.Windows
         Tags.Children.Clear();
         SceneTag.Header = $"Scene Tags";
         SceneTag.Visibility = Visibility.Visible;
-
+        if (scene.Persons == null)
+          scene.DetectPersons(this);
+        //else
+        //  showTags(scene.Objects);
         if (scene.Objects == null)
           scene.DetectObjects(this);
         else
@@ -217,6 +221,8 @@ namespace Style_based_Video_Editor_GUI.Windows
     }
     internal void showTags(List<Structs.Tag> tags)
     {
+      if (tags == null)
+        return;
       Tags.RowDefinitions.Clear();
       Tags.Children.Clear();
       SceneTag.Header = $"Scene Tags ({tags.Count()} tags)";
@@ -331,6 +337,10 @@ namespace Style_based_Video_Editor_GUI.Windows
       PreviewVideos();
     }
 
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+      OpenExamples_Click(null, null);
+    }
   }
 
 

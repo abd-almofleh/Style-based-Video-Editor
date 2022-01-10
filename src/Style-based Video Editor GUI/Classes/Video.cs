@@ -31,7 +31,6 @@ namespace Style_based_Video_Editor_GUI.Classes
 
     public void detectScenes()
     {
-      Console.WriteLine(String.Format(detectionCommand, video.FullName, video.Name));
       DirectoryInfo directory = new DirectoryInfo($"./temp/{video.Name}");
       if (directory.Exists)
         directory.Delete(true);

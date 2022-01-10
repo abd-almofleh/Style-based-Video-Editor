@@ -13,12 +13,13 @@ namespace Style_based_Video_Editor_GUI.Classes
       process.StartInfo.FileName = "cmd.exe";
       process.StartInfo.Arguments = $"/C {command}";
       process.StartInfo.UseShellExecute = false;
-      process.StartInfo.RedirectStandardOutput = true;
+      //process.StartInfo.RedirectStandardOutput = true;
       process.StartInfo.CreateNoWindow = true;
       process.Start();
       process.WaitForExit();// Waits here for the process to exit.
-      string output = process.StandardOutput.ReadToEnd();
-      Console.WriteLine(output);
+      //string output = process.StandardOutput.ReadToEnd();   
+      string output = "";
+      //Console.WriteLine(output);
       CMDResult result = new CMDResult(command, output, process.ExitCode);
       return result;
 
