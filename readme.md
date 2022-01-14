@@ -41,3 +41,7 @@ You can use VS code to help you this this task
 For each new things you add or you use consider adding the refrence as a markdown cell.
 
 You can use this [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet "Markdown Cheatsheet") to demonstrate your steps similarly to this file, this mean you can add [images](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#images "Images"), [lists](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#lists "List"), [tables](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code-and-syntax-highlighting "Tables"), [links](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links "Links"), [headings](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#headers "Headings") and [Code and Syntax Highlighting](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code-and-syntax-highlighting "Code and Syntax Highlighting")
+
+# Models
+## Video Speaker Detection
+[Shape](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2)
