@@ -1,5 +1,6 @@
 ALLOWED_UPLOAD_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-UPLOAD_PATH = "./src/server/uploads/"
+UPLOAD_PATH = "./uploads/"
+FACES_PATH = "./images/faces"
 COCO_CLASSES = [
     'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
     'train', 'truck', 'boat', 'traffic light', 'fire hydrant',
