@@ -208,8 +208,8 @@ namespace Style_based_Video_Editor_GUI.Windows
         SceneTag.Visibility = Visibility.Visible;
         if (scene.Persons == null)
           scene.DetectPersons(this);
-        //else
-        //  showTags(scene.Objects);
+        else
+        ShowSceneFaces(scene.personImages);
         if (scene.Objects == null)
           scene.DetectObjects(this);
         else
@@ -278,6 +278,58 @@ namespace Style_based_Video_Editor_GUI.Windows
 
       }
     }
+
+    internal void ShowSceneFaces(List<PersonImage> personImages)
+    {
+      if (personImages == null)
+        return;
+      PersonsImages.RowDefinitions.Clear();
+      PersonsImages.Children.Clear();
+      PersonsImagesTab.Header = $"Scene Persons ({personImages.Count()} persons)";
+      PersonsImagesTab.Visibility = Visibility.Visible;
+      int column = 0;
+      int row = 0;
+      for (int i = 0; i < personImages.Count; i++)
+      {
+        PersonImage perosnImage = personImages[i];
+        if (i%2 == 0)
+        {
+          RowDefinition c = new RowDefinition();
+          c.Height = new GridLength(200, GridUnitType.Pixel); ;
+          PersonsImages.RowDefinitions.Add(c);
+          c = new RowDefinition();
+          c.Height = new GridLength(25, GridUnitType.Pixel); ;
+          PersonsImages.RowDefinitions.Add(c);
+        }
+
+        Image img = new Image();
+        img.Source = new BitmapImage(new Uri(perosnImage.image.FullName));
+        img.SetValue(Grid.RowProperty, row);
+        img.SetValue(Grid.ColumnProperty, column);
+        PersonsImages.Children.Add(img);
+
+
+
+        Label label = new Label();
+        label.Content = perosnImage.score.ToString("00.00%");
+        label.HorizontalAlignment = HorizontalAlignment.Center;
+        label.VerticalAlignment = VerticalAlignment.Center;
+        label.FontSize = 14f;
+        label.SetValue(Grid.RowProperty, row+1);
+        label.SetValue(Grid.ColumnProperty, column);
+        PersonsImages.Children.Add(label);
+
+        if (column == 1)
+        {
+          column = 0;
+          row += 2;
+        }
+        else
+          column = 1;
+
+      }
+    }
+
 
     #region Player Controls
     private void Timer_Tick(object sender, EventArgs e)

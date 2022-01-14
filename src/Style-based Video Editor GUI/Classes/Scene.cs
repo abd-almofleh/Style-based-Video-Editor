@@ -34,6 +34,7 @@ namespace Style_based_Video_Editor_GUI.Classes
 
     internal List<Structs.Tag> Objects;
     internal List<Person> Persons;
+    internal List<PersonImage> personImages; 
 
     public Scene(uint sceneNumber, uint startFrame, uint endFrame, TimeSpan startTime, TimeSpan endTime, string scenesDir)
     {
@@ -64,25 +65,30 @@ namespace Style_based_Video_Editor_GUI.Classes
 
     public void DetectPersons(Windows.Dashboard window)
     {
-      Console.WriteLine("Detecting Faces");
+      Scene that = this;      
       Thread t = new Thread(() =>
       {
         Console.WriteLine(Image.FullName);
-        string []paths = Web.DetectFaces(Image.FullName);
-        return;
-        List<Person> Persons = new List<Person>(paths.Length);
-        //foreach (string value in paths)
-        //{
-        //  Persons.Add(new Person(value,this));
-        //}
-        foreach (var item in paths)
+        dynamic faces = Web.DetectFaces(Image.FullName);
+        if (faces == null) return;
+        faces = faces.result;
+        List<PersonImage> personImages = new List<PersonImage>(faces.Count);
+        foreach (dynamic face in faces)
         {
-          Console.WriteLine(item);
+          int[] facial_Artai = Helper.GatArray<int>( face.facial_area);
+          double[] left_eye = Helper.GatArray<double>( face.landmarks.left_eye);
+          double[] mouth_left = Helper.GatArray<double>( face.landmarks.mouth_left);
+          double[] mouth_right = Helper.GatArray<double>( face.landmarks.mouth_right);
+          double[] nose = Helper.GatArray<double>( face.landmarks.nose);
+          double[] right_eye = Helper.GatArray<double>( face.landmarks.right_eye);
+
+          PersonImage p = new PersonImage((string)face.path, (double)face.score, facial_Artai, left_eye, mouth_left, mouth_right, nose, right_eye); ;
+          personImages.Add(p);
+
         }
         window.Dispatcher.Invoke(() =>
         {
-          //window.showTags(Objects);
-
+          window.ShowSceneFaces(personImages);
         });
       });
       t.IsBackground = true;

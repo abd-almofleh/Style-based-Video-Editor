@@ -43,5 +43,14 @@ namespace Style_based_Video_Editor_GUI.Classes
         
       return file;
     }
+    public static T[] GatArray<T>(dynamic DArray)
+    {
+      T[] NewArray = new T[DArray.Count];
+      for (int i = 0; i < DArray.Count; i++)
+      {
+        NewArray[i] = (T)DArray[i];
+      }
+      return NewArray;
+    }
   }
 }

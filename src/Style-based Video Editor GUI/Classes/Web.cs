@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using RestSharp;
 using RestSharp.Serialization.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Style_based_Video_Editor_GUI.Classes
 {
@@ -37,22 +38,20 @@ namespace Style_based_Video_Editor_GUI.Classes
       return Objects;
     }
 
-    public static string[] DetectFaces(string imagePath)
+    public static dynamic DetectFaces(string imagePath)
     {
       RestRequest request = new RestRequest(FaceDetectionRoute, DataFormat.Json);
       request.AddFile("image", imagePath);
 
       Server.UseSerializer(() => new JsonSerializer { RootElement = "result" });
-      IRestResponse<string[]> response = Server.Post<string[]>(request);
+      IRestResponse response = Server.Post(request);
       // TODO: add a status to the dash board
       if (!response.IsSuccessful)
       {
         Console.WriteLine(response.ErrorMessage);
         return null;
       }
-
-
-      return response.Data;
+      return JObject.Parse(response.Content);
     }
   }
 }
