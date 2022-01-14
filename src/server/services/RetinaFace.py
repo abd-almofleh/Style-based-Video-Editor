@@ -30,8 +30,6 @@ class RetinaFace:
 
     def DetectFaces(image_path):
         img = cv2.imread(image_path)
-        print(image_path)
-        print(img.shape)
 
         faces = RF.detect_faces(image_path)
         for key in faces:

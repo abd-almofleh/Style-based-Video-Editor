@@ -8,10 +8,9 @@ from helpers.helper import is_allowed_file
 from helpers.errors import file_is_reqired, extention_allowed_only
 from werkzeug.utils import secure_filename
 from datetime import datetime
+from services.DeepFace import DeepFace
 import pathlib
-import os
 import cv2
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
 class FaceDetectionApi(Resource):
@@ -29,10 +28,18 @@ class FaceDetectionApi(Resource):
         imagePath = UPLOAD_PATH + \
             datetime.now().strftime("%d-%m-%Y [%H-%M-%S]") + imagename
         image.save(imagePath)
-        print(imagePath)
         faces = RetinaFace.ExtractFaces(imagePath)
-
-        return jsonify({'result': faces})
+        result = []
+        for face in faces:
+            face_info = dict()
+            face_info["face"] = face
+            analysis = DeepFace.AnalyzeFace(face["path"])
+            face_info["age"] = analysis["age"]
+            face_info["gender"] = analysis["gender"]
+            face_info["dominant_emotion"] = analysis["dominant_emotion"]
+            face_info["emotion"] = analysis["emotion"]
+            result.append(face_info)
+        return jsonify({'result': result})
 
     def get(self):
         output = request.get_json()
