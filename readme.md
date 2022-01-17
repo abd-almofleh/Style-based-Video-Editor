@@ -45,3 +45,6 @@ You can use this [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/w
 # Models
 ## Video Speaker Detection
 [Shape](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2)
+
+### TalkNet
+Download those files from [Here](https://drive.google.com/drive/folders/1gPZ1g_SVJslDrmbllglBD6hC_lie29GB?usp=sharing) then put them in the main TalkNet folder
