@@ -19,5 +19,5 @@ class DeepFace:
     @staticmethod
     def AnalyzeFace(image):
         result = DF.analyze(img_path=image, actions=[
-            'emotion', "age", "gender"], detector_backend=DeepFace.backends[2], prog_bar=False)
+            'emotion', "age", "gender"], detector_backend=DeepFace.backends[4], prog_bar=False, enforce_detection=False)
         return result
