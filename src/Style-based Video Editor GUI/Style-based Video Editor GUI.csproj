@@ -89,6 +89,7 @@
     <Compile Include="Classes\PersonImage.cs" />
     <Compile Include="Classes\Scene.cs" />
     <Compile Include="Classes\Video.cs" />
+    <Compile Include="Classes\View.cs" />
     <Compile Include="Classes\Web.cs" />
     <Compile Include="Contorles\VideoPreview.xaml.cs">
       <DependentUpon>VideoPreview.xaml</DependentUpon>
@@ -148,7 +149,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Structs\Tag.cs" />
+    <Compile Include="Structs\KeyScore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

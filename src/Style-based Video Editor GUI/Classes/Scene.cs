@@ -9,20 +9,15 @@ using RestSharp;
 
 namespace Style_based_Video_Editor_GUI.Classes
 {
-  public class Scene
+  internal class Scene:Classes.Video
   {
-    uint sceneNumber;
-
     uint startFrame;
     uint endFrame;
 
     TimeSpan startTime;
     TimeSpan endTime;
 
-    FileInfo video;
-    FileInfo image;
-
-    public uint SceneNumber { get => sceneNumber; }
+    public uint SceneNumber { get => VideoNumber; }
 
     public uint StartFrame { get => startFrame; }
     public uint EndFrame { get => endFrame; }
@@ -37,16 +32,17 @@ namespace Style_based_Video_Editor_GUI.Classes
     internal List<PersonImage> personImages; 
 
     public Scene(uint sceneNumber, uint startFrame, uint endFrame, TimeSpan startTime, TimeSpan endTime, string scenesDir)
+      :base(new FileInfo(scenesDir + "/videos/" + sceneNumber.ToString("000") + ".mp4"),
+         new FileInfo(scenesDir + "/images/" + sceneNumber.ToString("000") + ".jpg"),
+         new System.Windows.Duration(endTime - startTime))
     {
-      this.sceneNumber = sceneNumber;
+      this.VideoNumber = sceneNumber;
 
       this.startFrame = startFrame;
       this.endFrame = endFrame;
 
       this.startTime = startTime;
       this.endTime = endTime;
-      this.image = new FileInfo(scenesDir + "/images/" + sceneNumber.ToString("000") + ".jpg");
-      this.video = new FileInfo(scenesDir + "/videos/" + sceneNumber.ToString("000") + ".mp4");
     }
 
     public void DetectObjects(Windows.Dashboard window)

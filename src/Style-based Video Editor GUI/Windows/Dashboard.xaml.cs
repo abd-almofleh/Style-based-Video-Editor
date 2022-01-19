@@ -28,7 +28,7 @@ namespace Style_based_Video_Editor_GUI.Windows
     bool _isPlaying = false;
     bool isDragging = false;
     DispatcherTimer timer;
-    private Video [] videos;
+    private View [] videos;
 
     private int SelectedVideo;
     private int SelectedScene;
@@ -82,7 +82,7 @@ namespace Style_based_Video_Editor_GUI.Windows
       for (int i = 0; i < videos.Length; i++)
       {
         VideoGrid.RowDefinitions.Add(new RowDefinition());
-        Contorles.VideoPreview videoPreview = new Contorles.VideoPreview($"Video {i + 1}", videos[i].thumbnail, i,-1);
+        Contorles.VideoPreview videoPreview = new Contorles.VideoPreview($"Video {i + 1}", videos[i].image, i,-1);
         videoPreview.SetValue(Grid.RowProperty, i+1);
         Label detecting = new Label
         {
@@ -199,7 +199,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         SceneNumber.Content = scene.SceneNumber.ToString("000");
         StartTime.Content = scene.StartTime.ToString(@"mm\:ss");
         EndTime.Content = scene.EndTime.ToString(@"mm\:ss");
-        Length.Content = (scene.EndTime - scene.StartTime).ToString(@"mm\:ss");
+        Length.Content = scene.length.TimeSpan.ToString(@"mm\:ss");
         StartFrame.Content = scene.StartFrame.ToString();
         EndFrame.Content = scene.EndFrame.ToString();
         Tags.RowDefinitions.Clear();
@@ -477,10 +477,10 @@ namespace Style_based_Video_Editor_GUI.Windows
       DirectoryInfo dir = new DirectoryInfo(@"./ExampleVideos");
       FileInfo [] files =  dir.GetFiles("*.mp4");
       int exampleCount = files.Length >= 5 ? 5 : files.Length;
-      videos = new Video[exampleCount];
+      videos = new View[exampleCount];
       for (int i = 0; i < videos.Length; i++)
       {
-        videos[i] = new Video(files[i], Helper.GenerateThumbnail(files[i].FullName), new Duration());
+        videos[i] = new View(files[i], Video.GenrateImage(files[i].FullName), new Duration());
       }
       PreviewVideos();
     }
