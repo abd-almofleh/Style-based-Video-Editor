@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -32,7 +32,7 @@ namespace Style_based_Video_Editor_GUI.Classes
     public FileInfo Video { get => video; }
     public FileInfo Image { get => image; }
 
-    internal List<Structs.Tag> Objects;
+    internal List<Structs.KeyScore> Objects;
     internal List<Person> Persons;
     internal List<PersonImage> personImages; 
 

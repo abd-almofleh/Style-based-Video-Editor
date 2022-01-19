@@ -1,4 +1,4 @@
-﻿using LibVLCSharp.Shared;
+using LibVLCSharp.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -219,7 +219,7 @@ namespace Style_based_Video_Editor_GUI.Windows
 
 
     }
-    internal void showTags(List<Structs.Tag> tags)
+    internal void showTags(List<Structs.KeyScore> tags)
     {
       if (tags == null)
         return;

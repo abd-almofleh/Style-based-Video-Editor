@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace Style_based_Video_Editor_GUI.Classes
     public static string ObjectDetectionRoute = "object-detection";
     public static string FaceDetectionRoute = "face-detection";
     
-    public static List<Structs.Tag> DetectObjects(string imagePath)
+    public static List<Structs.KeyScore> DetectObjects(string imagePath)
     {
       RestRequest request = new RestRequest(ObjectDetectionRoute, DataFormat.Json);
       request.AddFile("image", imagePath);
@@ -30,10 +30,10 @@ namespace Style_based_Video_Editor_GUI.Classes
         return null;
       }
 
-      List<Structs.Tag> Objects = new List<Structs.Tag>(response.Data.Count);
+      List<Structs.KeyScore> Objects = new List<Structs.KeyScore>(response.Data.Count);
       foreach(string key in response.Data.Keys)
       {
-        Objects.Add(new Structs.Tag(key, response.Data[key]));
+        Objects.Add(new Structs.KeyScore(key, response.Data[key]));
       }
       return Objects;
     }
