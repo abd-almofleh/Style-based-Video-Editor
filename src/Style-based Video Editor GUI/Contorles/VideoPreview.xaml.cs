@@ -20,10 +20,10 @@ namespace Style_based_Video_Editor_GUI.Contorles
   /// </summary>
   public partial class VideoPreview : UserControl
   {
-    int VideoIndex;
-    int SceneIndex;
+
+    Classes.Video video;
     
-    internal VideoPreview(string title, System.IO.FileInfo Thumbnail, int VideoIndex, int SceneIndex)
+    internal VideoPreview(string title, Classes.Video video)
     {
       InitializeComponent();
       if (title == "")
@@ -34,14 +34,13 @@ namespace Style_based_Video_Editor_GUI.Contorles
       }
       else
         this.Title.Content = title;
-      this.PreviewImage.Source = new BitmapImage(new Uri(Thumbnail.FullName));
-      this.VideoIndex = VideoIndex;
-      this.SceneIndex = SceneIndex;
+      this.video = video;
+      this.PreviewImage.Source = new BitmapImage(new Uri(video.image.FullName));
     }
 
     private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
     {
-      ((Windows.Dashboard)Window.GetWindow(this)).LoadVideo(VideoIndex, SceneIndex);
+      ((Windows.Dashboard)Window.GetWindow(this)).LoadVideo(video);
 
     }
   }

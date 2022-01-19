@@ -30,8 +30,7 @@ namespace Style_based_Video_Editor_GUI.Windows
     DispatcherTimer timer;
     private View [] videos;
 
-    private int SelectedVideo;
-    private int SelectedScene;
+    private Video SelectedVideo;
 
     public bool IsPlaying
     {
@@ -82,7 +81,7 @@ namespace Style_based_Video_Editor_GUI.Windows
       for (int i = 0; i < videos.Length; i++)
       {
         VideoGrid.RowDefinitions.Add(new RowDefinition());
-        Contorles.VideoPreview videoPreview = new Contorles.VideoPreview($"Video {i + 1}", videos[i].image, i,-1);
+        Contorles.VideoPreview videoPreview = new Contorles.VideoPreview($"Video {i + 1}", videos[i]);
         videoPreview.SetValue(Grid.RowProperty, i+1);
         Label detecting = new Label
         {
@@ -140,7 +139,7 @@ namespace Style_based_Video_Editor_GUI.Windows
           ColumnDefinition c = new ColumnDefinition();
           c.Width = new GridLength(100, GridUnitType.Pixel); ;
           g.ColumnDefinitions.Add(c);
-          Contorles.VideoPreview videoPreview = new Contorles.VideoPreview("", Scenes[i].Image,index, i);
+          Contorles.VideoPreview videoPreview = new Contorles.VideoPreview("", Scenes[i]);
           
           videoPreview.SetValue(Grid.ColumnProperty, i);
           g.Children.Add(videoPreview);
@@ -174,31 +173,34 @@ namespace Style_based_Video_Editor_GUI.Windows
     }
 
 
-    internal void LoadVideo(int videoIndex, int sceneIndex)
+    internal void LoadVideo(Video video)
     {
+      if (video == SelectedVideo) return;
       VideoInfoMessage.Visibility = Visibility.Collapsed;
       Info.Visibility = Visibility.Visible;
-      SelectedVideo = videoIndex;
-      SelectedScene = sceneIndex;
-      if (SelectedScene == -1)
+      SelectedVideo = video;
+      if (video is Classes.View)
       {
-        VideoPlayer.Source = new Uri(videos[SelectedVideo].video.FullName);
+
+        VideoPlayer.Source = new Uri(video.video.FullName);
         SceneInfo.Visibility = Visibility.Collapsed;
         SceneTag.Visibility = Visibility.Collapsed;
         PersonsImagesTab.Visibility = Visibility.Collapsed;
         VideoInfo.IsSelected = true;
+        VideoNumber.Content = video.VideoNumber;
+
       }
       else
       {
-        Scene scene = videos[SelectedVideo].scenes[SelectedScene];
+        Scene scene = (Scene)video;
+
+        VideoNumber.Content = scene.OriginalVideo.VideoNumber;
 
         SceneInfo.Visibility = Visibility.Visible;
-
         SceneInfo.IsSelected = true;
 
         VideoPlayer.Source = new Uri(scene.Video.FullName);
-        SceneNumber.Content = sceneIndex + 1;
-        SceneNumber.Content = scene.SceneNumber.ToString("000");
+        SceneNumber.Content = scene.VideoNumber.ToString("000");
         StartTime.Content = scene.StartTime.ToString(@"mm\:ss");
         EndTime.Content = scene.EndTime.ToString(@"mm\:ss");
         Length.Content = scene.length.TimeSpan.ToString(@"mm\:ss");
@@ -215,22 +217,25 @@ namespace Style_based_Video_Editor_GUI.Windows
         PersonsImagesTab.Header = "Scene Persons";
         PersonsImagesTab.Visibility = Visibility.Visible;
 
-        if (scene.Persons == null)
+        if (scene.personImages == null)
           scene.DetectPersons(this);
         else
-          ShowSceneFaces(scene.personImages);
+          ShowSceneFaces(scene);
 
         if (scene.Objects == null)
           scene.DetectObjects(this);
         else
-          showTags(scene.Objects);
+          showTags(scene);
       }
-      VideoNumber.Content = SelectedVideo + 1;
 
 
     }
-    internal void showTags(List<Structs.KeyScore> tags)
+    internal void showTags(Scene scene)
     {
+      if (scene != SelectedVideo) return;
+
+
+      List<Structs.KeyScore> tags = scene.Objects;
       if (tags == null)
         return;
       Tags.RowDefinitions.Clear();
@@ -289,8 +294,11 @@ namespace Style_based_Video_Editor_GUI.Windows
       }
     }
 
-    internal void ShowSceneFaces(List<PersonImage> personImages)
+    internal void ShowSceneFaces(Scene scene)
     {
+      if (scene != SelectedVideo) return;
+
+      List<PersonImage> personImages = scene.personImages;
       if (personImages == null)
         return;
       PersonsImages.Children.Clear();

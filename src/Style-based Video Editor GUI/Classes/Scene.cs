@@ -16,6 +16,7 @@ namespace Style_based_Video_Editor_GUI.Classes
 
     TimeSpan startTime;
     TimeSpan endTime;
+    View originalVideo;
 
     public uint SceneNumber { get => VideoNumber; }
 
@@ -26,12 +27,14 @@ namespace Style_based_Video_Editor_GUI.Classes
     public TimeSpan EndTime { get => endTime; }
     public FileInfo Video { get => video; }
     public FileInfo Image { get => image; }
+    public View OriginalVideo { get => originalVideo; }
 
     internal List<Structs.KeyScore> Objects;
     internal List<Person> Persons;
     internal List<PersonImage> personImages; 
 
-    public Scene(uint sceneNumber, uint startFrame, uint endFrame, TimeSpan startTime, TimeSpan endTime, string scenesDir)
+
+    public Scene(View OriginalVideo, uint sceneNumber, uint startFrame, uint endFrame, TimeSpan startTime, TimeSpan endTime, string scenesDir)
       :base(new FileInfo(scenesDir + "/videos/" + sceneNumber.ToString("000") + ".mp4"),
          new FileInfo(scenesDir + "/images/" + sceneNumber.ToString("000") + ".jpg"),
          new System.Windows.Duration(endTime - startTime))
@@ -43,16 +46,19 @@ namespace Style_based_Video_Editor_GUI.Classes
 
       this.startTime = startTime;
       this.endTime = endTime;
+      this.originalVideo = OriginalVideo;
     }
 
     public void DetectObjects(Windows.Dashboard window)
     {
+      Scene that = this;
+
       Thread t = new Thread(() =>
       {
         Objects = Web.DetectObjects(Image.FullName);
         window.Dispatcher.Invoke(() =>
         {
-          window.showTags(Objects);
+          window.showTags(that);
         });
       });
       t.IsBackground = true;
@@ -68,7 +74,7 @@ namespace Style_based_Video_Editor_GUI.Classes
         dynamic faces = Web.DetectFaces(Image.FullName);
         if (faces == null) return;
         faces = faces.result;
-        List<PersonImage> personImages = new List<PersonImage>(faces.Count);
+        this.personImages = new List<PersonImage>(faces.Count);
         foreach (dynamic face in faces)
         {
           int[] facial_Area = Helper.GatArray<int>( face.location_info.facial_area);
@@ -87,7 +93,7 @@ namespace Style_based_Video_Editor_GUI.Classes
         }
         window.Dispatcher.Invoke(() =>
         {
-          window.ShowSceneFaces(personImages);
+          window.ShowSceneFaces(that);
         });
       });
       t.IsBackground = true;

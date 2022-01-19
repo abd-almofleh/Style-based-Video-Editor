@@ -36,7 +36,7 @@ namespace Style_based_Video_Editor_GUI.Classes
         TimeSpan startTime = TimeSpan.Parse(data[2]);
         TimeSpan endTime = TimeSpan.Parse(data[5]);
 
-        return new Scene(sceneNumber, startFrame, endFrame, startTime, endTime, $"./temp/{video.Name}");
+        return new Scene(this,sceneNumber, startFrame, endFrame, startTime, endTime, $"./temp/{video.Name}");
       });
       this.scenes = scenesArray.ToArray();
     }
