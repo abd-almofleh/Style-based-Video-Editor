@@ -1,17 +1,14 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace Style_based_Video_Editor_GUI.Classes
 {
   internal static class Helper
   {
-    public static void VlcLibDirectoryNeeded(object sender, Vlc.DotNet.Forms.VlcLibDirectoryNeededEventArgs e)
+    public static CMDResult RunCMDCommand(string command)
     {
-      e.VlcLibDirectory = new System.IO.DirectoryInfo(System.IO.Path.Combine(".", "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
-    }
-
-    public static void RunCMDCommand(string command)
-    {
-      System.Diagnostics.Process process = new System.Diagnostics.Process();
+      Process process = new Process();
       process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
       process.StartInfo.FileName = "cmd.exe";
       process.StartInfo.Arguments = $"/C {command}";
@@ -22,6 +19,28 @@ namespace Style_based_Video_Editor_GUI.Classes
       process.WaitForExit();// Waits here for the process to exit.
       string output = process.StandardOutput.ReadToEnd();
       Console.WriteLine(output);
+      CMDResult result = new CMDResult(command, output, process.ExitCode);
+      return result;
+
+    }
+    public static FileInfo GenerateThumbnail(string VideoPath)
+    {
+      return GenerateThumbnail(new FileInfo(VideoPath));
+    }
+    public static FileInfo GenerateThumbnail(FileInfo VideoPath)
+    {
+      DirectoryInfo ThumbnailDirectory = new DirectoryInfo("thumbnail");
+      if (!ThumbnailDirectory.Exists) ThumbnailDirectory.Create();
+
+      string ThumbnailPath = DateTime.Now.Ticks.ToString() + ".jpg";
+      FileInfo file = new FileInfo(Path.Combine(ThumbnailDirectory.Name, ThumbnailPath));
+      if (file.Exists) file.Delete();
+      string command = $"ffmpeg -i \"{VideoPath.FullName}\" -ss 00:00:07 -vframes 1 -f image2 -vcodec mjpeg \"{file.FullName}\" -y";
+
+      CMDResult result = RunCMDCommand(command);
+      //if (result.ExitCode != 0) throw new Exception($"Error NO. {result.ExitCode}:Command {result.Command},Message: {result.OutputMessage}");
+        
+      return file;
     }
   }
 }
