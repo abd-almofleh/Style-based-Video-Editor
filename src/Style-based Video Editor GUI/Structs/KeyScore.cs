@@ -17,7 +17,7 @@ namespace Style_based_Video_Editor_GUI.Structs
         }
         public override string ToString()
         {
-          return $"KEY: {this.key}, Score: {this.score}";
+          return $"Key: {this.key}, Score: {this.score}";
         }
   }
 }
