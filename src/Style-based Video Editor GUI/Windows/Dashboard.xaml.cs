@@ -185,6 +185,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         VideoPlayer.Source = new Uri(videos[SelectedVideo].video.FullName);
         SceneInfo.Visibility = Visibility.Collapsed;
         SceneTag.Visibility = Visibility.Collapsed;
+        PersonsImagesTab.Visibility = Visibility.Collapsed;
         VideoInfo.IsSelected = true;
       }
       else
@@ -192,6 +193,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         Scene scene = videos[SelectedVideo].scenes[SelectedScene];
 
         SceneInfo.Visibility = Visibility.Visible;
+
         SceneInfo.IsSelected = true;
 
         VideoPlayer.Source = new Uri(scene.Video.FullName);
@@ -202,14 +204,22 @@ namespace Style_based_Video_Editor_GUI.Windows
         Length.Content = scene.length.TimeSpan.ToString(@"mm\:ss");
         StartFrame.Content = scene.StartFrame.ToString();
         EndFrame.Content = scene.EndFrame.ToString();
+
         Tags.RowDefinitions.Clear();
         Tags.Children.Clear();
+        PersonsImages.Children.Clear();
+        PersonsImages.ColumnDefinitions.Clear();
+
         SceneTag.Header = $"Scene Tags";
         SceneTag.Visibility = Visibility.Visible;
+        PersonsImagesTab.Header = "Scene Persons";
+        PersonsImagesTab.Visibility = Visibility.Visible;
+
         if (scene.Persons == null)
           scene.DetectPersons(this);
         else
-        ShowSceneFaces(scene.personImages);
+          ShowSceneFaces(scene.personImages);
+
         if (scene.Objects == null)
           scene.DetectObjects(this);
         else

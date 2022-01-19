@@ -145,7 +145,7 @@
                                     </ScrollViewer>
 
                                 </TabItem>
-                                    <TabItem x:Name="PersonsImagesTab" Header="Persons" Visibility="Visible">
+                                    <TabItem x:Name="PersonsImagesTab" Header="Scene Persons" Visibility="Collapsed">
                                     <ScrollViewer HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="auto">
                                         <Grid x:Name="PersonsImages" ShowGridLines="True" >
                                                 <Grid.RowDefinitions>
@@ -159,7 +159,7 @@
                                 </TabItem>
 
                                 </TabControl>
-                            <Label x:Name="VideoInfoMessage" Visibility="Collapsed" Content="Select Video to preview..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+                            <Label x:Name="VideoInfoMessage" Content="Select Video to preview..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
                                 
                             </Grid>
                             
