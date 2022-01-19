@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -75,14 +75,17 @@ namespace Style_based_Video_Editor_GUI.Classes
         List<PersonImage> personImages = new List<PersonImage>(faces.Count);
         foreach (dynamic face in faces)
         {
-          int[] facial_Artai = Helper.GatArray<int>( face.facial_area);
-          double[] left_eye = Helper.GatArray<double>( face.landmarks.left_eye);
-          double[] mouth_left = Helper.GatArray<double>( face.landmarks.mouth_left);
-          double[] mouth_right = Helper.GatArray<double>( face.landmarks.mouth_right);
-          double[] nose = Helper.GatArray<double>( face.landmarks.nose);
-          double[] right_eye = Helper.GatArray<double>( face.landmarks.right_eye);
+          int[] facial_Area = Helper.GatArray<int>( face.location_info.facial_area);
+          double[] left_eye = Helper.GatArray<double>( face.location_info.landmarks.left_eye);
+          double[] mouth_left = Helper.GatArray<double>( face.location_info.landmarks.mouth_left);
+          double[] mouth_right = Helper.GatArray<double>( face.location_info.landmarks.mouth_right);
+          double[] nose = Helper.GatArray<double>( face.location_info.landmarks.nose);
+          double[] right_eye = Helper.GatArray<double>( face.location_info.landmarks.right_eye);
+          Structs.KeyScore[] emotion = new Structs.KeyScore[face.emotion.Count];
 
-          PersonImage p = new PersonImage((string)face.path, (double)face.score, facial_Artai, left_eye, mouth_left, mouth_right, nose, right_eye); ;
+          for (int i = 0; i < face.emotion.Count; i++)
+            emotion[i] = new Structs.KeyScore((string)face.emotion[i][0], (double)face.emotion[i][1]);
+          PersonImage p = new PersonImage((string)face.path, (double)face.score,(int)face.age,(string)face.dominant_emotion,(string)face.gender, emotion, facial_Area, left_eye, mouth_left, mouth_right, nose, right_eye); ;
           personImages.Add(p);
 
         }

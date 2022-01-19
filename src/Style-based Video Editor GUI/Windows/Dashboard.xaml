@@ -146,12 +146,13 @@
 
                                 </TabItem>
                                     <TabItem x:Name="PersonsImagesTab" Header="Persons" Visibility="Visible">
-                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
+                                    <ScrollViewer HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="auto">
                                         <Grid x:Name="PersonsImages" ShowGridLines="True" >
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="150"/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+
                                         </Grid>
                                     </ScrollViewer>
 
