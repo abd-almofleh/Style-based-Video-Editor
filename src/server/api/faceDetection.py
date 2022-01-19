@@ -29,17 +29,14 @@ class FaceDetectionApi(Resource):
             datetime.now().strftime("%d-%m-%Y [%H-%M-%S]") + imagename
         image.save(imagePath)
         faces = RetinaFace.ExtractFaces(imagePath)
-        result = []
         for face in faces:
-            face_info = dict()
-            face_info["face"] = face
             analysis = DeepFace.AnalyzeFace(face["path"])
-            face_info["age"] = analysis["age"]
-            face_info["gender"] = analysis["gender"]
-            face_info["dominant_emotion"] = analysis["dominant_emotion"]
-            face_info["emotion"] = analysis["emotion"]
-            result.append(face_info)
-        return jsonify({'result': result})
+            face["age"] = analysis["age"]
+            face["gender"] = analysis["gender"]
+            face["dominant_emotion"] = analysis["dominant_emotion"]
+            face["emotion"] = list(analysis["emotion"].items())
+
+        return jsonify({'result': faces})
 
     def get(self):
         output = request.get_json()

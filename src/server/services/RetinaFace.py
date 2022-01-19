@@ -46,13 +46,18 @@ class RetinaFace:
             nose = landmarks["nose"]
             facial_img = postprocess.alignment_procedure(
                 facial_img, right_eye, left_eye, nose)
-            identity["image"] = facial_img  # [:, :, ::-1]
-        for key in faces:
-            face = faces[key]
-            face["facial_area"] = np.array(
-                face["facial_area"], int).tolist()
-            for landmark_key in face["landmarks"]:
-                landmarks = face["landmarks"]
+            identity["facial_area"] = np.array(
+                identity["facial_area"], int).tolist()
+            for landmark_key in identity["landmarks"]:
+                landmarks = identity["landmarks"]
                 landmarks[landmark_key] = np.array(
                     landmarks[landmark_key], float).tolist()
+            score = identity["score"]
+            del identity["score"]
+            faces[key] = {
+                "score": score,
+                "location_info": identity,
+                "image": facial_img
+            }
+
         return list(faces.values())
