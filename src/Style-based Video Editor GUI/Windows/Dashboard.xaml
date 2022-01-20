@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Style_based_Video_Editor_GUI.Windows"
         mc:Ignorable="d"
-        Title="Style-based Video Editor" Height="650" Width="1000" WindowStartupLocation="CenterScreen" FontFamily="Times New Roman">
+        Title="Style-based Video Editor" Height="650" Width="1000" WindowStartupLocation="CenterScreen" FontFamily="Times New Roman" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -145,16 +145,14 @@
                                     </ScrollViewer>
 
                                 </TabItem>
-                                <TabItem x:Name="PersonsTab" Header="Scene Tags" Visibility="Collapsed">
-                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
-                                        <Grid x:Name="Persons" ShowGridLines="True" >
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="25"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
+                                    <TabItem x:Name="PersonsImagesTab" Header="Scene Persons" Visibility="Collapsed">
+                                    <ScrollViewer HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="auto">
+                                        <Grid x:Name="PersonsImages" ShowGridLines="True" >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="150"/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+
                                         </Grid>
                                     </ScrollViewer>
 

@@ -41,6 +41,9 @@
     <Reference Include="LibVLCSharp.WPF, Version=3.6.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\LibVLCSharp.WPF.3.6.4\lib\net461\LibVLCSharp.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=106.15.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>packages\RestSharp.106.15.0\lib\net452\RestSharp.dll</HintPath>
     </Reference>
@@ -82,8 +85,11 @@
     <Compile Include="Classes\CMDResult.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\Helper.cs" />
+    <Compile Include="Classes\Person.cs" />
+    <Compile Include="Classes\PersonImage.cs" />
     <Compile Include="Classes\Scene.cs" />
     <Compile Include="Classes\Video.cs" />
+    <Compile Include="Classes\View.cs" />
     <Compile Include="Classes\Web.cs" />
     <Compile Include="Contorles\VideoPreview.xaml.cs">
       <DependentUpon>VideoPreview.xaml</DependentUpon>
@@ -143,7 +149,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Structs\Tag.cs" />
+    <Compile Include="Structs\KeyScore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

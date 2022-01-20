@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Style_based_Video_Editor_GUI.Structs
 {
-    struct Tag
+    struct KeyScore
     {
-        public string tag;
+        public string key;
         public double score;
-        public Tag(string tag, double score)
+        public KeyScore(string key, double score)
         {
-            this.tag = tag;
+            this.key = key;
             this.score = score;
         }
         public override string ToString()
         {
-          return $"Tag: {this.tag}, Score: {this.score}";
+          return $"Key: {this.key}, Score: {this.score}";
         }
   }
 }
