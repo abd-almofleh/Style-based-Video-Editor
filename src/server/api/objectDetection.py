@@ -8,8 +8,6 @@ import tensorflow as tf
 from tf2_yolov4.anchors import YOLOV4_ANCHORS
 from tf2_yolov4.model import YOLOv4
 import pathlib
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
 class ObjectDetectionApi(Resource):

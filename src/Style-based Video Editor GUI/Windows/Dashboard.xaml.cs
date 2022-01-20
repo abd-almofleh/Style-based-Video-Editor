@@ -28,10 +28,9 @@ namespace Style_based_Video_Editor_GUI.Windows
     bool _isPlaying = false;
     bool isDragging = false;
     DispatcherTimer timer;
-    private Video [] videos;
+    private View [] videos;
 
-    private int SelectedVideo;
-    private int SelectedScene;
+    private Video SelectedVideo;
 
     public bool IsPlaying
     {
@@ -82,7 +81,7 @@ namespace Style_based_Video_Editor_GUI.Windows
       for (int i = 0; i < videos.Length; i++)
       {
         VideoGrid.RowDefinitions.Add(new RowDefinition());
-        Contorles.VideoPreview videoPreview = new Contorles.VideoPreview($"Video {i + 1}", videos[i].thumbnail, i,-1);
+        Contorles.VideoPreview videoPreview = new Contorles.VideoPreview($"Video {i + 1}", videos[i]);
         videoPreview.SetValue(Grid.RowProperty, i+1);
         Label detecting = new Label
         {
@@ -110,6 +109,7 @@ namespace Style_based_Video_Editor_GUI.Windows
     }
     readonly object OoO = new object();
     readonly object oOo = new object();
+
     void detect(object param)
     {
       int index = (int)param;
@@ -139,7 +139,7 @@ namespace Style_based_Video_Editor_GUI.Windows
           ColumnDefinition c = new ColumnDefinition();
           c.Width = new GridLength(100, GridUnitType.Pixel); ;
           g.ColumnDefinitions.Add(c);
-          Contorles.VideoPreview videoPreview = new Contorles.VideoPreview("", Scenes[i].Image,index, i);
+          Contorles.VideoPreview videoPreview = new Contorles.VideoPreview("", Scenes[i]);
           
           videoPreview.SetValue(Grid.ColumnProperty, i);
           g.Children.Add(videoPreview);
@@ -173,50 +173,71 @@ namespace Style_based_Video_Editor_GUI.Windows
     }
 
 
-    internal void LoadVideo(int videoIndex, int sceneIndex)
+    internal void LoadVideo(Video video)
     {
+      if (video == SelectedVideo) return;
       VideoInfoMessage.Visibility = Visibility.Collapsed;
       Info.Visibility = Visibility.Visible;
-      SelectedVideo = videoIndex;
-      SelectedScene = sceneIndex;
-      if (SelectedScene == -1)
+      SelectedVideo = video;
+      if (video is Classes.View)
       {
-        VideoPlayer.Source = new Uri(videos[SelectedVideo].video.FullName);
+
+        VideoPlayer.Source = new Uri(video.video.FullName);
         SceneInfo.Visibility = Visibility.Collapsed;
         SceneTag.Visibility = Visibility.Collapsed;
+        PersonsImagesTab.Visibility = Visibility.Collapsed;
         VideoInfo.IsSelected = true;
+        VideoNumber.Content = video.VideoNumber;
+
       }
       else
       {
-        Scene scene = videos[SelectedVideo].scenes[SelectedScene];
+        Scene scene = (Scene)video;
+
+        VideoNumber.Content = scene.OriginalVideo.VideoNumber;
 
         SceneInfo.Visibility = Visibility.Visible;
         SceneInfo.IsSelected = true;
 
         VideoPlayer.Source = new Uri(scene.Video.FullName);
-        SceneNumber.Content = sceneIndex + 1;
-        SceneNumber.Content = scene.SceneNumber.ToString("000");
+        SceneNumber.Content = scene.VideoNumber.ToString("000");
         StartTime.Content = scene.StartTime.ToString(@"mm\:ss");
         EndTime.Content = scene.EndTime.ToString(@"mm\:ss");
-        Length.Content = (scene.EndTime - scene.StartTime).ToString(@"mm\:ss");
+        Length.Content = scene.length.TimeSpan.ToString(@"mm\:ss");
         StartFrame.Content = scene.StartFrame.ToString();
         EndFrame.Content = scene.EndFrame.ToString();
+
         Tags.RowDefinitions.Clear();
         Tags.Children.Clear();
+        PersonsImages.Children.Clear();
+        PersonsImages.ColumnDefinitions.Clear();
+
         SceneTag.Header = $"Scene Tags";
         SceneTag.Visibility = Visibility.Visible;
+        PersonsImagesTab.Header = "Scene Persons";
+        PersonsImagesTab.Visibility = Visibility.Visible;
+
+        if (scene.personImages == null)
+          scene.DetectPersons(this);
+        else
+          ShowSceneFaces(scene);
 
         if (scene.Objects == null)
           scene.DetectObjects(this);
         else
-          showTags(scene.Objects);
+          showTags(scene);
       }
-      VideoNumber.Content = SelectedVideo + 1;
 
 
     }
-    internal void showTags(List<Structs.Tag> tags)
+    internal void showTags(Scene scene)
     {
+      if (scene != SelectedVideo) return;
+
+
+      List<Structs.KeyScore> tags = scene.Objects;
+      if (tags == null)
+        return;
       Tags.RowDefinitions.Clear();
       Tags.Children.Clear();
       SceneTag.Header = $"Scene Tags ({tags.Count()} tags)";
@@ -254,7 +275,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         c.Height = new GridLength(25, GridUnitType.Pixel); ;
         Tags.RowDefinitions.Add(c);
         Label key = new Label();
-        key.Content = tag.tag;
+        key.Content = tag.key;
         key.HorizontalAlignment = HorizontalAlignment.Center;
         key.VerticalAlignment = VerticalAlignment.Center;
         key.FontSize = 14f;
@@ -272,6 +293,157 @@ namespace Style_based_Video_Editor_GUI.Windows
 
       }
     }
+
+    internal void ShowSceneFaces(Scene scene)
+    {
+      if (scene != SelectedVideo) return;
+
+      List<PersonImage> personImages = scene.personImages;
+      if (personImages == null)
+        return;
+      PersonsImages.Children.Clear();
+      PersonsImages.ColumnDefinitions.Clear();
+      PersonsImagesTab.Header = $"Scene Persons ({personImages.Count()} persons)";
+      PersonsImagesTab.Visibility = Visibility.Visible;
+
+      for (int i = 0; i < personImages.Count; i++)
+      {
+        PersonImage perosnImage = personImages[i];
+        ColumnDefinition c = new ColumnDefinition();
+        c.Width = new GridLength(230, GridUnitType.Pixel); ;
+        PersonsImages.ColumnDefinitions.Add(c);
+
+
+        Image img = new Image();
+        img.Source = new BitmapImage(new Uri(perosnImage.image.FullName));
+        img.SetValue(Grid.RowProperty, 0);
+        img.SetValue(Grid.ColumnProperty, i);
+        PersonsImages.Children.Add(img);
+
+
+        Grid grid = new Grid();
+        grid.ShowGridLines = true;
+        grid.SetValue(Grid.RowProperty, 1);
+        grid.SetValue(Grid.ColumnProperty, i);
+        grid.ColumnDefinitions.Add(new ColumnDefinition());
+        grid.ColumnDefinitions.Add(new ColumnDefinition());
+        PersonsImages.Children.Add(grid);
+        for (int j = 0; j < 4; j++)
+        {
+          RowDefinition r = new RowDefinition();
+          r.Height = new GridLength(1, GridUnitType.Star);
+          grid.RowDefinitions.Add(r);
+        }
+        RowDefinition rr = new RowDefinition();
+        rr.Height = new GridLength(7, GridUnitType.Star);
+        grid.RowDefinitions.Add(rr);
+        // Score
+        Label label = new Label();
+        label.Content = "Score";
+        label.HorizontalAlignment = HorizontalAlignment.Center;
+        label.VerticalAlignment = VerticalAlignment.Center;
+        label.FontSize = 14f;
+        label.FontWeight = FontWeights.Bold;
+        grid.Children.Add(label);
+
+        label = new Label();
+        label.Content = perosnImage.score.ToString("00.00%");
+        label.HorizontalAlignment = HorizontalAlignment.Center;
+        label.VerticalAlignment = VerticalAlignment.Center;
+        label.FontSize = 14f;
+        label.SetValue(Grid.RowProperty, 0);
+        label.SetValue(Grid.ColumnProperty, 1);
+        grid.Children.Add(label);
+
+        // Emotion
+        label = new Label();
+        label.Content = "Emotion";
+        label.HorizontalAlignment = HorizontalAlignment.Center;
+        label.VerticalAlignment = VerticalAlignment.Center;
+        label.FontSize = 14f;
+        label.FontWeight = FontWeights.Bold;
+        label.SetValue(Grid.RowProperty, 1);
+        grid.Children.Add(label);
+
+        label = new Label();
+        label.Content = perosnImage.dominant_emotion;
+        label.HorizontalAlignment = HorizontalAlignment.Center;
+        label.VerticalAlignment = VerticalAlignment.Center;
+        label.FontSize = 14f;
+        label.SetValue(Grid.RowProperty, 1);
+        label.SetValue(Grid.ColumnProperty, 1);
+        grid.Children.Add(label);
+
+        // Age
+        label = new Label();
+        label.Content = "Age";
+        label.HorizontalAlignment = HorizontalAlignment.Center;
+        label.VerticalAlignment = VerticalAlignment.Center;
+        label.FontSize = 14f;
+        label.FontWeight = FontWeights.Bold;
+        label.SetValue(Grid.RowProperty, 2);
+        grid.Children.Add(label);
+
+        label = new Label();
+        label.Content = perosnImage.age;
+        label.HorizontalAlignment = HorizontalAlignment.Center;
+        label.VerticalAlignment = VerticalAlignment.Center;
+        label.FontSize = 14f;
+        label.SetValue(Grid.RowProperty, 2);
+        label.SetValue(Grid.ColumnProperty, 1);
+        grid.Children.Add(label);
+
+        // Age
+        label = new Label();
+        label.Content = "Gender";
+        label.HorizontalAlignment = HorizontalAlignment.Center;
+        label.VerticalAlignment = VerticalAlignment.Center;
+        label.FontSize = 14f;
+        label.FontWeight = FontWeights.Bold;
+        label.SetValue(Grid.RowProperty, 3);
+        grid.Children.Add(label);
+
+        label = new Label();
+        label.Content = perosnImage.gender;
+        label.HorizontalAlignment = HorizontalAlignment.Center;
+        label.VerticalAlignment = VerticalAlignment.Center;
+        label.FontSize = 14f;
+        label.SetValue(Grid.RowProperty, 3);
+        label.SetValue(Grid.ColumnProperty, 1);
+        grid.Children.Add(label);
+
+        // Emotions
+        label = new Label();
+        label.Content = "Emotions";
+        label.HorizontalAlignment = HorizontalAlignment.Center;
+        label.VerticalAlignment = VerticalAlignment.Center;
+        label.FontSize = 14f;
+        label.FontWeight = FontWeights.Bold;
+        label.SetValue(Grid.RowProperty, 4);
+        grid.Children.Add(label);
+
+
+        StackPanel s = new StackPanel();
+        s.Orientation = Orientation.Vertical;
+        s.SetValue(Grid.RowProperty, 4);
+        s.SetValue(Grid.ColumnProperty, 1);
+        s.HorizontalAlignment = HorizontalAlignment.Stretch;
+        s.VerticalAlignment = VerticalAlignment.Stretch;
+        grid.Children.Add(s);
+        foreach (Structs.KeyScore item in perosnImage.emotions)
+        {
+          label = new Label();
+          label.Content = $"{item.key} ({item.score/100:P})";
+          label.HorizontalAlignment = HorizontalAlignment.Center;
+          label.VerticalAlignment = VerticalAlignment.Center;
+          label.FontSize = 14f;
+          s.Children.Add(label);
+        }
+
+
+      }
+    }
+
 
     #region Player Controls
     private void Timer_Tick(object sender, EventArgs e)
@@ -323,14 +495,18 @@ namespace Style_based_Video_Editor_GUI.Windows
       DirectoryInfo dir = new DirectoryInfo(@"./ExampleVideos");
       FileInfo [] files =  dir.GetFiles("*.mp4");
       int exampleCount = files.Length >= 5 ? 5 : files.Length;
-      videos = new Video[exampleCount];
+      videos = new View[exampleCount];
       for (int i = 0; i < videos.Length; i++)
       {
-        videos[i] = new Video(files[i], Helper.GenerateThumbnail(files[i].FullName), new Duration());
+        videos[i] = new View(files[i], Video.GenrateImage(files[i].FullName), new Duration());
       }
       PreviewVideos();
     }
 
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+      OpenExamples_Click(null, null);
+    }
   }
 
 

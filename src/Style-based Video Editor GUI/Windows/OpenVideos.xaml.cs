@@ -17,8 +17,8 @@ namespace Style_based_Video_Editor_GUI.Windows
     bool _isPlaying = false;
     bool isDragging = false;
     DispatcherTimer timer;
-    List<Classes.Video> videos = new List<Classes.Video>(Classes.Constants.MAX_SHOTS); 
-    internal List<Classes.Video> Videos{ get => videos; }
+    List<Classes.View> videos = new List<Classes.View>(Classes.Constants.MAX_SHOTS); 
+    internal List<Classes.View> Videos{ get => videos; }
     bool IsPlaying { 
       get 
       {
@@ -123,11 +123,11 @@ namespace Style_based_Video_Editor_GUI.Windows
       try
       {
         Shots.ColumnDefinitions.Add( new ColumnDefinition());
-        FileInfo Thumbnail = Classes.Helper.GenerateThumbnail(VideoPath.Text);
+        FileInfo Thumbnail = Classes.Video.GenrateImage(VideoPath.Text);
         Contorles.Shot shot = new Contorles.Shot( Thumbnail, VideoPlayer.NaturalDuration.TimeSpan.ToString(), videos.Count);
         shot.SetValue(Grid.ColumnProperty, videos.Count);
         Shots.Children.Add(shot);
-        videos.Add(new Classes.Video(VideoPath.Text, Thumbnail, VideoPlayer.NaturalDuration));
+        videos.Add(new Classes.View(VideoPath.Text, Thumbnail, VideoPlayer.NaturalDuration));
 
         VideoPlayer.Source = null;
         PlayPause.Content = "Play";

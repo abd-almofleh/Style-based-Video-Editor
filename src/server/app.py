@@ -1,6 +1,12 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # noqa
+import warnings  # noqa
+warnings.filterwarnings("ignore")  # noqa
 from flask import Flask, app
 from flask_restful import Api
 from api.routes import create_routes
+
+# -------------------------------
 
 
 def get_flask_app() -> app.Flask:
