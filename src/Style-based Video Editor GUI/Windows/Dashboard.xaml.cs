@@ -101,19 +101,19 @@ namespace Style_based_Video_Editor_GUI.Windows
         VideoGrid.Children.Add(detecting);
 
 
-        Thread t = new Thread(detect);
-        t.IsBackground = true;
-        t.Start(i);
-      }
 
+      }
+      Thread t = new Thread(detectOnSpeakerChange);
+      t.IsBackground = true;
+      t.Start();
     }
     readonly object OoO = new object();
     readonly object oOo = new object();
 
-    void detect(object param)
+    void detectOnVisualChange(object param)
     {
       int index = (int)param;
-      videos[index].detectScenes();
+      videos[index].DetectScenesOnVisualChange();
       this.Dispatcher.Invoke(()=>
       {
         Grid g = new Grid();
@@ -172,7 +172,65 @@ namespace Style_based_Video_Editor_GUI.Windows
       });
     }
 
+    void detectOnSpeakerChange()
+    {
+      View.DetectScenesOnSpeakerChange(videos);
+      
+      this.Dispatcher.Invoke(() =>
+      {
 
+        ScenesLabels.Children.Clear();
+        List<Label> toremove = new List<Label>();
+        foreach (object elemet in VideoGrid.Children)
+        {
+          Label l = elemet as Label;
+          if (l == null) continue;
+          if ((int)l.GetValue(Grid.ColumnProperty) == 1 && (int)l.GetValue(Grid.RowProperty) > 0)
+            toremove.Add(l);
+        }
+        foreach (Label item in toremove)
+          VideoGrid.Children.Remove(item);
+
+        int SceneCount = videos[0].scenes.Length;
+        for (int i = 0; i < SceneCount; i++)
+        {
+          ColumnDefinition c = new ColumnDefinition();
+          c.Width = new GridLength(100, GridUnitType.Pixel); ;
+          ScenesLabels.ColumnDefinitions.Add(c);
+
+          Label ll = new Label
+          {
+            Content = $"Scene { i + 1}",
+            VerticalContentAlignment = VerticalAlignment.Center,
+            HorizontalContentAlignment = HorizontalAlignment.Center,
+            FontSize = 14,
+            FontWeight = FontWeights.Bold
+          };
+          ll.SetValue(Grid.ColumnProperty, i);
+          ScenesLabels.Children.Add(ll);
+        }
+
+        for (int i = 0; i < videos.Length; i++)
+        {
+          Grid g = new Grid();
+          g.ShowGridLines = true;
+          VideoGrid.Children.Add(g);
+          g.SetValue(Grid.ColumnProperty, 1);
+          g.SetValue(Grid.RowProperty, i + 1);
+          Scene[] Scenes = videos[i].scenes;
+          for (int j = 0; j < Scenes.Length; j++)
+          {
+            ColumnDefinition c = new ColumnDefinition();
+            c.Width = new GridLength(100, GridUnitType.Pixel); ;
+            g.ColumnDefinitions.Add(c);
+            Contorles.VideoPreview videoPreview = new Contorles.VideoPreview("", Scenes[j]);
+
+            videoPreview.SetValue(Grid.ColumnProperty, j);
+            g.Children.Add(videoPreview);
+          }
+        }
+      });
+    }
     internal void LoadVideo(Video video)
     {
       if (video == SelectedVideo) return;
@@ -498,7 +556,7 @@ namespace Style_based_Video_Editor_GUI.Windows
       videos = new View[exampleCount];
       for (int i = 0; i < videos.Length; i++)
       {
-        videos[i] = new View(files[i], Video.GenrateImage(files[i].FullName), new Duration());
+        videos[i] = new View(files[i], Video.GenrateImage(files[i].FullName,7), new Duration());
       }
       PreviewVideos();
     }

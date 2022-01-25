@@ -49,6 +49,23 @@ namespace Style_based_Video_Editor_GUI.Classes
       this.originalVideo = OriginalVideo;
     }
 
+    public Scene(View OriginalVideo, string path, double startTime, double endTime)
+  : base(new FileInfo(path))
+    {
+      this.originalVideo = OriginalVideo;
+      this.startFrame = 0;
+      this.endFrame = 0;
+      int StartSeconds = (int)startTime;
+      int StartMiliseconds = (int)((startTime - StartSeconds) * 1000);
+      TimeSpan TimeOfStart = new TimeSpan(0, 0, 0, StartSeconds, StartMiliseconds);
+      int EndSeconds = (int)endTime;
+      int EndMiliseconds = (int)((endTime - EndSeconds) * 1000);
+      TimeSpan TimeOfEnd = new TimeSpan(0, 0, 0, EndSeconds, EndMiliseconds);
+
+      this.startTime = TimeOfStart;
+      this.endTime = TimeOfEnd;
+    }
+
     public void DetectObjects(Windows.Dashboard window)
     {
       Scene that = this;
@@ -71,26 +88,8 @@ namespace Style_based_Video_Editor_GUI.Classes
       Thread t = new Thread(() =>
       {
         Console.WriteLine(Image.FullName);
-        dynamic faces = Web.DetectFaces(Image.FullName);
-        if (faces == null) return;
-        faces = faces.result;
-        this.personImages = new List<PersonImage>(faces.Count);
-        foreach (dynamic face in faces)
-        {
-          int[] facial_Area = Helper.GatArray<int>( face.location_info.facial_area);
-          double[] left_eye = Helper.GatArray<double>( face.location_info.landmarks.left_eye);
-          double[] mouth_left = Helper.GatArray<double>( face.location_info.landmarks.mouth_left);
-          double[] mouth_right = Helper.GatArray<double>( face.location_info.landmarks.mouth_right);
-          double[] nose = Helper.GatArray<double>( face.location_info.landmarks.nose);
-          double[] right_eye = Helper.GatArray<double>( face.location_info.landmarks.right_eye);
-          Structs.KeyScore[] emotion = new Structs.KeyScore[face.emotion.Count];
-
-          for (int i = 0; i < face.emotion.Count; i++)
-            emotion[i] = new Structs.KeyScore((string)face.emotion[i][0], (double)face.emotion[i][1]);
-          PersonImage p = new PersonImage((string)face.path, (double)face.score,(int)face.age,(string)face.dominant_emotion,(string)face.gender, emotion, facial_Area, left_eye, mouth_left, mouth_right, nose, right_eye); ;
-          personImages.Add(p);
-
-        }
+        this.personImages =  Web.DetectFaces(Image.FullName);
+        if (this.personImages == null) return;
         window.Dispatcher.Invoke(() =>
         {
           window.ShowSceneFaces(that);

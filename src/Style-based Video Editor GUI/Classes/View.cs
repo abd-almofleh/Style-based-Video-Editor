@@ -2,28 +2,39 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 
 namespace Style_based_Video_Editor_GUI.Classes
 {
-  internal class View:Classes.Video
+  internal class View: Video
   {
-
     public Scene[] scenes;
 
-    private static readonly string detectionCommand = "scenedetect -i \"{0}\"  -o \"./temp/{1}\" detect-content split-video -o \"./temp/{1}/videos\" -f $SCENE_NUMBER -q list-scenes -q -s -f times.csv save-images --quality 70 -o \"./temp/{1}/images\" -f $SCENE_NUMBER -n 1 -c 6";
-    
     public View(string path, FileInfo thumbnail,Duration length) :base(new FileInfo(path), thumbnail, length) { }
     public View(FileInfo video,FileInfo thumbnail, Duration length):base(video,  thumbnail,  length)
     {
 
     }
 
-    public void detectScenes()
+    public static void DetectScenesOnSpeakerChange(View[] views)
+    {
+
+      List<Scene>[] scenes = Web.GenerateScenes(views);
+      if (scenes == null) return;
+      for (int i = 0; i < scenes.Length; i++)
+      {
+        views[i].scenes = scenes[i].ToArray();
+      }
+
+    }
+
+    public void DetectScenesOnVisualChange()
     {
       DirectoryInfo directory = new DirectoryInfo($"./temp/{video.Name}");
       if (directory.Exists)
         directory.Delete(true);
+      string detectionCommand = "scenedetect -i \"{0}\"  -o \"./temp/{1}\" detect-content split-video -o \"./temp/{1}/videos\" -f $SCENE_NUMBER -q list-scenes -q -s -f times.csv save-images --quality 70 -o \"./temp/{1}/images\" -f $SCENE_NUMBER -n 1 -c 6";
       Helper.RunCMDCommand(String.Format(detectionCommand, video.FullName, video.Name));
 
       string[] lines = File.ReadAllLines($"./temp/{video.Name}/times.csv").Skip(1).ToArray();
@@ -38,7 +49,7 @@ namespace Style_based_Video_Editor_GUI.Classes
 
         return new Scene(this,sceneNumber, startFrame, endFrame, startTime, endTime, $"./temp/{video.Name}");
       });
-      this.scenes = scenesArray.ToArray();
+      scenes =  scenesArray.ToArray();
     }
 
   }
