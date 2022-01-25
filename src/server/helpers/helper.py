@@ -11,7 +11,8 @@ def is_allowed_file(filename, allowed_extensions):
 
 def extract_wav_from_video(video_path, output_folder_path="./uploads/audios"):
     video = Path(video_path)
-    output_folder = Path(output_folder_path)
+    output_folder = Path(output_folder_path).joinpath(video.stem)
+    output_folder.mkdir(exist_ok=True)
     output_file = Path.joinpath(
         output_folder, video.stem+datetime.now().strftime("_D[%d-%m-%Y]_T[%H-%M-%S]")+".wav")
     paths = {

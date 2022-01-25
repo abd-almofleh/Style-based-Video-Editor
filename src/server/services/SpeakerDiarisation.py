@@ -9,6 +9,7 @@ from malaya_speech import Pipeline
 import malaya_speech
 import numpy as np
 import matplotlib.pyplot as plt
+from malaya_speech.model.frame import Frame
 
 
 class SpeakerDiarisation:
@@ -37,7 +38,24 @@ class SpeakerDiarisation:
         result = malaya_speech.diarization.spectral_cluster(grouped_vad, model_speakernet,
                                                             min_clusters=2,
                                                             max_clusters=3)
-        grouped = malaya_speech.group.group_frames(result)
+        filtered_result = []
+        last = None
+        for frame, res in result:
+            if last is not None:
+                if last.duration + frame.duration >= 1:
+                    filtered_result.append((Frame([*last.array, *frame.array],
+                                                  last.timestamp, last.duration + frame.duration), res))
+                    last = None
+                else:
+                    last = Frame([*last.array, *frame.array],
+                                 last.timestamp, last.duration + frame.duration)
+                continue
+            if frame.duration >= 1:
+                filtered_result.append(
+                    (Frame(frame.array, frame.timestamp, frame.duration), res))
+            else:
+                last = frame
+        grouped = malaya_speech.group.group_frames(filtered_result)
         frames = []
         for frame in grouped:
             start_time = round(frame[0].timestamp, 2)
@@ -45,7 +63,7 @@ class SpeakerDiarisation:
             speaker = -1 if frame[1] == "not a speaker" else frame[1].replace(
                 "speaker ", "")
             frames.append({
-                "speaker": speaker,
+                "speaker": int(speaker),
                 "start_time": start_time,
                 "end_time": end_time
             })
