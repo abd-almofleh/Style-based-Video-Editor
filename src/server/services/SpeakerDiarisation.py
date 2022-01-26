@@ -65,7 +65,8 @@ class SpeakerDiarisation:
             frames.append({
                 "speaker": int(speaker),
                 "start_time": start_time,
-                "end_time": end_time
+                "end_time": end_time,
+                "length": end_time-start_time
             })
 
         return frames
