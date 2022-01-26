@@ -20,10 +20,11 @@ class SpeakerDiarisation:
 
     @staticmethod
     def speaker_change_detection(video_path):
+        wav_file = extract_wav_from_video(video_path)
+        y, sr = malaya_speech.load(str(wav_file.absolute().resolve()))
+
         model_speakernet = malaya_speech.speaker_vector.deep_model(
             'speakernet', validate=False)
-
-        y, sr = malaya_speech.load(video_path)
         vad = malaya_speech.vad.deep_model(model='vggvox-v2', validate=False)
         frames = list(malaya_speech.utils.generator.frames(y, 30, sr))
         p = Pipeline()
