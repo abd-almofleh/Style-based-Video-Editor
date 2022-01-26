@@ -66,7 +66,7 @@ class SpeakerDiarisation:
                 "speaker": int(speaker),
                 "start_time": start_time,
                 "end_time": end_time,
-                "length": end_time-start_time
+                "length": round(end_time-start_time, 2)
             })
 
         return frames
