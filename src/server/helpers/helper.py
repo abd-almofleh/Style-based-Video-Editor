@@ -39,3 +39,21 @@ def cut_video(video_path, start_time, end_time, output_folder_path="./uploads/sc
     command = 'ffmpeg -i "%(video_path)s" -ss %(start_time)s -loglevel quiet -c copy -to %(end_time)s "%(cuted_video_path)s"' % paths
     subprocess.call(command, shell=True)
     return output_file
+
+
+def get_video_length(video_path):
+    command = f"ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{video_path}\""
+    length = subprocess.run(
+        command, stdout=subprocess.PIPE).stdout.decode("utf-8")
+    return round(float(length), 2)
+
+
+def get_frame_form_video(video_path, second=1):
+    output_folder = Path("./temp/thumbnails")
+    output_folder.mkdir(exist_ok=True)
+    output_path = str(output_folder.joinpath(
+        "tn["+str(uuid.uuid4())+"].jpg").absolute().resolve())
+    command = f"ffmpeg -i \"{video_path}\" -ss {second} -vframes 1 -f image2 -vcodec mjpeg \"{output_path}\" -y"
+    subprocess.run(command, stdout=subprocess.PIPE,
+                   stderr=subprocess.PIPE, shell=False)
+    return output_path

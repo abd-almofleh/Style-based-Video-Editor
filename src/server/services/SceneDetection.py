@@ -1,6 +1,6 @@
 from pathlib import Path
 from .SpeakerDiarisation import SpeakerDiarisation
-from helpers.helper import cut_video
+from helpers.helper import cut_video, get_frame_form_video
 
 
 class SceneDetection:
@@ -17,9 +17,11 @@ class SceneDetection:
             video_name = video.stem
             scenes[video_name] = []
             for i, time in enumerate(scenes_times):
+                scene_info = dict(time)
                 scene_path = cut_video(
                     video_path, time["start_time"], time["end_time"])
-                scene_info = dict(time)
+                scene_info["thumbnail"] = get_frame_form_video(
+                    scene_path, time["length"]/2)
                 scene_info["path"] = str(scene_path.absolute().resolve())
                 scenes[video_name].append(scene_info)
         return scenes
