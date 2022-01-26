@@ -9,7 +9,7 @@ using RestSharp;
 
 namespace Style_based_Video_Editor_GUI.Classes
 {
-  internal class Scene:Classes.Video
+  internal class Scene:Video
   {
     uint startFrame;
     uint endFrame;
@@ -33,7 +33,8 @@ namespace Style_based_Video_Editor_GUI.Classes
     internal List<Person> Persons;
     internal List<PersonImage> personImages; 
 
-
+    // ! deprecated
+    // ! used with scene detection using visual changes
     public Scene(View OriginalVideo, uint sceneNumber, uint startFrame, uint endFrame, TimeSpan startTime, TimeSpan endTime, string scenesDir)
       :base(new FileInfo(scenesDir + "/videos/" + sceneNumber.ToString("000") + ".mp4"),
          new FileInfo(scenesDir + "/images/" + sceneNumber.ToString("000") + ".jpg"),
@@ -50,20 +51,12 @@ namespace Style_based_Video_Editor_GUI.Classes
     }
 
     public Scene(View OriginalVideo, string path, double startTime, double endTime)
-  : base(new FileInfo(path))
+  : base(new FileInfo(path), endTime - startTime)
     {
       this.originalVideo = OriginalVideo;
-      this.startFrame = 0;
-      this.endFrame = 0;
-      int StartSeconds = (int)startTime;
-      int StartMiliseconds = (int)((startTime - StartSeconds) * 1000);
-      TimeSpan TimeOfStart = new TimeSpan(0, 0, 0, StartSeconds, StartMiliseconds);
-      int EndSeconds = (int)endTime;
-      int EndMiliseconds = (int)((endTime - EndSeconds) * 1000);
-      TimeSpan TimeOfEnd = new TimeSpan(0, 0, 0, EndSeconds, EndMiliseconds);
-
-      this.startTime = TimeOfStart;
-      this.endTime = TimeOfEnd;
+      this.startFrame = this.endFrame = 0;
+      this.startTime = GetVideoLength(startTime).TimeSpan;
+      this.endTime = GetVideoLength(endTime).TimeSpan;
     }
 
     public void DetectObjects(Windows.Dashboard window)

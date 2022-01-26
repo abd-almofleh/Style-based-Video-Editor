@@ -28,7 +28,7 @@ namespace Style_based_Video_Editor_GUI.Classes
       this.length = length;
       this.VideoNumber = Video.ID++;
     }
-    public Video(FileInfo video)
+    public Video(FileInfo video,double length)
     {
       this.video = video;
       if (!video.Exists) throw new FileNotFoundException();
@@ -36,15 +36,8 @@ namespace Style_based_Video_Editor_GUI.Classes
       string ext = video.Extension.Substring(1).ToLower();
       int IsSupported = Array.FindIndex(Constants.SUPPORTED_VIDEO_TYPES, item => item == ext);
       if (IsSupported < 0) throw new Exceptions.VideoFileNotSupported(ext, Constants.SUPPORTED_VIDEO_TYPES);
-      string command = $"ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{video.FullName}\"";
-
-      CMDResult result = Helper.RunCMDCommand(command);
-      double d = Convert.ToDouble(result.OutputMessage);
-      int second = (int)d;
-      int milisecond =  (int) ((d - second)*1000);
-      TimeSpan t = new TimeSpan(0, 0, 0, second, milisecond);
-      length = new Duration(t);
-      this.image = GenrateImage(video, (length.TimeSpan.TotalMilliseconds / 2000));
+      this.length = GetVideoLength(length);
+      this.image = GenrateImage(video, length / 2);
       this.VideoNumber = Video.ID++;
     }
     public static FileInfo GenrateImage(string VideoPath,double second = 1)
@@ -67,6 +60,26 @@ namespace Style_based_Video_Editor_GUI.Classes
       return file;
       
     }
+    public static Duration GetVideoLength(FileInfo video)
+    {
+      string command = $"ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{video.FullName}\"";
 
+      CMDResult result = Helper.RunCMDCommand(command);
+      double d = Convert.ToDouble(result.OutputMessage);
+      int second = (int)d;
+      int milisecond = (int)((d - second) * 1000);
+      TimeSpan t = new TimeSpan(0, 0, 0, second, milisecond);
+      return new Duration(t);
+
+    }
+    public static Duration GetVideoLength(double length)
+    {
+      double d = Convert.ToDouble(length);
+      int second = (int)d;
+      int milisecond = (int)((d - second) * 1000);
+      TimeSpan t = new TimeSpan(0, 0, 0, second, milisecond);
+      return new Duration(t);
+
+    }
   }
 }
