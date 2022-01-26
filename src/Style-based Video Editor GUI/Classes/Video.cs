@@ -28,11 +28,30 @@ namespace Style_based_Video_Editor_GUI.Classes
       this.length = length;
       this.VideoNumber = Video.ID++;
     }
-    public static FileInfo GenrateImage(string VideoPath)
+    public Video(FileInfo video)
     {
-      return GenrateImage(new FileInfo(VideoPath));
+      this.video = video;
+      if (!video.Exists) throw new FileNotFoundException();
+
+      string ext = video.Extension.Substring(1).ToLower();
+      int IsSupported = Array.FindIndex(Constants.SUPPORTED_VIDEO_TYPES, item => item == ext);
+      if (IsSupported < 0) throw new Exceptions.VideoFileNotSupported(ext, Constants.SUPPORTED_VIDEO_TYPES);
+      string command = $"ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{video.FullName}\"";
+
+      CMDResult result = Helper.RunCMDCommand(command);
+      double d = Convert.ToDouble(result.OutputMessage);
+      int second = (int)d;
+      int milisecond =  (int) ((d - second)*1000);
+      TimeSpan t = new TimeSpan(0, 0, 0, second, milisecond);
+      length = new Duration(t);
+      this.image = GenrateImage(video, (length.TimeSpan.TotalMilliseconds / 2000));
+      this.VideoNumber = Video.ID++;
     }
-    public static FileInfo GenrateImage(FileInfo video)
+    public static FileInfo GenrateImage(string VideoPath,double second = 1)
+    {
+      return GenrateImage(new FileInfo(VideoPath),second);
+    }
+    public static FileInfo GenrateImage(FileInfo video, double second = 1)
     {
       DirectoryInfo ThumbnailDirectory = new DirectoryInfo("thumbnail");
       if (!ThumbnailDirectory.Exists) ThumbnailDirectory.Create();
@@ -40,7 +59,7 @@ namespace Style_based_Video_Editor_GUI.Classes
       string ThumbnailPath = DateTime.Now.Ticks.ToString() + ".jpg";
       FileInfo file = new FileInfo(Path.Combine(ThumbnailDirectory.Name, ThumbnailPath));
       if (file.Exists) file.Delete();
-      string command = $"ffmpeg -i \"{video.FullName}\" -ss 00:00:07 -vframes 1 -f image2 -vcodec mjpeg \"{file.FullName}\" -y";
+      string command = $"ffmpeg -i \"{video.FullName}\" -ss {second} -vframes 1 -f image2 -vcodec mjpeg \"{file.FullName}\" -y";
 
       CMDResult result = Helper.RunCMDCommand(command);
       //if (result.ExitCode != 0) throw new Exception($"Error NO. {result.ExitCode}:Command {result.Command},Message: {result.OutputMessage}");

@@ -15,6 +15,7 @@ namespace Style_based_Video_Editor_GUI.Classes
     static RestClient Server = new RestClient($"{Constants.SERVER_URL}:{Constants.SERVER_PORT}");
     public static string ObjectDetectionRoute = "object-detection";
     public static string FaceDetectionRoute = "face-detection";
+    public static string GenerateScenesRoute = "generate-scenes";
     
     public static List<Structs.KeyScore> DetectObjects(string imagePath)
     {
@@ -38,7 +39,7 @@ namespace Style_based_Video_Editor_GUI.Classes
       return Objects;
     }
 
-    public static dynamic DetectFaces(string imagePath)
+    public static List<PersonImage> DetectFaces(string imagePath)
     {
       RestRequest request = new RestRequest(FaceDetectionRoute, DataFormat.Json);
       request.AddFile("image", imagePath);
@@ -51,7 +52,73 @@ namespace Style_based_Video_Editor_GUI.Classes
         Console.WriteLine(response.ErrorMessage);
         return null;
       }
-      return JObject.Parse(response.Content);
+
+      dynamic faces = JObject.Parse(response.Content);
+      if (faces == null) return null;
+      faces = faces.result;
+      List<PersonImage>  personImages = new List<PersonImage>(faces.Count);
+      foreach (dynamic face in faces)
+      {
+        int[] facial_Area = Helper.GatArray<int>(face.location_info.facial_area);
+        double[] left_eye = Helper.GatArray<double>(face.location_info.landmarks.left_eye);
+        double[] mouth_left = Helper.GatArray<double>(face.location_info.landmarks.mouth_left);
+        double[] mouth_right = Helper.GatArray<double>(face.location_info.landmarks.mouth_right);
+        double[] nose = Helper.GatArray<double>(face.location_info.landmarks.nose);
+        double[] right_eye = Helper.GatArray<double>(face.location_info.landmarks.right_eye);
+        Structs.KeyScore[] emotion = new Structs.KeyScore[face.emotion.Count];
+
+        for (int i = 0; i < face.emotion.Count; i++)
+          emotion[i] = new Structs.KeyScore((string)face.emotion[i][0], (double)face.emotion[i][1]);
+        PersonImage p = new PersonImage((string)face.path, (double)face.score, (int)face.age, (string)face.dominant_emotion, (string)face.gender, emotion, facial_Area, left_eye, mouth_left, mouth_right, nose, right_eye); ;
+        personImages.Add(p);
+
+      }
+      return personImages;
+    }
+
+    public static List<Scene>[] GenerateScenes(View [] views)
+    {
+      RestRequest request = new RestRequest(GenerateScenesRoute, DataFormat.Json);
+      foreach(View v in views)
+        request.AddParameter("paths", v.video.FullName);
+
+      Server.UseSerializer(() => new JsonSerializer { RootElement = "result" });
+      IRestResponse response = Server.Get(request);
+      // TODO: add a status to the dash board
+      if (!response.IsSuccessful)
+      {
+        Console.WriteLine(response.ErrorMessage);
+        return null;
+      }
+      List<Scene>[] all = new List<Scene>[views.Length];
+      dynamic scenesData = JObject.Parse(response.Content);
+      if (scenesData == null) return null;
+      scenesData = scenesData.result;
+      for (int i = 0; i < views.Length; i++)
+      {
+        View view = views[i];
+        string viewName = view.video.Name;
+        viewName = viewName.Substring(0, viewName.LastIndexOf("."));
+
+        dynamic viewsInfo = scenesData[viewName];
+        all[i] = new List<Scene>(viewsInfo.Count);
+        for (int j = 0; j < viewsInfo.Count; j++)
+        {
+          dynamic viewInfo = viewsInfo[j];
+          double startTime = (double)viewInfo.start_time;
+          double endTime = (double)viewInfo.end_time;
+          int speaker = (int)viewInfo.speaker;
+          string path = (string)viewInfo.path;
+          TimeSpan timeOfStart = new TimeSpan(0, 0, 0, (int)startTime, (int)(startTime % (int)startTime) * 1000);
+          TimeSpan timeOfEnd = new TimeSpan(0, 0, 0, (int)endTime, (int)(endTime % (int)endTime) * 1000);
+          Scene s = new Scene(view, path, startTime, endTime);
+          all[i].Add(s);
+        }
+
+
+      }
+
+      return all;
     }
   }
 }
