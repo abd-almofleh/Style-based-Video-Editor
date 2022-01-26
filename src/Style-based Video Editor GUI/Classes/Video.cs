@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Style_based_Video_Editor_GUI.Classes
@@ -16,6 +12,7 @@ namespace Style_based_Video_Editor_GUI.Classes
     public FileInfo image;
     public Duration length;
     public Video(string path, FileInfo thumbnail, Duration length) : this(new FileInfo(path), thumbnail, length) { }
+    public Video(FileInfo video, FileInfo thumbnail,double length):this(video,thumbnail, GetVideoLength(length)) { }
     public Video(FileInfo video, FileInfo thumbnail, Duration length)
     {
       this.video = video;
@@ -24,21 +21,10 @@ namespace Style_based_Video_Editor_GUI.Classes
       string ext = video.Extension.Substring(1).ToLower();
       int IsSupported = Array.FindIndex(Constants.SUPPORTED_VIDEO_TYPES, item => item == ext);
       if (IsSupported < 0) throw new Exceptions.VideoFileNotSupported(ext, Constants.SUPPORTED_VIDEO_TYPES);
+      this.VideoNumber = ID++;
+
       this.image = thumbnail;
       this.length = length;
-      this.VideoNumber = Video.ID++;
-    }
-    public Video(FileInfo video,double length)
-    {
-      this.video = video;
-      if (!video.Exists) throw new FileNotFoundException();
-
-      string ext = video.Extension.Substring(1).ToLower();
-      int IsSupported = Array.FindIndex(Constants.SUPPORTED_VIDEO_TYPES, item => item == ext);
-      if (IsSupported < 0) throw new Exceptions.VideoFileNotSupported(ext, Constants.SUPPORTED_VIDEO_TYPES);
-      this.length = GetVideoLength(length);
-      this.image = GenrateImage(video, length / 2);
-      this.VideoNumber = Video.ID++;
     }
     public static FileInfo GenrateImage(string VideoPath,double second = 1)
     {

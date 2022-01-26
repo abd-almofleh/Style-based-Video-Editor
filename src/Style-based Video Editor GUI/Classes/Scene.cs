@@ -11,6 +11,7 @@ namespace Style_based_Video_Editor_GUI.Classes
 {
   internal class Scene:Video
   {
+    static uint ID_counter = 1;
     uint startFrame;
     uint endFrame;
 
@@ -50,9 +51,10 @@ namespace Style_based_Video_Editor_GUI.Classes
       this.originalVideo = OriginalVideo;
     }
 
-    public Scene(View OriginalVideo, string path, double startTime, double endTime)
-  : base(new FileInfo(path), endTime - startTime)
+    public Scene(View OriginalVideo, string path,string thumbnail, double startTime, double endTime)
+  : base(new FileInfo(path), new FileInfo(thumbnail), endTime - startTime)
     {
+      this.VideoNumber = ID_counter++;
       this.originalVideo = OriginalVideo;
       this.startFrame = this.endFrame = 0;
       this.startTime = GetVideoLength(startTime).TimeSpan;

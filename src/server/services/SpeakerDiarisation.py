@@ -1,5 +1,4 @@
 from resemblyzer import VoiceEncoder
-from pathlib import Path
 import librosa
 from spectralcluster import SpectralClusterer, RefinementOptions
 from resemblyzer.audio import sampling_rate
@@ -7,8 +6,6 @@ from helpers.helper import extract_wav_from_video
 import os
 from malaya_speech import Pipeline
 import malaya_speech
-import numpy as np
-import matplotlib.pyplot as plt
 from malaya_speech.model.frame import Frame
 
 

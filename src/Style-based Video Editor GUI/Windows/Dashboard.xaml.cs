@@ -178,8 +178,10 @@ namespace Style_based_Video_Editor_GUI.Windows
       
       this.Dispatcher.Invoke(() =>
       {
-
+        if (videos[0].scenes == null) return; 
+        
         ScenesLabels.Children.Clear();
+
         List<Label> toremove = new List<Label>();
         foreach (object elemet in VideoGrid.Children)
         {

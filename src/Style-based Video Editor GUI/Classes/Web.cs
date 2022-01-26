@@ -109,13 +109,12 @@ namespace Style_based_Video_Editor_GUI.Classes
           double endTime = (double)viewInfo.end_time;
           int speaker = (int)viewInfo.speaker;
           string path = (string)viewInfo.path;
+          string image = (string)viewInfo.image;
           TimeSpan timeOfStart = new TimeSpan(0, 0, 0, (int)startTime, (int)(startTime % (int)startTime) * 1000);
           TimeSpan timeOfEnd = new TimeSpan(0, 0, 0, (int)endTime, (int)(endTime % (int)endTime) * 1000);
-          Scene s = new Scene(view, path, startTime, endTime);
+          Scene s = new Scene(view, path, image, startTime, endTime);
           all[i].Add(s);
         }
-
-
       }
 
       return all;
