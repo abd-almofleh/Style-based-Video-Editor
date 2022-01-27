@@ -11,6 +11,12 @@ class SpeechToText:
         "login_information": {
             "email": "9ff80e84ee@emailnax.com",
             "apiKey": "94275ec3a9e74e66b32d6a4d5bf7245e",
+
+        },
+        "languages_codes": {
+            "arabic_egyptian_dialect": "EG",
+            "english": "EN",
+            "arabic_saudi_dialect": "EN"
         }
     }
 
@@ -32,14 +38,14 @@ class SpeechToText:
         self.token = result["message"]
         return True
 
-    def arabic_speech_recognition(self, file_path):
+    def arabic_speech_recognition(self, file_path, language="arabic_egyptian_dialect"):
         headers = {
             'authorization': f'Bearer {self.token}'
         }
         tempFile = open(file_path, 'rb')
         files = {
             'File': ('1_speaker.mp3', tempFile, mimetypes.guess_type(file_path)[0]),
-            'LanguageCode': (None, 'EG'),
+            'LanguageCode': (None, SpeechToText.KATEB["languages_codes"][language]),
         }
         recognize_url = SpeechToText.KATEB["base_url"] + \
             "/"+SpeechToText.KATEB["recognize-file"]
