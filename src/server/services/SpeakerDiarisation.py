@@ -17,6 +17,10 @@ class SpeakerDiarisation:
 
     @staticmethod
     def speaker_change_detection(video_path):
+        return SpeakerDiarisation.malaya_speaker_change_detection(video_path)
+
+    @staticmethod
+    def malaya_speaker_change_detection(video_path):
         wav_file = extract_wav_from_video(video_path)
         y, sr = malaya_speech.load(str(wav_file.absolute().resolve()))
 
