@@ -1,4 +1,4 @@
-from flask import app, jsonify, request, Response
+from flask import jsonify, request, Response
 from flask_restful import Resource
 from helpers.constant import ALLOWED_UPLOAD_EXTENSIONS, UPLOAD_PATH, COCO_CLASSES
 from helpers.helper import is_allowed_file
@@ -57,8 +57,3 @@ class ObjectDetectionApi(Resource):
                         result[classTag].update(oldScore)
 
         return jsonify({'result': result})
-
-    def get(self):
-        output = request.get_json()
-
-        return jsonify({'result': output})
