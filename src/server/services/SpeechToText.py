@@ -6,8 +6,11 @@ import mimetypes
 class SpeechToText:
     KATEB = {
         "base_url": "https://px.kateb.ai:4040/api",
-        "login": "login",
-        "recognize_file": "recognize-file",
+        "sub_urls": {
+            "login": "login",
+            "recognize_file": "recognize-file",
+            "get_minutes": "getMinutes",
+        },
         "login_information": {
             "email": "9ff80e84ee@emailnax.com",
             "apiKey": "94275ec3a9e74e66b32d6a4d5bf7245e",
@@ -29,7 +32,7 @@ class SpeechToText:
 
     def kateb_login(self) -> bool:
         login_url = SpeechToText.KATEB["base_url"] + \
-            "/"+SpeechToText.KATEB["login"]
+            "/"+SpeechToText.KATEB["sub_urls"]["login"]
         response = requests.request(
             "POST", login_url, params=SpeechToText.KATEB["login_information"])
         result = json.loads(response.text)
@@ -48,18 +51,19 @@ class SpeechToText:
             'LanguageCode': (None, SpeechToText.KATEB["languages_codes"][language]),
         }
         recognize_url = SpeechToText.KATEB["base_url"] + \
-            "/"+SpeechToText.KATEB["recognize-file"]
+            "/"+SpeechToText.KATEB["sub_urls"]["recognize_file"]
 
         response = requests.post(recognize_url, headers=headers, files=files)
         prediction = json.loads(response.text,)
         text_string = prediction["Text_String"]
+
         result = {
             "arabic_text": "",
-            "score": 0,
+            "confidence": 0,
         }
         for word in text_string:
             result["arabic_text"] += " " + word["text"]
-            result["score"] += word["confidence"]
-        result["score"] = round(result["score"]/2, 2)
+            result["confidence"] += word["confidence"]
+        result["confidence"] = round(result["confidence"]/2, 2)
 
         return result
