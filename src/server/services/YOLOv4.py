@@ -35,14 +35,14 @@ class YOLOv4:
         for score, cl in zip(scores[0].tolist(), classes[0].astype(int).tolist()):
             if score > 0:
                 if COCO_CLASSES[cl] not in result:
-                    result[COCO_CLASSES[cl]] = round(score, 2)
+                    result[COCO_CLASSES[cl]] = [round(score, 2), 1]
                 else:
                     classTag = COCO_CLASSES[cl]
-                    old_score = result[classTag]
+                    old_score, count = result[classTag]
                     new_score = old_score
                     if old_score < score:
                         new_score = round(score, 2)
-                    result[classTag] = new_score
+                    result[classTag] = [new_score, count+1]
         result = np.array(list(result.items()), dtype=object).tolist()
 
         return result

@@ -23,18 +23,26 @@ namespace Style_based_Video_Editor_GUI.Classes
       request.AddFile("image", imagePath);
 
       Server.UseSerializer(() => new JsonSerializer {RootElement="result" });
-      IRestResponse<Dictionary<string, double>> response = Server.Post<Dictionary<string, double>>(request);
+      IRestResponse response = Server.Post(request);
       // TODO: add a status to the dash board
       if (!response.IsSuccessful)
       {
         Console.WriteLine(response.ErrorMessage);
         return null;
       }
+      dynamic objects = JObject.Parse(response.Content);
+      if (objects == null) return null;
+      objects = objects.result;
 
-      List<Structs.KeyScore> Objects = new List<Structs.KeyScore>(response.Data.Count);
-      foreach(string key in response.Data.Keys)
+      List<Structs.KeyScore> Objects = new List<Structs.KeyScore>(objects.Count);
+      foreach(dynamic item in objects)
       {
-        Objects.Add(new Structs.KeyScore(key, response.Data[key]));
+        string key = (string)item[0];
+        double score = (double) item[1][0];
+        double count = (double) item[1][1];
+        Dictionary<string, double> d = new Dictionary<string, double>();
+        d.Add("count", count);
+        Objects.Add(new Structs.KeyScore(key, score, d));
       }
       return Objects;
     }
