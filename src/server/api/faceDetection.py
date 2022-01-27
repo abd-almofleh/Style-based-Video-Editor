@@ -37,8 +37,3 @@ class FaceDetectionApi(Resource):
             face["emotion"] = list(analysis["emotion"].items())
 
         return jsonify({'result': faces})
-
-    def get(self):
-        output = request.get_json()
-
-        return jsonify({'result': output})

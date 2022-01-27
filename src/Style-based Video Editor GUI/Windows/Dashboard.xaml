@@ -140,7 +140,8 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition />
                                                 <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
                                         </Grid>
                                     </ScrollViewer>
 

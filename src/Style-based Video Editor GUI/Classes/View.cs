@@ -11,22 +11,17 @@ namespace Style_based_Video_Editor_GUI.Classes
   {
     public Scene[] scenes;
 
-    public View(string path, FileInfo thumbnail,Duration length) :base(new FileInfo(path), thumbnail, length) { }
-    public View(FileInfo video,FileInfo thumbnail, Duration length):base(video,  thumbnail,  length)
-    {
-
-    }
+    public View(string path, FileInfo thumbnail, Duration length) : base(new FileInfo(path), thumbnail, length) { }
+    public View(FileInfo video, FileInfo thumbnail, Duration length) : base(video, thumbnail, length) { }
 
     public static void DetectScenesOnSpeakerChange(View[] views)
     {
-
       List<Scene>[] scenes = Web.GenerateScenes(views);
       if (scenes == null) return;
       for (int i = 0; i < scenes.Length; i++)
       {
         views[i].scenes = scenes[i].ToArray();
       }
-
     }
 
     public void DetectScenesOnVisualChange()
@@ -38,18 +33,18 @@ namespace Style_based_Video_Editor_GUI.Classes
       Helper.RunCMDCommand(String.Format(detectionCommand, video.FullName, video.Name));
 
       string[] lines = File.ReadAllLines($"./temp/{video.Name}/times.csv").Skip(1).ToArray();
-      IEnumerable<Scene> scenesArray =  lines.Select(line =>
-      {
-        string[] data = line.Split(',');
-        uint sceneNumber = uint.Parse(data[0]);
-        uint startFrame = uint.Parse(data[1]);
-        uint endFrame = uint.Parse(data[4]);
-        TimeSpan startTime = TimeSpan.Parse(data[2]);
-        TimeSpan endTime = TimeSpan.Parse(data[5]);
+      IEnumerable<Scene> scenesArray = lines.Select(line =>
+     {
+       string[] data = line.Split(',');
+       uint sceneNumber = uint.Parse(data[0]);
+       uint startFrame = uint.Parse(data[1]);
+       uint endFrame = uint.Parse(data[4]);
+       TimeSpan startTime = TimeSpan.Parse(data[2]);
+       TimeSpan endTime = TimeSpan.Parse(data[5]);
 
-        return new Scene(this,sceneNumber, startFrame, endFrame, startTime, endTime, $"./temp/{video.Name}");
-      });
-      scenes =  scenesArray.ToArray();
+       return new Scene(this, sceneNumber, startFrame, endFrame, startTime, endTime, $"./temp/{video.Name}");
+     });
+      scenes = scenesArray.ToArray();
     }
 
   }

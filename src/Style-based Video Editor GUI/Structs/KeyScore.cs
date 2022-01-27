@@ -10,10 +10,15 @@ namespace Style_based_Video_Editor_GUI.Structs
     {
         public string key;
         public double score;
-        public KeyScore(string key, double score)
+        public Dictionary<string, double> ExtraValues;
+        public KeyScore(string key, double score, Dictionary<string,double> d = null)
         {
             this.key = key;
             this.score = score;
+            if (d != null)
+              ExtraValues = d;
+            else
+              ExtraValues = new Dictionary<string, double>();
         }
         public override string ToString()
         {

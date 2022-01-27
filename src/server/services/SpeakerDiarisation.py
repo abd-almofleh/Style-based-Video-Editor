@@ -1,5 +1,4 @@
 from resemblyzer import VoiceEncoder
-from pathlib import Path
 import librosa
 from spectralcluster import SpectralClusterer, RefinementOptions
 from resemblyzer.audio import sampling_rate
@@ -7,8 +6,6 @@ from helpers.helper import extract_wav_from_video
 import os
 from malaya_speech import Pipeline
 import malaya_speech
-import numpy as np
-import matplotlib.pyplot as plt
 from malaya_speech.model.frame import Frame
 
 
@@ -20,11 +17,15 @@ class SpeakerDiarisation:
 
     @staticmethod
     def speaker_change_detection(video_path):
+        return SpeakerDiarisation.malaya_speaker_change_detection(video_path)
+
+    @staticmethod
+    def malaya_speaker_change_detection(video_path):
+        wav_file = extract_wav_from_video(video_path)
+        y, sr = malaya_speech.load(str(wav_file.absolute().resolve()))
+
         model_speakernet = malaya_speech.speaker_vector.deep_model(
             'speakernet', validate=False)
-
-        y, sr = malaya_speech.load(
-            '../../audio/conversations/2_speakers.en.wav')
         vad = malaya_speech.vad.deep_model(model='vggvox-v2', validate=False)
         frames = list(malaya_speech.utils.generator.frames(y, 30, sr))
         p = Pipeline()

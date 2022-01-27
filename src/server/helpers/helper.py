@@ -1,5 +1,6 @@
 from distutils import command
 from pathlib import Path
+from pydoc import resolve
 import subprocess
 from datetime import datetime
 import uuid
@@ -9,10 +10,10 @@ def is_allowed_file(filename, allowed_extensions):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
 
 
-def extract_wav_from_video(video_path, output_folder_path="./uploads/audios"):
+def extract_wav_from_video(video_path, output_folder_path="./temp/audios"):
     video = Path(video_path)
     output_folder = Path(output_folder_path).joinpath(video.stem)
-    output_folder.mkdir(exist_ok=True)
+    output_folder.mkdir(exist_ok=True, parents=True)
     output_file = Path.joinpath(
         output_folder, video.stem+datetime.now().strftime("_D[%d-%m-%Y]_T[%H-%M-%S]")+".wav")
     paths = {
@@ -20,13 +21,14 @@ def extract_wav_from_video(video_path, output_folder_path="./uploads/audios"):
         "wav_path": str(output_file.absolute().resolve())
     }
     command = 'ffmpeg -i "%(video_path)s" -loglevel quiet -ab 160k -ac 2 -ar 44100 -vn "%(wav_path)s"' % paths
-    subprocess.call(command, shell=True)
+    subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return output_file
 
 
-def cut_video(video_path, start_time, end_time, output_folder_path="./uploads/scenes"):
+def cut_video(video_path, start_time, end_time, output_folder_path="./temp/scenes"):
     video = Path(video_path)
-    output_folder = Path(output_folder_path)
+    output_folder = Path(output_folder_path).joinpath(video.stem)
+    output_folder.mkdir(exist_ok=True, parents=True)
     output_file = Path.joinpath(
         output_folder, video.stem+"["+str(uuid.uuid4())+"].mp4")
     paths = {
@@ -37,7 +39,8 @@ def cut_video(video_path, start_time, end_time, output_folder_path="./uploads/sc
 
     }
     command = 'ffmpeg -i "%(video_path)s" -ss %(start_time)s -loglevel quiet -c copy -to %(end_time)s "%(cuted_video_path)s"' % paths
-    subprocess.call(command, shell=True)
+    subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
     return output_file
 
 
@@ -50,10 +53,11 @@ def get_video_length(video_path):
 
 def get_frame_form_video(video_path, second=1):
     output_folder = Path("./temp/thumbnails")
-    output_folder.mkdir(exist_ok=True)
+    output_folder.mkdir(exist_ok=True, parents=True)
     output_path = str(output_folder.joinpath(
         "tn["+str(uuid.uuid4())+"].jpg").absolute().resolve())
+    video = Path(video_path)
+    video_path = str(video.absolute().resolve())
     command = f"ffmpeg -i \"{video_path}\" -ss {second} -vframes 1 -f image2 -vcodec mjpeg \"{output_path}\" -y"
-    subprocess.run(command, stdout=subprocess.PIPE,
-                   stderr=subprocess.PIPE, shell=False)
+    subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return output_path

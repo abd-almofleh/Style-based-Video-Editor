@@ -178,8 +178,10 @@ namespace Style_based_Video_Editor_GUI.Windows
       
       this.Dispatcher.Invoke(() =>
       {
-
+        if (videos[0].scenes == null) return; 
+        
         ScenesLabels.Children.Clear();
+
         List<Label> toremove = new List<Label>();
         foreach (object elemet in VideoGrid.Children)
         {
@@ -326,6 +328,18 @@ namespace Style_based_Video_Editor_GUI.Windows
       label.SetValue(Grid.ColumnProperty, 1);
       Tags.Children.Add(label);
 
+      label = new Label
+      {
+        Content = "Count",
+        HorizontalAlignment = HorizontalAlignment.Center,
+        VerticalAlignment = VerticalAlignment.Center,
+        FontSize = 14f,
+        FontWeight = FontWeights.Bold
+
+      };
+      label.SetValue(Grid.ColumnProperty, 2);
+      Tags.Children.Add(label);
+
 
       foreach (var tag in tags)
       {
@@ -339,6 +353,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         key.FontSize = 14f;
         key.SetValue(Grid.RowProperty, Tags.RowDefinitions.Count() - 1);
         Tags.Children.Add(key);
+
         Label value = new Label();
         value.Content = tag.score.ToString("0.00");
         value.HorizontalAlignment = HorizontalAlignment.Center;
@@ -348,6 +363,14 @@ namespace Style_based_Video_Editor_GUI.Windows
         value.SetValue(Grid.ColumnProperty, 1);
         Tags.Children.Add(value);
 
+        Label count = new Label();
+        count.Content = tag.ExtraValues["count"].ToString("0.00");
+        count.HorizontalAlignment = HorizontalAlignment.Center;
+        count.VerticalAlignment = VerticalAlignment.Center;
+        count.FontSize = 14f;
+        count.SetValue(Grid.RowProperty, Tags.RowDefinitions.Count() - 1);
+        count.SetValue(Grid.ColumnProperty, 2);
+        Tags.Children.Add(count);
 
       }
     }

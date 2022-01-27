@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Style_based_Video_Editor_GUI.Classes
@@ -16,6 +12,7 @@ namespace Style_based_Video_Editor_GUI.Classes
     public FileInfo image;
     public Duration length;
     public Video(string path, FileInfo thumbnail, Duration length) : this(new FileInfo(path), thumbnail, length) { }
+    public Video(FileInfo video, FileInfo thumbnail,double length):this(video,thumbnail, GetVideoLength(length)) { }
     public Video(FileInfo video, FileInfo thumbnail, Duration length)
     {
       this.video = video;
@@ -24,28 +21,10 @@ namespace Style_based_Video_Editor_GUI.Classes
       string ext = video.Extension.Substring(1).ToLower();
       int IsSupported = Array.FindIndex(Constants.SUPPORTED_VIDEO_TYPES, item => item == ext);
       if (IsSupported < 0) throw new Exceptions.VideoFileNotSupported(ext, Constants.SUPPORTED_VIDEO_TYPES);
+      this.VideoNumber = ID++;
+
       this.image = thumbnail;
       this.length = length;
-      this.VideoNumber = Video.ID++;
-    }
-    public Video(FileInfo video)
-    {
-      this.video = video;
-      if (!video.Exists) throw new FileNotFoundException();
-
-      string ext = video.Extension.Substring(1).ToLower();
-      int IsSupported = Array.FindIndex(Constants.SUPPORTED_VIDEO_TYPES, item => item == ext);
-      if (IsSupported < 0) throw new Exceptions.VideoFileNotSupported(ext, Constants.SUPPORTED_VIDEO_TYPES);
-      string command = $"ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{video.FullName}\"";
-
-      CMDResult result = Helper.RunCMDCommand(command);
-      double d = Convert.ToDouble(result.OutputMessage);
-      int second = (int)d;
-      int milisecond =  (int) ((d - second)*1000);
-      TimeSpan t = new TimeSpan(0, 0, 0, second, milisecond);
-      length = new Duration(t);
-      this.image = GenrateImage(video, (length.TimeSpan.TotalMilliseconds / 2000));
-      this.VideoNumber = Video.ID++;
     }
     public static FileInfo GenrateImage(string VideoPath,double second = 1)
     {
@@ -67,6 +46,26 @@ namespace Style_based_Video_Editor_GUI.Classes
       return file;
       
     }
+    public static Duration GetVideoLength(FileInfo video)
+    {
+      string command = $"ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{video.FullName}\"";
 
+      CMDResult result = Helper.RunCMDCommand(command);
+      double d = Convert.ToDouble(result.OutputMessage);
+      int second = (int)d;
+      int milisecond = (int)((d - second) * 1000);
+      TimeSpan t = new TimeSpan(0, 0, 0, second, milisecond);
+      return new Duration(t);
+
+    }
+    public static Duration GetVideoLength(double length)
+    {
+      double d = Convert.ToDouble(length);
+      int second = (int)d;
+      int milisecond = (int)((d - second) * 1000);
+      TimeSpan t = new TimeSpan(0, 0, 0, second, milisecond);
+      return new Duration(t);
+
+    }
   }
 }
