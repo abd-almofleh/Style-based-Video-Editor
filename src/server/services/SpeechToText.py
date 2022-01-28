@@ -88,8 +88,6 @@ class SpeechToText:
 
                     scripts[i]["arabic_text"] += " " + \
                         text_data[word_num]["text"]
-                    print(word_num, i, scripts[i]["arabic_text"])
-
                     scripts[i]["confidence"] += text_data[word_num]["confidence"]
                     scripts[i]["count"] += 1
                 word_num += 1
