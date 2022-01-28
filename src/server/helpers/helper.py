@@ -10,9 +10,10 @@ def is_allowed_file(filename, allowed_extensions):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
 
 
-def extract_wav_from_video(video_path, output_folder_path="./temp/audios"):
+def extract_wav_from_video(video_path, output_folder_name=""):
     video = Path(video_path)
-    output_folder = Path(output_folder_path).joinpath(video.stem)
+    output_folder_path = "./temp/audios"
+    output_folder = Path(output_folder_path).joinpath(output_folder_name)
     output_folder.mkdir(exist_ok=True, parents=True)
     output_file = Path.joinpath(
         output_folder, video.stem+datetime.now().strftime("_D[%d-%m-%Y]_T[%H-%M-%S]")+".wav")
@@ -25,9 +26,10 @@ def extract_wav_from_video(video_path, output_folder_path="./temp/audios"):
     return output_file
 
 
-def cut_video(video_path, start_time, end_time, output_folder_path="./temp/scenes"):
+def cut_video(video_path, start_time, end_time, output_folder_name=""):
     video = Path(video_path)
-    output_folder = Path(output_folder_path).joinpath(video.stem)
+    output_folder_path = "./temp/scenes"
+    output_folder = Path(output_folder_path).joinpath(output_folder_name)
     output_folder.mkdir(exist_ok=True, parents=True)
     output_file = Path.joinpath(
         output_folder, video.stem+"["+str(uuid.uuid4())+"].mp4")
@@ -51,8 +53,9 @@ def get_video_length(video_path):
     return round(float(length), 2)
 
 
-def get_frame_form_video(video_path, second=1):
-    output_folder = Path("./temp/thumbnails")
+def get_frame_form_video(video_path, second=1, output_folder_name=""):
+    output_folder_path = "./temp/thumbnails"
+    output_folder = Path(output_folder_path).joinpath(output_folder_name)
     output_folder.mkdir(exist_ok=True, parents=True)
     output_path = str(output_folder.joinpath(
         "tn["+str(uuid.uuid4())+"].jpg").absolute().resolve())
