@@ -75,21 +75,28 @@ class SpeechToText:
 
         return text_string
 
+    @staticmethod
+    def extract_scenes_text(text_data, scenes):
+        word_num = 0
+        scripts = []
+        for i in enumerate(scenes):
+            scripts.append(
+                {"arabic_text": "", "confidence": float(0), "count": 0})
+        for i, scene in enumerate(scenes):
+            while word_num < len(text_data) and text_data[word_num]["start"] >= scene["start_time"] and text_data[word_num]["start"] <= scene["end_time"]:
+                if text_data[word_num]["text"] != "<SILENCE>":
 
-        result = {
-            "arabic_text": "",
-            "confidence": 0,
-        }
-        print(text_string)
-        if isinstance(text_string, str):
-            return{
-                "arabic_text": "",
-                "confidence": float(1)
-            }
+                    scripts[i]["arabic_text"] += " " + \
+                        text_data[word_num]["text"]
+                    print(word_num, i, scripts[i]["arabic_text"])
 
-        for word in text_string:
-            result["arabic_text"] += " " + word["text"]
-            result["confidence"] += word["confidence"]
-        result["confidence"] = round(result["confidence"]/2, 2)
+                    scripts[i]["confidence"] += text_data[word_num]["confidence"]
+                    scripts[i]["count"] += 1
+                word_num += 1
 
-        return result
+        for i, script in enumerate(scripts):
+            scripts[i]["arabic_text"] = scripts[i]["arabic_text"].strip()
+            scripts[i]["confidence"] = ((
+                script["confidence"] / script["count"]) if script["count"] != 0 else 0) if scenes[i]["speaker"] != -1 else 1
+            del scripts[i]["count"]
+        return scripts

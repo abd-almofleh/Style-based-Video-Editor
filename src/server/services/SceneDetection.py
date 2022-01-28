@@ -27,6 +27,11 @@ class SceneDetection:
                            args=(i, scenes, time, video_name, video_path), daemon=True)
                 threads.append(x)
                 x.start()
+        recognizer = SpeechToText()
+
+        result = recognizer.arabic_speech_recognition(videos_paths[0])
+        result = SpeechToText.extract_scenes_text(result, scenes_times)
+        scenes["scripts"] = result
         for thread in threads:
             thread.join()
         return scenes
