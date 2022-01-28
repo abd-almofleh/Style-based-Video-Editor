@@ -1,6 +1,4 @@
-from distutils import command
 from pathlib import Path
-from pydoc import resolve
 import subprocess
 from datetime import datetime
 import uuid
@@ -12,7 +10,7 @@ def is_allowed_file(filename, allowed_extensions):
 
 def extract_wav_from_video(video_path, output_folder_name=""):
     video = Path(video_path)
-    output_folder_path = "./temp/audios"
+    output_folder_path = "./temp/audios/wav"
     output_folder = Path(output_folder_path).joinpath(output_folder_name)
     output_folder.mkdir(exist_ok=True, parents=True)
     output_file = Path.joinpath(
@@ -64,3 +62,19 @@ def get_frame_form_video(video_path, second=1, output_folder_name=""):
     command = f"ffmpeg -i \"{video_path}\" -ss {second} -vframes 1 -f image2 -vcodec mjpeg \"{output_path}\" -y"
     subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return output_path
+
+
+def extract_mp3_from_video(video_path, output_folder_name=""):
+    video = Path(video_path)
+    output_folder_path = "./temp/audios/mp3"
+    output_folder = Path(output_folder_path).joinpath(output_folder_name)
+    output_folder.mkdir(exist_ok=True, parents=True)
+    output_file = Path.joinpath(
+        output_folder, video.stem+datetime.now().strftime("_D[%d-%m-%Y]_T[%H-%M-%S]")+".mp3")
+    paths = {
+        "video_path": str(video.absolute().resolve()),
+        "wav_path": str(output_file.absolute().resolve())
+    }
+    command = 'ffmpeg -i "%(video_path)s" -q:a 0 -map a "%(wav_path)s"' % paths
+    subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    return output_file
