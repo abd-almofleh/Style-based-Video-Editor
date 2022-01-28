@@ -2,7 +2,7 @@ import requests
 import json
 import mimetypes
 import os
-from helpers.helper import extract_wav_from_video
+from helpers.helper import extract_mp3_from_video
 
 
 class SpeechToText:
@@ -48,8 +48,8 @@ class SpeechToText:
 
     def arabic_speech_recognition(self, file_path, language="arabic_egyptian_dialect"):
         filename, file_extension = os.path.splitext(file_path)
-        if file_extension != ".wav":
-            file_path = str(extract_wav_from_video(
+        if file_extension != ".mp3":
+            file_path = str(extract_mp3_from_video(
                 file_path).absolute().resolve())
 
         headers = {
@@ -57,20 +57,24 @@ class SpeechToText:
         }
         tempFile = open(file_path, 'rb')
         files = {
-            'File': ('1_speaker.mp3', tempFile, mimetypes.guess_type(file_path)[0]),
+            'File': ('file.mp3', tempFile, mimetypes.guess_type(file_path)[0]),
             'LanguageCode': (None, SpeechToText.KATEB["languages_codes"][language]),
         }
         recognize_url = SpeechToText.KATEB["base_url"] + \
             "/"+SpeechToText.KATEB["sub_urls"]["recognize_file"]
-
-        response = requests.post(recognize_url, headers=headers, files=files)
-        prediction = json.loads(response.text)
-        while "status" in prediction:
-            response = requests.post(
-                recognize_url, headers=headers, files=files)
+        response = None
+        while response == None:
+            try:
+                response = requests.post(
+                    recognize_url, headers=headers, files=files)
+            except Exception as e:
+                print("Filed to get recognition from kateb.ai, retrying...")
+                response = None
             prediction = json.loads(response.text)
+            text_string = prediction["Text_String"]
 
-        text_string = prediction["Text_String"]
+        return text_string
+
 
         result = {
             "arabic_text": "",
