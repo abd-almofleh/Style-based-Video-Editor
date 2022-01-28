@@ -1,6 +1,8 @@
 import requests
 import json
 import mimetypes
+import os
+from helpers.helper import extract_wav_from_video
 
 
 class SpeechToText:
@@ -33,15 +35,23 @@ class SpeechToText:
     def kateb_login(self) -> bool:
         login_url = SpeechToText.KATEB["base_url"] + \
             "/"+SpeechToText.KATEB["sub_urls"]["login"]
-        response = requests.request(
-            "POST", login_url, params=SpeechToText.KATEB["login_information"])
-        result = json.loads(response.text)
-        if result["status"] != "OK":
+        try:
+            response = requests.request(
+                "POST", login_url, params=SpeechToText.KATEB["login_information"])
+            result = json.loads(response.text)
+            if result["status"] != "OK":
+                return False
+            self.token = result["message"]
+            return True
+        except BaseException as err:
             return False
-        self.token = result["message"]
-        return True
 
     def arabic_speech_recognition(self, file_path, language="arabic_egyptian_dialect"):
+        filename, file_extension = os.path.splitext(file_path)
+        if file_extension != ".wav":
+            file_path = str(extract_wav_from_video(
+                file_path).absolute().resolve())
+
         headers = {
             'authorization': f'Bearer {self.token}'
         }
@@ -54,13 +64,25 @@ class SpeechToText:
             "/"+SpeechToText.KATEB["sub_urls"]["recognize_file"]
 
         response = requests.post(recognize_url, headers=headers, files=files)
-        prediction = json.loads(response.text,)
+        prediction = json.loads(response.text)
+        while "status" in prediction:
+            response = requests.post(
+                recognize_url, headers=headers, files=files)
+            prediction = json.loads(response.text)
+
         text_string = prediction["Text_String"]
 
         result = {
             "arabic_text": "",
             "confidence": 0,
         }
+        print(text_string)
+        if isinstance(text_string, str):
+            return{
+                "arabic_text": "",
+                "confidence": float(1)
+            }
+
         for word in text_string:
             result["arabic_text"] += " " + word["text"]
             result["confidence"] += word["confidence"]
