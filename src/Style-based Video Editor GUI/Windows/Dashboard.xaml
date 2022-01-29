@@ -158,7 +158,7 @@
                                         </ScrollViewer>
 
                                     </TabItem>
-                                    <TabItem x:Name="ScriptTab" Header="Script" Visibility="Visible">
+                                    
 
                                 </TabControl>
                                 <Label x:Name="VideoInfoMessage" Visibility="Visible" Content="Select Video to preview..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>

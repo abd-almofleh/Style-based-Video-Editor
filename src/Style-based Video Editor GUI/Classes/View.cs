@@ -19,7 +19,6 @@ namespace Style_based_Video_Editor_GUI.Classes
       SceneInfo sceneInfo = Web.GenerateScenes(views);
       if (sceneInfo == null) return null;
       List<Scene>[] scenes = sceneInfo.scenes;
-      if (scenes == null) return null;
       for (int i = 0; i < scenes.Length; i++)
       {
         views[i].scenes = scenes[i].ToArray();
