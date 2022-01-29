@@ -124,7 +124,7 @@ namespace Style_based_Video_Editor_GUI.Windows
       {
         Shots.ColumnDefinitions.Add( new ColumnDefinition());
         FileInfo Thumbnail = Classes.Video.GenrateImage(VideoPath.Text);
-        Contorles.Shot shot = new Contorles.Shot( Thumbnail, VideoPlayer.NaturalDuration.TimeSpan.ToString(), videos.Count);
+        Controls.Shot shot = new Controls.Shot( Thumbnail, VideoPlayer.NaturalDuration.TimeSpan.ToString(), videos.Count);
         shot.SetValue(Grid.ColumnProperty, videos.Count);
         Shots.Children.Add(shot);
         videos.Add(new Classes.View(VideoPath.Text, Thumbnail, VideoPlayer.NaturalDuration));
@@ -154,8 +154,8 @@ namespace Style_based_Video_Editor_GUI.Windows
       videos.RemoveAt(index);
       for (int i = index; i < Shots.Children.Count; i++)
       {
-        ((Contorles.Shot)Shots.Children[i]).UpdateIndex(i);
-        ((Contorles.Shot)Shots.Children[i]).SetValue(Grid.ColumnProperty, i);
+        ((Controls.Shot)Shots.Children[i]).UpdateIndex(i);
+        ((Controls.Shot)Shots.Children[i]).SetValue(Grid.ColumnProperty, i);
 
       }
       Finish.IsEnabled = videos.Count > 0;
