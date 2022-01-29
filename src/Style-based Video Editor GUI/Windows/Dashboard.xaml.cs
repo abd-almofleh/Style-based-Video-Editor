@@ -694,15 +694,32 @@ namespace Style_based_Video_Editor_GUI.Windows
 
     private void SaveScriptEdit_Click(object sender, RoutedEventArgs e)
     {
+      Scene video = (Scene)SelectedVideo;
+      video.script.Update(ScriptEdit.Text);
+      int index = SelectedVideoPreview.j;
+      TextBox t = scriptsPreviews[index];
+      t.Text = video.script.arabic;
+      Color c;
+      if (video.script.OriginalArabic == null)
+        t.Background = new SolidColorBrush(Helper.GetColorByPercentige(video.script.score));
+      else
+        t.Background = new SolidColorBrush(Colors.LightGray);
 
     }
 
     private void ResetScript_Click(object sender, RoutedEventArgs e)
     {
+      Scene video = (Scene)SelectedVideo;
+      string text = video.script.arabic;
+      if (video.script.OriginalArabic != null)
+        text = video.script.OriginalArabic;
+      ScriptEdit.Text = text;
     }
 
     private void CancelScriptEdit_Click(object sender, RoutedEventArgs e)
     {
+      Scene video = (Scene)SelectedVideo;
+      ScriptEdit.Text = video.script.arabic;
     }
   }
 
