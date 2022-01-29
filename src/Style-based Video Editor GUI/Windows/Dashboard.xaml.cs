@@ -31,6 +31,8 @@ namespace Style_based_Video_Editor_GUI.Windows
     private View [] videos;
     private Script[] scripts;
     private Video SelectedVideo;
+    private Controls.VideoPreview SelectedVideoPreview;
+    private Controls.VideoPreview[][] scenesPreview;
 
     public bool IsPlaying
     {
@@ -289,15 +291,19 @@ namespace Style_based_Video_Editor_GUI.Windows
 
       });
     }
-    internal void LoadVideo(Video video)
+
+    internal void LoadVideo(Controls.VideoPreview videoPreview)
     {
+      Video video = videoPreview.video;
       if (video == SelectedVideo) return;
       VideoInfoMessage.Visibility = Visibility.Collapsed;
       Info.Visibility = Visibility.Visible;
+      if(SelectedVideoPreview!= null)
+        SelectedVideoPreview.ResetBacgroundColor();
       SelectedVideo = video;
-      if (video is Classes.View)
+      SelectedVideoPreview = videoPreview;
+      if (video is View)
       {
-
         VideoPlayer.Source = new Uri(video.video.FullName);
         SceneInfo.Visibility = Visibility.Collapsed;
         SceneTag.Visibility = Visibility.Collapsed;
@@ -580,7 +586,6 @@ namespace Style_based_Video_Editor_GUI.Windows
 
       }
     }
-
 
     #region Player Controls
     private void Timer_Tick(object sender, EventArgs e)

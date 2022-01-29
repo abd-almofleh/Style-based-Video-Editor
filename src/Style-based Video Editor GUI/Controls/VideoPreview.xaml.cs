@@ -36,14 +36,20 @@ namespace Style_based_Video_Editor_GUI.Controls
         this.Title.Content = title;
       this.video = video;
       this.PreviewImage.Source = new BitmapImage(new Uri(video.image.FullName));
+      this.Cursor = Cursors.Hand;
+      this.Background = Brushes.Transparent;
       
     }
 
     private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
     {
-      ((Windows.Dashboard)Window.GetWindow(this)).LoadVideo(this.video);
+      this.Background = Brushes.LightBlue;
+      ((Windows.Dashboard)Window.GetWindow(this)).LoadVideo(this);
     }
-
+    public void ResetBacgroundColor()
+    {
+      this.Background = Brushes.Transparent;
+        }
 
   }
 }
