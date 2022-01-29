@@ -299,12 +299,38 @@ namespace Style_based_Video_Editor_GUI.Windows
             Tag= scenesPreview[0][j]
           };
           scriptsPreviews[j] = ScriptText;
+          ScriptText.GotFocus += ScriptText_GotFocus; ;
           ScriptText.SetValue(Grid.ColumnProperty, j);
           ScriptsGrid.Children.Add(ScriptText);
         }
 
       });
     }
+
+    private void ScriptText_GotFocus(object sender, RoutedEventArgs e)
+    {
+      TextBox ScriptText = (TextBox)sender;
+      Controls.VideoPreview tt = (Controls.VideoPreview)ScriptText.Tag;
+      MouseButtonEventArgs arg = new MouseButtonEventArgs(Mouse.PrimaryDevice, 0, MouseButton.Left);
+      arg.RoutedEvent = UserControl.MouseDownEvent;
+      tt.RaiseEvent(arg);
+      ScriptTab.IsSelected = true;
+
+    }
+
+
+    private void LoadScript(Script script)
+    {
+      if (script == null)
+      {
+        ScriptTab.Visibility = Visibility.Collapsed;
+        return;
+      }
+
+      ScriptEdit.Text = script.arabic;
+      ScriptTab.Visibility = Visibility.Visible;
+    }
+
 
     internal void LoadVideo(Controls.VideoPreview videoPreview)
     {
@@ -322,6 +348,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         SceneInfoTab.Visibility = Visibility.Collapsed;
         SceneTagsTab.Visibility = Visibility.Collapsed;
         PersonsImagesTab.Visibility = Visibility.Collapsed;
+        ScriptTab.Visibility = Visibility.Collapsed;
         VideoInfoTab.IsSelected = true;
         VideoNumber.Content = video.VideoNumber;
 
@@ -329,6 +356,7 @@ namespace Style_based_Video_Editor_GUI.Windows
       else
       {
         Scene scene = (Scene)video;
+        LoadScript(scene.script);
 
         VideoNumber.Content = scene.OriginalVideo.VideoNumber;
 
@@ -662,6 +690,19 @@ namespace Style_based_Video_Editor_GUI.Windows
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
       OpenExamples_Click(null, null);
+    }
+
+    private void SaveScriptEdit_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void ResetScript_Click(object sender, RoutedEventArgs e)
+    {
+    }
+
+    private void CancelScriptEdit_Click(object sender, RoutedEventArgs e)
+    {
     }
   }
 

@@ -159,6 +159,26 @@
 
                                     </TabItem>
                                     
+                                    <TabItem x:Name="ScriptTab" Header="Script" Visibility="Visible">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
+                                            <Grid x:Name="Script"  >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50"/>
+                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBox x:Name="ScriptEdit" TextWrapping="Wrap" Text="lksadjf ljsa dlkfjsalkd fjlsk dajfjsaldkj flsakd jfjsalkd fjlaskjd fjaslk fdjljksa dlfj" Background="#FFE3E7FF" Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FlowDirection="RightToLeft"  AllowDrop="False"  IsTabStop="False" Width="Auto"/>
+                                                <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <Button Margin="5,0" x:Name="SaveScriptEdit" Width="75" Content="Save" Background="#FFC5FFC8" Click="SaveScriptEdit_Click"/>
+                                                    <Button Margin="5,0" x:Name="ResetScript" Width="100" Content="Reset to Original" Background="#FFFFB3B3" Click="ResetScript_Click"/>
+                                                    <Button Margin="5,0" x:Name="CancelScriptEdit" Width="75" Content="Cancel" Click="CancelScriptEdit_Click"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </ScrollViewer>
+                                    </TabItem>
 
                                 </TabControl>
                                 <Label x:Name="VideoInfoMessage" Visibility="Visible" Content="Select Video to preview..." HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
@@ -168,6 +188,26 @@
 
                         </Border>
                     </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tests" FontFamily="Times New Roman">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="1" BorderBrush="#FF666666" Padding="5" Margin="5,0" >
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="11*"/>
+                                    <ColumnDefinition Width="471*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="199,81,583,0" Height="52" Grid.Column="1"/>
+                                <TextBox Background="Coral" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="51"  TextWrapping="Wrap" Text="Texdsa fds fa dsaf sdaf sdf dsaf sda fds fsad fdSKLDJFKLSAJD FKJ SADLKFJSLDKAFJLAK SJDF JSDALKF KLSAD JFLKSA DJJKSDFASD FAS DFs fsdsdf dsf sd fsdf  sd fds fsdf sdf dafdsf sdaf dsaf dsaf asdf sadf asdf tBox" VerticalAlignment="Top" AcceptsReturn="True" IsReadOnly="True" IsUndoEnabled="False" Focusable="False" IsTabStop="False" Opacity="0.99" SelectionOpacity="0" Cursor="Hand" AllowDrop="False" Grid.Column="1"/>
+
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
                 </Grid>
             </TabItem>
 
