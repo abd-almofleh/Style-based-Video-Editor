@@ -84,9 +84,10 @@ namespace Style_based_Video_Editor_GUI.Classes
       return personImages;
     }
 
-    public static List<Scene>[] GenerateScenes(View [] views)
+    public static Classes.SceneInfo GenerateScenes(View [] views)
     {
       RestRequest request = new RestRequest(GenerateScenesRoute, DataFormat.Json);
+      request.Timeout = 10 * 60 * 1000;
       foreach(View v in views)
         request.AddParameter("paths", v.video.FullName);
 
@@ -124,8 +125,18 @@ namespace Style_based_Video_Editor_GUI.Classes
           all[i].Add(s);
         }
       }
+      dynamic scriptsObjects = scenesData.scripts;
+      Script[] scripts = new Script[scriptsObjects.Count]; 
+      for (int i = 0; i < scriptsObjects.Count; i++)
+      {
+        string ArabicText = (string)scriptsObjects[i].arabic_text;
+        double score = (double)scriptsObjects[i].confidence;
+        scripts[i] = new Script(ArabicText, score);
+      }
 
-      return all;
+
+
+      return new Classes.SceneInfo(all,scripts);
     }
   }
 }

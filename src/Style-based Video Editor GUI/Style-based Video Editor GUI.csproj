@@ -88,6 +88,8 @@
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\PersonImage.cs" />
     <Compile Include="Classes\Scene.cs" />
+    <Compile Include="Classes\SceneInfo.cs" />
+    <Compile Include="Classes\Script.cs" />
     <Compile Include="Classes\Video.cs" />
     <Compile Include="Classes\View.cs" />
     <Compile Include="Classes\Web.cs" />

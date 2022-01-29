@@ -14,14 +14,16 @@ namespace Style_based_Video_Editor_GUI.Classes
     public View(string path, FileInfo thumbnail, Duration length) : base(new FileInfo(path), thumbnail, length) { }
     public View(FileInfo video, FileInfo thumbnail, Duration length) : base(video, thumbnail, length) { }
 
-    public static void DetectScenesOnSpeakerChange(View[] views)
+    public static Script[] DetectScenesOnSpeakerChange(View[] views)
     {
-      List<Scene>[] scenes = Web.GenerateScenes(views);
-      if (scenes == null) return;
+      Classes.SceneInfo sceneInfo = Web.GenerateScenes(views);
+      List<Scene>[] scenes = sceneInfo.scenes;
+      if (scenes == null) return null;
       for (int i = 0; i < scenes.Length; i++)
       {
         views[i].scenes = scenes[i].ToArray();
       }
+      return sceneInfo.scripts;
     }
 
     public void DetectScenesOnVisualChange()

@@ -29,7 +29,7 @@ namespace Style_based_Video_Editor_GUI.Windows
     bool isDragging = false;
     DispatcherTimer timer;
     private View [] videos;
-
+    private Script[] scripts;
     private Video SelectedVideo;
 
     public bool IsPlaying
@@ -66,7 +66,6 @@ namespace Style_based_Video_Editor_GUI.Windows
       timer.Tick += Timer_Tick;
     }
 
-
     private void Open_Click(object sender, RoutedEventArgs e)
     {
       OpenVideos openWindow = new OpenVideos();
@@ -76,6 +75,7 @@ namespace Style_based_Video_Editor_GUI.Windows
       videos = openWindow.Videos.ToArray();
       PreviewVideos();
     }
+
     void PreviewVideos()
     {
       for (int i = 0; i < videos.Length; i++)
@@ -103,6 +103,38 @@ namespace Style_based_Video_Editor_GUI.Windows
 
 
       }
+      RowDefinition row = new RowDefinition();
+      row.Height = new GridLength(50, GridUnitType.Pixel); ;
+      VideoGrid.RowDefinitions.Add(row);
+      Label d = new Label
+      {
+        FontFamily = new FontFamily("Times New Roman"),
+        FontSize = 24,
+        FontWeight = FontWeights.Bold,
+        Content = "Detecting...",
+        HorizontalAlignment = HorizontalAlignment.Stretch,
+        VerticalAlignment = VerticalAlignment.Stretch,
+        HorizontalContentAlignment = HorizontalAlignment.Center,
+        VerticalContentAlignment = VerticalAlignment.Center
+      };
+      d.SetValue(Grid.RowProperty, videos.Length + 1);
+      d.SetValue(Grid.ColumnProperty, 1);
+      VideoGrid.Children.Add(d);
+      d = new Label
+      {
+        FontFamily = new FontFamily("Times New Roman"),
+        FontSize = 24,
+        FontWeight = FontWeights.Bold,
+        Content = "Script",
+        HorizontalAlignment = HorizontalAlignment.Stretch,
+        VerticalAlignment = VerticalAlignment.Stretch,
+        HorizontalContentAlignment = HorizontalAlignment.Center,
+        VerticalContentAlignment = VerticalAlignment.Center
+      };
+      d.SetValue(Grid.RowProperty, videos.Length + 1);
+      VideoGrid.Children.Add(d);
+
+
       Thread t = new Thread(detectOnSpeakerChange);
       t.IsBackground = true;
       t.Start();
@@ -174,7 +206,7 @@ namespace Style_based_Video_Editor_GUI.Windows
 
     void detectOnSpeakerChange()
     {
-      View.DetectScenesOnSpeakerChange(videos);
+      this.scripts = View.DetectScenesOnSpeakerChange(videos);
       
       this.Dispatcher.Invoke(() =>
       {
@@ -231,6 +263,30 @@ namespace Style_based_Video_Editor_GUI.Windows
             g.Children.Add(videoPreview);
           }
         }
+
+        Grid ScriptsGrid = new Grid();
+        ScriptsGrid.ShowGridLines = true;
+        VideoGrid.Children.Add(ScriptsGrid);
+        ScriptsGrid.SetValue(Grid.ColumnProperty, 1);
+        ScriptsGrid.SetValue(Grid.RowProperty, videos.Length + 1);
+        
+        for (int j = 0; j < scripts.Length; j++)
+        {
+          ColumnDefinition c = new ColumnDefinition();
+          c.Width = new GridLength(100, GridUnitType.Pixel); ;
+          ScriptsGrid.ColumnDefinitions.Add(c);
+          Label ScriptText = new Label
+          {
+            Content = scripts[j].arabic,
+            VerticalContentAlignment = VerticalAlignment.Center,
+            HorizontalContentAlignment = HorizontalAlignment.Center,
+            FontSize = 14,
+          };
+
+          ScriptText.SetValue(Grid.ColumnProperty, j);
+          ScriptsGrid.Children.Add(ScriptText);
+        }
+
       });
     }
     internal void LoadVideo(Video video)
