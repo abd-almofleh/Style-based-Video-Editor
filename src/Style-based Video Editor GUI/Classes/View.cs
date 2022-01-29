@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +16,8 @@ namespace Style_based_Video_Editor_GUI.Classes
 
     public static Script[] DetectScenesOnSpeakerChange(View[] views)
     {
-      Classes.SceneInfo sceneInfo = Web.GenerateScenes(views);
+      SceneInfo sceneInfo = Web.GenerateScenes(views);
+      if (sceneInfo == null) return null;
       List<Scene>[] scenes = sceneInfo.scenes;
       if (scenes == null) return null;
       for (int i = 0; i < scenes.Length; i++)

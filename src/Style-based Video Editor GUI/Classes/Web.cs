@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -103,6 +103,18 @@ namespace Style_based_Video_Editor_GUI.Classes
       dynamic scenesData = JObject.Parse(response.Content);
       if (scenesData == null) return null;
       scenesData = scenesData.result;
+
+      dynamic scriptsObjects = scenesData.scripts;
+      Script[] scripts = new Script[scriptsObjects.Count];
+      for (int i = 0; i < scriptsObjects.Count; i++)
+      {
+        string ArabicText = (string)scriptsObjects[i].arabic_text;
+        double score = (double)scriptsObjects[i]
+          .confidence;
+        scripts[i] = new Script(ArabicText, score);
+      }
+
+
       for (int i = 0; i < views.Length; i++)
       {
         View view = views[i];
@@ -121,18 +133,11 @@ namespace Style_based_Video_Editor_GUI.Classes
           string image = (string)viewInfo.image;
           TimeSpan timeOfStart = new TimeSpan(0, 0, 0, (int)startTime, (int)(startTime % (int)startTime) * 1000);
           TimeSpan timeOfEnd = new TimeSpan(0, 0, 0, (int)endTime, (int)(endTime % (int)endTime) * 1000);
-          Scene s = new Scene(view, path, image, startTime, endTime);
+          Scene s = new Scene(view, path, image, startTime, endTime,scripts[j]);
           all[i].Add(s);
         }
       }
-      dynamic scriptsObjects = scenesData.scripts;
-      Script[] scripts = new Script[scriptsObjects.Count]; 
-      for (int i = 0; i < scriptsObjects.Count; i++)
-      {
-        string ArabicText = (string)scriptsObjects[i].arabic_text;
-        double score = (double)scriptsObjects[i].confidence;
-        scripts[i] = new Script(ArabicText, score);
-      }
+
 
 
 

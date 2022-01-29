@@ -18,6 +18,7 @@ namespace Style_based_Video_Editor_GUI.Classes
     TimeSpan startTime;
     TimeSpan endTime;
     View originalVideo;
+    public Script script;
 
     public uint SceneNumber { get => VideoNumber; }
 
@@ -51,7 +52,7 @@ namespace Style_based_Video_Editor_GUI.Classes
       this.originalVideo = OriginalVideo;
     }
 
-    public Scene(View OriginalVideo, string path,string thumbnail, double startTime, double endTime)
+    public Scene(View OriginalVideo, string path,string thumbnail, double startTime, double endTime,Script script = null)
   : base(new FileInfo(path), new FileInfo(thumbnail), endTime - startTime)
     {
       this.VideoNumber = ID_counter++;
@@ -59,6 +60,7 @@ namespace Style_based_Video_Editor_GUI.Classes
       this.startFrame = this.endFrame = 0;
       this.startTime = GetVideoLength(startTime).TimeSpan;
       this.endTime = GetVideoLength(endTime).TimeSpan;
+      this.script = script;
     }
 
     public void DetectObjects(Windows.Dashboard window)
