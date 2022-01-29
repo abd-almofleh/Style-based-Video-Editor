@@ -14,14 +14,14 @@ class SpeechToText:
             "get_minutes": "getMinutes",
         },
         "login_information": {
-            "email": "9ff80e84ee@emailnax.com",
-            "apiKey": "94275ec3a9e74e66b32d6a4d5bf7245e",
+            "email": "ee95f99263@emailnax.com",
+            "apiKey": "86978a556ab5406299afd460b7c6395a",
 
         },
         "languages_codes": {
             "arabic_egyptian_dialect": "EG",
             "english": "EN",
-            "arabic_saudi_dialect": "EN"
+            "arabic_saudi_dialect": "SA"
         }
     }
 
@@ -71,8 +71,11 @@ class SpeechToText:
                 print("Filed to get recognition from kateb.ai, retrying...")
                 response = None
             prediction = json.loads(response.text)
-            text_string = prediction["Text_String"]
+            if "Text_String" not in prediction:
+                print(prediction)
+                response = None
 
+        text_string = prediction["Text_String"]
         return text_string
 
     @staticmethod
