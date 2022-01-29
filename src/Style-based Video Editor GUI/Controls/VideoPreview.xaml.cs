@@ -22,8 +22,10 @@ namespace Style_based_Video_Editor_GUI.Controls
   {
 
     internal Classes.Video video;
+    internal int i;
+    internal int j;
     
-    internal VideoPreview(string title, Classes.Video video)
+    internal VideoPreview(string title, Classes.Video video,int i = -1,int j = -1)
     {
       InitializeComponent();
       if (title == "")
@@ -38,7 +40,9 @@ namespace Style_based_Video_Editor_GUI.Controls
       this.PreviewImage.Source = new BitmapImage(new Uri(video.image.FullName));
       this.Cursor = Cursors.Hand;
       this.Background = Brushes.Transparent;
-      
+      this.i = i;
+      this.j = j;
+
     }
 
     private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)

@@ -246,6 +246,7 @@ namespace Style_based_Video_Editor_GUI.Windows
           ll.SetValue(Grid.ColumnProperty, i);
           ScenesLabels.Children.Add(ll);
         }
+        scenesPreview = new Controls.VideoPreview[videos.Length][];
 
         for (int i = 0; i < videos.Length; i++)
         {
@@ -255,15 +256,16 @@ namespace Style_based_Video_Editor_GUI.Windows
           g.SetValue(Grid.ColumnProperty, 1);
           g.SetValue(Grid.RowProperty, i + 1);
           Scene[] Scenes = videos[i].scenes;
+          scenesPreview[i] = new Controls.VideoPreview[Scenes.Length];
           for (int j = 0; j < Scenes.Length; j++)
           {
             ColumnDefinition c = new ColumnDefinition();
             c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel);
             g.ColumnDefinitions.Add(c);
-          Controls.VideoPreview videoPreview = new Controls.VideoPreview("", Scenes[j]);
+            scenesPreview[i][j] = new Controls.VideoPreview("", Scenes[j],i,j);
 
-            videoPreview.SetValue(Grid.ColumnProperty, j);
-            g.Children.Add(videoPreview);
+            scenesPreview[i][j].SetValue(Grid.ColumnProperty, j);
+            g.Children.Add(scenesPreview[i][j]);
           }
         }
 
