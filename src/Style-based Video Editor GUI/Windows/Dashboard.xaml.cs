@@ -1,4 +1,4 @@
-﻿using LibVLCSharp.Shared;
+using LibVLCSharp.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +81,7 @@ namespace Style_based_Video_Editor_GUI.Windows
       for (int i = 0; i < videos.Length; i++)
       {
         VideoGrid.RowDefinitions.Add(new RowDefinition());
-        Contorles.VideoPreview videoPreview = new Contorles.VideoPreview($"Video {i + 1}", videos[i]);
+        Controls.VideoPreview videoPreview = new Controls.VideoPreview($"", videos[i]);
         videoPreview.SetValue(Grid.RowProperty, i+1);
         Label detecting = new Label
         {
@@ -171,7 +171,7 @@ namespace Style_based_Video_Editor_GUI.Windows
           ColumnDefinition c = new ColumnDefinition();
           c.Width = new GridLength(100, GridUnitType.Pixel); ;
           g.ColumnDefinitions.Add(c);
-          Contorles.VideoPreview videoPreview = new Contorles.VideoPreview("", Scenes[i]);
+          Controls.VideoPreview videoPreview = new Controls.VideoPreview("", Scenes[i]);
           
           videoPreview.SetValue(Grid.ColumnProperty, i);
           g.Children.Add(videoPreview);
@@ -257,7 +257,7 @@ namespace Style_based_Video_Editor_GUI.Windows
             ColumnDefinition c = new ColumnDefinition();
             c.Width = new GridLength(100, GridUnitType.Pixel); ;
             g.ColumnDefinitions.Add(c);
-            Contorles.VideoPreview videoPreview = new Contorles.VideoPreview("", Scenes[j]);
+          Controls.VideoPreview videoPreview = new Controls.VideoPreview("", Scenes[j]);
 
             videoPreview.SetValue(Grid.ColumnProperty, j);
             g.Children.Add(videoPreview);

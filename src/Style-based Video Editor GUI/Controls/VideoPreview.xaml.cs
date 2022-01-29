@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Style_based_Video_Editor_GUI.Contorles
+namespace Style_based_Video_Editor_GUI.Controls
 {
   /// <summary>
   /// Interaction logic for Shot.xaml
@@ -21,7 +21,7 @@ namespace Style_based_Video_Editor_GUI.Contorles
   public partial class VideoPreview : UserControl
   {
 
-    Classes.Video video;
+    internal Classes.Video video;
     
     internal VideoPreview(string title, Classes.Video video)
     {
@@ -36,12 +36,14 @@ namespace Style_based_Video_Editor_GUI.Contorles
         this.Title.Content = title;
       this.video = video;
       this.PreviewImage.Source = new BitmapImage(new Uri(video.image.FullName));
+      
     }
 
     private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
     {
-      ((Windows.Dashboard)Window.GetWindow(this)).LoadVideo(video);
-
+      ((Windows.Dashboard)Window.GetWindow(this)).LoadVideo(this.video);
     }
+
+
   }
 }
