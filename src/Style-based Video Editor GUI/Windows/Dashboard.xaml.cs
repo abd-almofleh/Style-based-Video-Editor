@@ -34,6 +34,7 @@ namespace Style_based_Video_Editor_GUI.Windows
     private Video SelectedVideo;
     private Controls.VideoPreview SelectedVideoPreview;
     private Controls.VideoPreview[][] scenesPreview;
+    private TextBox[] scriptsPreviews;
 
     public bool IsPlaying
     {
@@ -274,20 +275,30 @@ namespace Style_based_Video_Editor_GUI.Windows
         VideoGrid.Children.Add(ScriptsGrid);
         ScriptsGrid.SetValue(Grid.ColumnProperty, 1);
         ScriptsGrid.SetValue(Grid.RowProperty, videos.Length + 1);
-        
+        scriptsPreviews = new TextBox[scripts.Length];
+
+
         for (int j = 0; j < scripts.Length; j++)
         {
           ColumnDefinition c = new ColumnDefinition();
           c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel); ;
           ScriptsGrid.ColumnDefinitions.Add(c);
-          Label ScriptText = new Label
+          TextBox ScriptText = new TextBox
           {
-            Content = scripts[j].arabic,
-            VerticalContentAlignment = VerticalAlignment.Center,
+            Text = scripts[j].arabic ,
+            TextWrapping = TextWrapping.WrapWithOverflow,
+            Margin = new Thickness(3),
+            Background = new SolidColorBrush(Helper.GetColorByPercentige(scripts[j].score)),
             HorizontalContentAlignment = HorizontalAlignment.Center,
-            FontSize = 14,
+            VerticalContentAlignment = VerticalAlignment.Center,
+            IsReadOnly = true,
+            SelectionOpacity = 0,
+            Cursor =  Cursors.Hand,
+            AllowDrop = false,
+            FlowDirection = FlowDirection.RightToLeft,
+            Tag= scenesPreview[0][j]
           };
-
+          scriptsPreviews[j] = ScriptText;
           ScriptText.SetValue(Grid.ColumnProperty, j);
           ScriptsGrid.Children.Add(ScriptText);
         }
