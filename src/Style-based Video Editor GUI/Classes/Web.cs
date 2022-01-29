@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,7 +84,7 @@ namespace Style_based_Video_Editor_GUI.Classes
       return personImages;
     }
 
-    public static Classes.SceneInfo GenerateScenes(View [] views)
+    public static SceneInfo GenerateScenes(View [] views)
     {
       RestRequest request = new RestRequest(GenerateScenesRoute, DataFormat.Json);
       request.Timeout = 10 * 60 * 1000;
@@ -136,7 +136,7 @@ namespace Style_based_Video_Editor_GUI.Classes
 
 
 
-      return new Classes.SceneInfo(all,scripts);
+      return new SceneInfo(all,scripts);
     }
   }
 }

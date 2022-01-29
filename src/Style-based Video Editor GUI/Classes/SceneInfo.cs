@@ -8,9 +8,9 @@ namespace Style_based_Video_Editor_GUI.Classes
 {
   class SceneInfo
   {
-    public List<Classes.Scene>[] scenes;
-    public Classes.Script[] scripts;
-    public SceneInfo(List<Classes.Scene>[] scenes, Classes.Script[] scripts)
+    public List<Scene>[] scenes;
+    public Script[] scripts;
+    public SceneInfo(List<Scene>[] scenes, Script[] scripts)
     {
       this.scenes = scenes;
       this.scripts = scripts;
