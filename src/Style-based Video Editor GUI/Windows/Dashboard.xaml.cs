@@ -1,4 +1,4 @@
-﻿using LibVLCSharp.Shared;
+using LibVLCSharp.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +25,16 @@ namespace Style_based_Video_Editor_GUI.Windows
   /// </summary>
   public partial class Dashboard : Window
   {
+    static int ColumnWidth = 150;
     bool _isPlaying = false;
     bool isDragging = false;
     DispatcherTimer timer;
     private View [] videos;
-
+    private Script[] scripts;
     private Video SelectedVideo;
+    private Controls.VideoPreview SelectedVideoPreview;
+    private Controls.VideoPreview[][] scenesPreview;
+    private TextBox[] scriptsPreviews;
 
     public bool IsPlaying
     {
@@ -66,7 +70,6 @@ namespace Style_based_Video_Editor_GUI.Windows
       timer.Tick += Timer_Tick;
     }
 
-
     private void Open_Click(object sender, RoutedEventArgs e)
     {
       OpenVideos openWindow = new OpenVideos();
@@ -76,12 +79,13 @@ namespace Style_based_Video_Editor_GUI.Windows
       videos = openWindow.Videos.ToArray();
       PreviewVideos();
     }
+
     void PreviewVideos()
     {
       for (int i = 0; i < videos.Length; i++)
       {
         VideoGrid.RowDefinitions.Add(new RowDefinition());
-        Contorles.VideoPreview videoPreview = new Contorles.VideoPreview($"Video {i + 1}", videos[i]);
+        Controls.VideoPreview videoPreview = new Controls.VideoPreview($"", videos[i]);
         videoPreview.SetValue(Grid.RowProperty, i+1);
         Label detecting = new Label
         {
@@ -103,6 +107,38 @@ namespace Style_based_Video_Editor_GUI.Windows
 
 
       }
+      RowDefinition row = new RowDefinition();
+      row.Height = new GridLength(50, GridUnitType.Pixel); ;
+      VideoGrid.RowDefinitions.Add(row);
+      Label d = new Label
+      {
+        FontFamily = new FontFamily("Times New Roman"),
+        FontSize = 24,
+        FontWeight = FontWeights.Bold,
+        Content = "Detecting...",
+        HorizontalAlignment = HorizontalAlignment.Stretch,
+        VerticalAlignment = VerticalAlignment.Stretch,
+        HorizontalContentAlignment = HorizontalAlignment.Center,
+        VerticalContentAlignment = VerticalAlignment.Center
+      };
+      d.SetValue(Grid.RowProperty, videos.Length + 1);
+      d.SetValue(Grid.ColumnProperty, 1);
+      VideoGrid.Children.Add(d);
+      d = new Label
+      {
+        FontFamily = new FontFamily("Times New Roman"),
+        FontSize = 24,
+        FontWeight = FontWeights.Bold,
+        Content = "Script",
+        HorizontalAlignment = HorizontalAlignment.Stretch,
+        VerticalAlignment = VerticalAlignment.Stretch,
+        HorizontalContentAlignment = HorizontalAlignment.Center,
+        VerticalContentAlignment = VerticalAlignment.Center
+      };
+      d.SetValue(Grid.RowProperty, videos.Length + 1);
+      VideoGrid.Children.Add(d);
+
+
       Thread t = new Thread(detectOnSpeakerChange);
       t.IsBackground = true;
       t.Start();
@@ -137,9 +173,9 @@ namespace Style_based_Video_Editor_GUI.Windows
         for (int i = 0; i < Scenes.Length; i++)
         {
           ColumnDefinition c = new ColumnDefinition();
-          c.Width = new GridLength(100, GridUnitType.Pixel); ;
+          c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel); ;
           g.ColumnDefinitions.Add(c);
-          Contorles.VideoPreview videoPreview = new Contorles.VideoPreview("", Scenes[i]);
+          Controls.VideoPreview videoPreview = new Controls.VideoPreview("", Scenes[i]);
           
           videoPreview.SetValue(Grid.ColumnProperty, i);
           g.Children.Add(videoPreview);
@@ -153,7 +189,7 @@ namespace Style_based_Video_Editor_GUI.Windows
             for (int i = labelsCount ; i < SceneCount; i++)
             {
               ColumnDefinition c = new ColumnDefinition();
-              c.Width = new GridLength(100, GridUnitType.Pixel); ;
+              c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel); ;
               ScenesLabels.ColumnDefinitions.Add(c);
 
               Label ll = new Label
@@ -174,7 +210,7 @@ namespace Style_based_Video_Editor_GUI.Windows
 
     void detectOnSpeakerChange()
     {
-      View.DetectScenesOnSpeakerChange(videos);
+      this.scripts = View.DetectScenesOnSpeakerChange(videos);
       
       this.Dispatcher.Invoke(() =>
       {
@@ -197,7 +233,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         for (int i = 0; i < SceneCount; i++)
         {
           ColumnDefinition c = new ColumnDefinition();
-          c.Width = new GridLength(100, GridUnitType.Pixel); ;
+          c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel); ;
           ScenesLabels.ColumnDefinitions.Add(c);
 
           Label ll = new Label
@@ -211,6 +247,7 @@ namespace Style_based_Video_Editor_GUI.Windows
           ll.SetValue(Grid.ColumnProperty, i);
           ScenesLabels.Children.Add(ll);
         }
+        scenesPreview = new Controls.VideoPreview[videos.Length][];
 
         for (int i = 0; i < videos.Length; i++)
         {
@@ -220,44 +257,111 @@ namespace Style_based_Video_Editor_GUI.Windows
           g.SetValue(Grid.ColumnProperty, 1);
           g.SetValue(Grid.RowProperty, i + 1);
           Scene[] Scenes = videos[i].scenes;
+          scenesPreview[i] = new Controls.VideoPreview[Scenes.Length];
           for (int j = 0; j < Scenes.Length; j++)
           {
             ColumnDefinition c = new ColumnDefinition();
-            c.Width = new GridLength(100, GridUnitType.Pixel); ;
+            c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel);
             g.ColumnDefinitions.Add(c);
-            Contorles.VideoPreview videoPreview = new Contorles.VideoPreview("", Scenes[j]);
+            scenesPreview[i][j] = new Controls.VideoPreview("", Scenes[j],i,j);
 
-            videoPreview.SetValue(Grid.ColumnProperty, j);
-            g.Children.Add(videoPreview);
+            scenesPreview[i][j].SetValue(Grid.ColumnProperty, j);
+            g.Children.Add(scenesPreview[i][j]);
           }
         }
+
+        Grid ScriptsGrid = new Grid();
+        ScriptsGrid.ShowGridLines = true;
+        VideoGrid.Children.Add(ScriptsGrid);
+        ScriptsGrid.SetValue(Grid.ColumnProperty, 1);
+        ScriptsGrid.SetValue(Grid.RowProperty, videos.Length + 1);
+        scriptsPreviews = new TextBox[scripts.Length];
+
+
+        for (int j = 0; j < scripts.Length; j++)
+        {
+          ColumnDefinition c = new ColumnDefinition();
+          c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel); ;
+          ScriptsGrid.ColumnDefinitions.Add(c);
+          TextBox ScriptText = new TextBox
+          {
+            Text = scripts[j].arabic ,
+            TextWrapping = TextWrapping.WrapWithOverflow,
+            Margin = new Thickness(3),
+            Background = new SolidColorBrush(Helper.GetColorByPercentige(scripts[j].score)),
+            HorizontalContentAlignment = HorizontalAlignment.Center,
+            VerticalContentAlignment = VerticalAlignment.Center,
+            IsReadOnly = true,
+            SelectionOpacity = 0,
+            Cursor =  Cursors.Hand,
+            AllowDrop = false,
+            FlowDirection = FlowDirection.RightToLeft,
+            Tag= scenesPreview[0][j]
+          };
+          scriptsPreviews[j] = ScriptText;
+          ScriptText.GotFocus += ScriptText_GotFocus; ;
+          ScriptText.SetValue(Grid.ColumnProperty, j);
+          ScriptsGrid.Children.Add(ScriptText);
+        }
+
       });
     }
-    internal void LoadVideo(Video video)
+
+    private void ScriptText_GotFocus(object sender, RoutedEventArgs e)
     {
+      TextBox ScriptText = (TextBox)sender;
+      Controls.VideoPreview tt = (Controls.VideoPreview)ScriptText.Tag;
+      MouseButtonEventArgs arg = new MouseButtonEventArgs(Mouse.PrimaryDevice, 0, MouseButton.Left);
+      arg.RoutedEvent = UserControl.MouseDownEvent;
+      tt.RaiseEvent(arg);
+      ScriptTab.IsSelected = true;
+
+    }
+
+
+    private void LoadScript(Script script)
+    {
+      if (script == null)
+      {
+        ScriptTab.Visibility = Visibility.Collapsed;
+        return;
+      }
+
+      ScriptEdit.Text = script.arabic;
+      ScriptTab.Visibility = Visibility.Visible;
+    }
+
+
+    internal void LoadVideo(Controls.VideoPreview videoPreview)
+    {
+      Video video = videoPreview.video;
       if (video == SelectedVideo) return;
       VideoInfoMessage.Visibility = Visibility.Collapsed;
       Info.Visibility = Visibility.Visible;
+      if(SelectedVideoPreview!= null)
+        SelectedVideoPreview.ResetBacgroundColor();
       SelectedVideo = video;
-      if (video is Classes.View)
+      SelectedVideoPreview = videoPreview;
+      if (video is View)
       {
-
         VideoPlayer.Source = new Uri(video.video.FullName);
-        SceneInfo.Visibility = Visibility.Collapsed;
-        SceneTag.Visibility = Visibility.Collapsed;
+        SceneInfoTab.Visibility = Visibility.Collapsed;
+        SceneTagsTab.Visibility = Visibility.Collapsed;
         PersonsImagesTab.Visibility = Visibility.Collapsed;
-        VideoInfo.IsSelected = true;
+        ScriptTab.Visibility = Visibility.Collapsed;
+        VideoInfoTab.IsSelected = true;
         VideoNumber.Content = video.VideoNumber;
 
       }
       else
       {
         Scene scene = (Scene)video;
+        LoadScript(scene.script);
 
         VideoNumber.Content = scene.OriginalVideo.VideoNumber;
 
-        SceneInfo.Visibility = Visibility.Visible;
-        SceneInfo.IsSelected = true;
+        SceneInfoTab.Visibility = Visibility.Visible;
+        SceneInfoTab.IsSelected = true;
 
         VideoPlayer.Source = new Uri(scene.Video.FullName);
         SceneNumber.Content = scene.VideoNumber.ToString("000");
@@ -272,8 +376,8 @@ namespace Style_based_Video_Editor_GUI.Windows
         PersonsImages.Children.Clear();
         PersonsImages.ColumnDefinitions.Clear();
 
-        SceneTag.Header = $"Scene Tags";
-        SceneTag.Visibility = Visibility.Visible;
+        SceneTagsTab.Header = $"Scene Tags";
+        SceneTagsTab.Visibility = Visibility.Visible;
         PersonsImagesTab.Header = "Scene Persons";
         PersonsImagesTab.Visibility = Visibility.Visible;
 
@@ -300,8 +404,8 @@ namespace Style_based_Video_Editor_GUI.Windows
         return;
       Tags.RowDefinitions.Clear();
       Tags.Children.Clear();
-      SceneTag.Header = $"Scene Tags ({tags.Count()} tags)";
-      SceneTag.Visibility = Visibility.Visible;
+      SceneTagsTab.Header = $"Scene Tags ({tags.Count()} tags)";
+      SceneTagsTab.Visibility = Visibility.Visible;
       RowDefinition row = new RowDefinition();
       row.Height = new GridLength(25, GridUnitType.Pixel); ;
       Tags.RowDefinitions.Add(row);
@@ -525,7 +629,6 @@ namespace Style_based_Video_Editor_GUI.Windows
       }
     }
 
-
     #region Player Controls
     private void Timer_Tick(object sender, EventArgs e)
     {
@@ -587,6 +690,36 @@ namespace Style_based_Video_Editor_GUI.Windows
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
       OpenExamples_Click(null, null);
+    }
+
+    private void SaveScriptEdit_Click(object sender, RoutedEventArgs e)
+    {
+      Scene video = (Scene)SelectedVideo;
+      video.script.Update(ScriptEdit.Text);
+      int index = SelectedVideoPreview.j;
+      TextBox t = scriptsPreviews[index];
+      t.Text = video.script.arabic;
+      Color c;
+      if (video.script.OriginalArabic == null)
+        t.Background = new SolidColorBrush(Helper.GetColorByPercentige(video.script.score));
+      else
+        t.Background = new SolidColorBrush(Colors.LightGray);
+
+    }
+
+    private void ResetScript_Click(object sender, RoutedEventArgs e)
+    {
+      Scene video = (Scene)SelectedVideo;
+      string text = video.script.arabic;
+      if (video.script.OriginalArabic != null)
+        text = video.script.OriginalArabic;
+      ScriptEdit.Text = text;
+    }
+
+    private void CancelScriptEdit_Click(object sender, RoutedEventArgs e)
+    {
+      Scene video = (Scene)SelectedVideo;
+      ScriptEdit.Text = video.script.arabic;
     }
   }
 

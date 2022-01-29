@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Style_based_Video_Editor_GUI.Contorles
+namespace Style_based_Video_Editor_GUI.Controls
 {
   /// <summary>
   /// Interaction logic for Shot.xaml
