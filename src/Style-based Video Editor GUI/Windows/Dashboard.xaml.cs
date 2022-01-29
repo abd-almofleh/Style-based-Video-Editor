@@ -25,6 +25,7 @@ namespace Style_based_Video_Editor_GUI.Windows
   /// </summary>
   public partial class Dashboard : Window
   {
+    static int ColumnWidth = 150;
     bool _isPlaying = false;
     bool isDragging = false;
     DispatcherTimer timer;
@@ -171,7 +172,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         for (int i = 0; i < Scenes.Length; i++)
         {
           ColumnDefinition c = new ColumnDefinition();
-          c.Width = new GridLength(100, GridUnitType.Pixel); ;
+          c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel); ;
           g.ColumnDefinitions.Add(c);
           Controls.VideoPreview videoPreview = new Controls.VideoPreview("", Scenes[i]);
           
@@ -187,7 +188,7 @@ namespace Style_based_Video_Editor_GUI.Windows
             for (int i = labelsCount ; i < SceneCount; i++)
             {
               ColumnDefinition c = new ColumnDefinition();
-              c.Width = new GridLength(100, GridUnitType.Pixel); ;
+              c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel); ;
               ScenesLabels.ColumnDefinitions.Add(c);
 
               Label ll = new Label
@@ -231,7 +232,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         for (int i = 0; i < SceneCount; i++)
         {
           ColumnDefinition c = new ColumnDefinition();
-          c.Width = new GridLength(100, GridUnitType.Pixel); ;
+          c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel); ;
           ScenesLabels.ColumnDefinitions.Add(c);
 
           Label ll = new Label
@@ -257,7 +258,7 @@ namespace Style_based_Video_Editor_GUI.Windows
           for (int j = 0; j < Scenes.Length; j++)
           {
             ColumnDefinition c = new ColumnDefinition();
-            c.Width = new GridLength(100, GridUnitType.Pixel); ;
+            c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel);
             g.ColumnDefinitions.Add(c);
           Controls.VideoPreview videoPreview = new Controls.VideoPreview("", Scenes[j]);
 
@@ -275,7 +276,7 @@ namespace Style_based_Video_Editor_GUI.Windows
         for (int j = 0; j < scripts.Length; j++)
         {
           ColumnDefinition c = new ColumnDefinition();
-          c.Width = new GridLength(100, GridUnitType.Pixel); ;
+          c.Width = new GridLength(ColumnWidth, GridUnitType.Pixel); ;
           ScriptsGrid.ColumnDefinitions.Add(c);
           Label ScriptText = new Label
           {
@@ -305,10 +306,10 @@ namespace Style_based_Video_Editor_GUI.Windows
       if (video is View)
       {
         VideoPlayer.Source = new Uri(video.video.FullName);
-        SceneInfo.Visibility = Visibility.Collapsed;
-        SceneTag.Visibility = Visibility.Collapsed;
+        SceneInfoTab.Visibility = Visibility.Collapsed;
+        SceneTagsTab.Visibility = Visibility.Collapsed;
         PersonsImagesTab.Visibility = Visibility.Collapsed;
-        VideoInfo.IsSelected = true;
+        VideoInfoTab.IsSelected = true;
         VideoNumber.Content = video.VideoNumber;
 
       }
@@ -318,8 +319,8 @@ namespace Style_based_Video_Editor_GUI.Windows
 
         VideoNumber.Content = scene.OriginalVideo.VideoNumber;
 
-        SceneInfo.Visibility = Visibility.Visible;
-        SceneInfo.IsSelected = true;
+        SceneInfoTab.Visibility = Visibility.Visible;
+        SceneInfoTab.IsSelected = true;
 
         VideoPlayer.Source = new Uri(scene.Video.FullName);
         SceneNumber.Content = scene.VideoNumber.ToString("000");
@@ -334,8 +335,8 @@ namespace Style_based_Video_Editor_GUI.Windows
         PersonsImages.Children.Clear();
         PersonsImages.ColumnDefinitions.Clear();
 
-        SceneTag.Header = $"Scene Tags";
-        SceneTag.Visibility = Visibility.Visible;
+        SceneTagsTab.Header = $"Scene Tags";
+        SceneTagsTab.Visibility = Visibility.Visible;
         PersonsImagesTab.Header = "Scene Persons";
         PersonsImagesTab.Visibility = Visibility.Visible;
 
@@ -362,8 +363,8 @@ namespace Style_based_Video_Editor_GUI.Windows
         return;
       Tags.RowDefinitions.Clear();
       Tags.Children.Clear();
-      SceneTag.Header = $"Scene Tags ({tags.Count()} tags)";
-      SceneTag.Visibility = Visibility.Visible;
+      SceneTagsTab.Header = $"Scene Tags ({tags.Count()} tags)";
+      SceneTagsTab.Visibility = Visibility.Visible;
       RowDefinition row = new RowDefinition();
       row.Height = new GridLength(25, GridUnitType.Pixel); ;
       Tags.RowDefinitions.Add(row);
