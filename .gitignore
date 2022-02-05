@@ -2,6 +2,7 @@ result/*
 videos/*
 keyframes/*
 src/server/weights/*
+models/trail_rev.h5
 src/server/uploads/*
 scenes/*
 .vscode
