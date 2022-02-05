@@ -1,6 +1,13 @@
+import os
+import warnings  # noqa
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # noqa
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # noqa
+warnings.filterwarnings("ignore")  # noqa
 from flask import Flask, app
 from flask_restful import Api
 from api.routes import create_routes
+
+# -------------------------------
 
 
 def get_flask_app() -> app.Flask:

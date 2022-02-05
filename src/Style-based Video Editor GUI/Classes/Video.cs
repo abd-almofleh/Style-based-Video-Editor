@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Windows;
 
 namespace Style_based_Video_Editor_GUI.Classes
 {
   internal class Video
   {
+    static uint ID = 0;
+    public uint VideoNumber;
     public FileInfo video;
-    public FileInfo thumbnail;
-    public Scene[] scenes;
-
+    public FileInfo image;
     public Duration length;
-
-    private static readonly string detectionCommand = "scenedetect -i \"{0}\"  -o \"./temp/{1}\" detect-content split-video -o \"./temp/{1}/videos\" -f $SCENE_NUMBER -q list-scenes -q -s -f times.csv save-images --quality 70 -o \"./temp/{1}/images\" -f $SCENE_NUMBER -n 1 -c 6";
-    
-    public Video(string path, FileInfo thumbnail,Duration length) :this(new FileInfo(path), thumbnail, length) { }
-    public Video(FileInfo video,FileInfo thumbnail, Duration length)
+    public Video(string path, FileInfo thumbnail, Duration length) : this(new FileInfo(path), thumbnail, length) { }
+    public Video(FileInfo video, FileInfo thumbnail,double length):this(video,thumbnail, GetVideoLength(length)) { }
+    public Video(FileInfo video, FileInfo thumbnail, Duration length)
     {
       this.video = video;
       if (!video.Exists) throw new FileNotFoundException();
@@ -25,32 +21,51 @@ namespace Style_based_Video_Editor_GUI.Classes
       string ext = video.Extension.Substring(1).ToLower();
       int IsSupported = Array.FindIndex(Constants.SUPPORTED_VIDEO_TYPES, item => item == ext);
       if (IsSupported < 0) throw new Exceptions.VideoFileNotSupported(ext, Constants.SUPPORTED_VIDEO_TYPES);
-      this.thumbnail = thumbnail;
+      this.VideoNumber = ID++;
+
+      this.image = thumbnail;
       this.length = length;
     }
-
-    public void detectScenes()
+    public static FileInfo GenrateImage(string VideoPath,double second = 1)
     {
-      Console.WriteLine(String.Format(detectionCommand, video.FullName, video.Name));
-      DirectoryInfo directory = new DirectoryInfo($"./temp/{video.Name}");
-      if (directory.Exists)
-        directory.Delete(true);
-      Helper.RunCMDCommand(String.Format(detectionCommand, video.FullName, video.Name));
-
-      string[] lines = File.ReadAllLines($"./temp/{video.Name}/times.csv").Skip(1).ToArray();
-      IEnumerable<Scene> scenesArray =  lines.Select(line =>
-      {
-        string[] data = line.Split(',');
-        uint sceneNumber = uint.Parse(data[0]);
-        uint startFrame = uint.Parse(data[1]);
-        uint endFrame = uint.Parse(data[4]);
-        TimeSpan startTime = TimeSpan.Parse(data[2]);
-        TimeSpan endTime = TimeSpan.Parse(data[5]);
-
-        return new Scene(sceneNumber, startFrame, endFrame, startTime, endTime, $"./temp/{video.Name}");
-      });
-      this.scenes = scenesArray.ToArray();
+      return GenrateImage(new FileInfo(VideoPath),second);
     }
+    public static FileInfo GenrateImage(FileInfo video, double second = 1)
+    {
+      DirectoryInfo ThumbnailDirectory = new DirectoryInfo("thumbnail");
+      if (!ThumbnailDirectory.Exists) ThumbnailDirectory.Create();
 
+      string ThumbnailPath = DateTime.Now.Ticks.ToString() + ".jpg";
+      FileInfo file = new FileInfo(Path.Combine(ThumbnailDirectory.Name, ThumbnailPath));
+      if (file.Exists) file.Delete();
+      string command = $"ffmpeg -i \"{video.FullName}\" -ss {second} -vframes 1 -f image2 -vcodec mjpeg \"{file.FullName}\" -y";
+
+      CMDResult result = Helper.RunCMDCommand(command);
+      //if (result.ExitCode != 0) throw new Exception($"Error NO. {result.ExitCode}:Command {result.Command},Message: {result.OutputMessage}");
+
+      return file;
+      
+    }
+    public static Duration GetVideoLength(FileInfo video)
+    {
+      string command = $"ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 \"{video.FullName}\"";
+
+      CMDResult result = Helper.RunCMDCommand(command);
+      double d = Convert.ToDouble(result.OutputMessage);
+      int second = (int)d;
+      int milisecond = (int)((d - second) * 1000);
+      TimeSpan t = new TimeSpan(0, 0, 0, second, milisecond);
+      return new Duration(t);
+
+    }
+    public static Duration GetVideoLength(double length)
+    {
+      double d = Convert.ToDouble(length);
+      int second = (int)d;
+      int milisecond = (int)((d - second) * 1000);
+      TimeSpan t = new TimeSpan(0, 0, 0, second, milisecond);
+      return new Duration(t);
+
+    }
   }
 }

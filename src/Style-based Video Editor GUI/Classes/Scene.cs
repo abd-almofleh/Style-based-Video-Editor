@@ -9,20 +9,18 @@ using RestSharp;
 
 namespace Style_based_Video_Editor_GUI.Classes
 {
-  public class Scene
+  internal class Scene:Video
   {
-    uint sceneNumber;
-
+    static uint ID_counter = 1;
     uint startFrame;
     uint endFrame;
 
     TimeSpan startTime;
     TimeSpan endTime;
+    View originalVideo;
+    public Script script;
 
-    FileInfo video;
-    FileInfo image;
-
-    public uint SceneNumber { get => sceneNumber; }
+    public uint SceneNumber { get => VideoNumber; }
 
     public uint StartFrame { get => startFrame; }
     public uint EndFrame { get => endFrame; }
@@ -31,33 +29,70 @@ namespace Style_based_Video_Editor_GUI.Classes
     public TimeSpan EndTime { get => endTime; }
     public FileInfo Video { get => video; }
     public FileInfo Image { get => image; }
+    public View OriginalVideo { get => originalVideo; }
 
-    internal List<Structs.Tag> Objects = new List<Structs.Tag>();
+    internal List<Structs.KeyScore> Objects;
+    internal List<Person> Persons;
+    internal List<PersonImage> personImages; 
 
-    public Scene(uint sceneNumber, uint startFrame, uint endFrame, TimeSpan startTime, TimeSpan endTime, string scenesDir)
+    // ! deprecated
+    // ! used with scene detection using visual changes
+    public Scene(View OriginalVideo, uint sceneNumber, uint startFrame, uint endFrame, TimeSpan startTime, TimeSpan endTime, string scenesDir)
+      :base(new FileInfo(scenesDir + "/videos/" + sceneNumber.ToString("000") + ".mp4"),
+         new FileInfo(scenesDir + "/images/" + sceneNumber.ToString("000") + ".jpg"),
+         new System.Windows.Duration(endTime - startTime))
     {
-      this.sceneNumber = sceneNumber;
+      this.VideoNumber = sceneNumber;
 
       this.startFrame = startFrame;
       this.endFrame = endFrame;
 
       this.startTime = startTime;
       this.endTime = endTime;
-      this.image = new FileInfo(scenesDir + "/images/" + sceneNumber.ToString("000") + ".jpg");
-      this.video = new FileInfo(scenesDir + "/videos/" + sceneNumber.ToString("000") + ".mp4");
+      this.originalVideo = OriginalVideo;
     }
 
-    public void DetectObjects()
+    public Scene(View OriginalVideo, string path,string thumbnail, double startTime, double endTime,Script script = null)
+  : base(new FileInfo(path), new FileInfo(thumbnail), endTime - startTime)
     {
+      this.VideoNumber = ID_counter++;
+      this.originalVideo = OriginalVideo;
+      this.startFrame = this.endFrame = 0;
+      this.startTime = GetVideoLength(startTime).TimeSpan;
+      this.endTime = GetVideoLength(endTime).TimeSpan;
+      this.script = script;
+    }
+
+    public void DetectObjects(Windows.Dashboard window)
+    {
+      Scene that = this;
+
       Thread t = new Thread(() =>
       {
-        RestRequest request = new RestRequest(Web.ObjectDetectionRoute, DataFormat.Json);
-        request.AddFile("image", Image.FullName);
-        Objects = Web.post(request);
-        foreach (var x in Objects)
-          Console.WriteLine($"tag: {x.tag}, score: {x.score}");
-
+        Objects = Web.DetectObjects(Image.FullName);
+        window.Dispatcher.Invoke(() =>
+        {
+          window.showTags(that);
+        });
       });
+      t.IsBackground = true;
+      t.Start();
+    }
+
+    public void DetectPersons(Windows.Dashboard window)
+    {
+      Scene that = this;      
+      Thread t = new Thread(() =>
+      {
+        Console.WriteLine(Image.FullName);
+        this.personImages =  Web.DetectFaces(Image.FullName);
+        if (this.personImages == null) return;
+        window.Dispatcher.Invoke(() =>
+        {
+          window.ShowSceneFaces(that);
+        });
+      });
+      t.IsBackground = true;
       t.Start();
     }
 
