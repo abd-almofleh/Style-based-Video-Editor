@@ -17,3 +17,5 @@ tensorflow
 RetinaFace
 malaya_speech
 spectralcluster
+progressbar
+torchvision

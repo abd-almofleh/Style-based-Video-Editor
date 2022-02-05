@@ -117,10 +117,12 @@ def load_sequences_into_memory(dataset_top_dir, type_name):
 
         class_wise_totals[class_name] = num_sequences_for_class
 
-    print('Loading ' + str(num_seq_dirs) + ' sequences into memory for  ' + data_set_type_dir)
+    print('Loading ' + str(num_seq_dirs) +
+          ' sequences into memory for  ' + data_set_type_dir)
     print('Class-wise totals:' + str(class_wise_totals))
 
-    widgets = [ETA(), progressbar.Bar('>', '[', ']'), Percentage(), RotatingMarker()]
+    widgets = [ETA(), progressbar.Bar('>', '[', ']'),
+               Percentage(), RotatingMarker()]
     bar = progressbar.ProgressBar(maxval=num_seq_dirs, widgets=widgets)
 
     bar.start()
@@ -142,7 +144,8 @@ def load_sequences_into_memory(dataset_top_dir, type_name):
 
                 for sequence_dir_name in sequence_dir_names:
                     sequence_dir = os.path.join(person_dir, sequence_dir_name)
-                    facial_landmark_file_names = sorted(os.listdir(sequence_dir))
+                    facial_landmark_file_names = sorted(
+                        os.listdir(sequence_dir))
                     facial_landmark_file_names = facial_landmark_file_names[25:50]
                     # this should not happen if the data preparation has happened correctly
                     if len(facial_landmark_file_names) != FRAME_SEQ_LEN:
@@ -152,16 +155,23 @@ def load_sequences_into_memory(dataset_top_dir, type_name):
 
                     lip_separation_sequence = []
                     for facial_landmark_file_name in facial_landmark_file_names:
-                        facial_landmark_file_path = os.path.join(sequence_dir, facial_landmark_file_name)
+                        facial_landmark_file_path = os.path.join(
+                            sequence_dir, facial_landmark_file_name)
                         with open(facial_landmark_file_path, 'r') as f_obj:
                             reader = csv.reader(f_obj)
                             for coords in reader:
-                                part_61 = (int(coords[2 * 61]), int(coords[2 * 61 + 1]))
-                                part_67 = (int(coords[2 * 67]), int(coords[2 * 67 + 1]))
-                                part_62 = (int(coords[2 * 62]), int(coords[2 * 62 + 1]))
-                                part_66 = (int(coords[2 * 66]), int(coords[2 * 66 + 1]))
-                                part_63 = (int(coords[2 * 63]), int(coords[2 * 63 + 1]))
-                                part_65 = (int(coords[2 * 65]), int(coords[2 * 65 + 1]))
+                                part_61 = (
+                                    int(coords[2 * 61]), int(coords[2 * 61 + 1]))
+                                part_67 = (
+                                    int(coords[2 * 67]), int(coords[2 * 67 + 1]))
+                                part_62 = (
+                                    int(coords[2 * 62]), int(coords[2 * 62 + 1]))
+                                part_66 = (
+                                    int(coords[2 * 66]), int(coords[2 * 66 + 1]))
+                                part_63 = (
+                                    int(coords[2 * 63]), int(coords[2 * 63 + 1]))
+                                part_65 = (
+                                    int(coords[2 * 65]), int(coords[2 * 65 + 1]))
 
                                 A = dist(part_61, part_67)
                                 B = dist(part_62, part_66)
@@ -186,7 +196,8 @@ def load_sequences_into_memory(dataset_top_dir, type_name):
 
     X_data = np.array(X_data)
     y_data = np.array(y_data)
-    print('\nData loading completed. X_data.shape=' + str(X_data.shape) + ' y_data.shape=' + str(y_data.shape))
+    print('\nData loading completed. X_data.shape=' +
+          str(X_data.shape) + ' y_data.shape=' + str(y_data.shape))
 
     return (X_data, y_data)
 
@@ -195,7 +206,8 @@ def step_decay(epoch):
     initial_lrate = 0.1
     drop = 0.5
     epochs_drop = 10.0
-    lrate = initial_lrate * math.pow(drop, math.floor((1 + epoch) / epochs_drop))
+    lrate = initial_lrate * \
+        math.pow(drop, math.floor((1 + epoch) / epochs_drop))
     return lrate
 
 
@@ -254,7 +266,8 @@ class LipMovementNet(object):
                         self.model.add(GRU(self.num_neurons_in_rnn_layer, return_sequences=return_sequences, name=name,
                                            input_shape=input_shape))
                     else:
-                        self.model.add(GRU(self.num_neurons_in_rnn_layer, return_sequences=return_sequences, name=name))
+                        self.model.add(
+                            GRU(self.num_neurons_in_rnn_layer, return_sequences=return_sequences, name=name))
             else:
                 if self.is_bidirectional:
                     if specify_input_shape:
@@ -283,7 +296,8 @@ class LipMovementNet(object):
                 Dense(self.num_neurons_in_output_dense_layers, activation=self.activation_output_dense_layers,
                       name=name))
 
-        self.model.add(Dense(self.num_classes, name='softmax', activation='softmax'))
+        self.model.add(
+            Dense(self.num_classes, name='softmax', activation='softmax'))
 
     def compile(self):
         if self.optimizer == 'adam':
@@ -292,7 +306,8 @@ class LipMovementNet(object):
             opt = RMSprop(lr=self.lr)
         else:
             opt = None
-        self.model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=[metrics.categorical_accuracy])
+        self.model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=[
+                           metrics.categorical_accuracy])
 
     def summary(self):
         self.model.summary()
@@ -302,13 +317,17 @@ class LipMovementNet(object):
 
     def print_params(self):
         print('self.num_rnn_layers = ' + str(self.num_rnn_layers))
-        print('self.num_neurons_in_rnn_layer = ' + str(self.num_neurons_in_rnn_layer))
+        print('self.num_neurons_in_rnn_layer = ' +
+              str(self.num_neurons_in_rnn_layer))
         print('self.is_bidirectional = ' + str(self.is_bidirectional))
         print('self.use_gru = ' + str(self.use_gru))
         print('self.dropout = ' + str(self.dropout))
-        print('self.num_output_dense_layers = ' + str(self.num_output_dense_layers))
-        print('self.num_neurons_in_output_dense_layers = ' + str(self.num_neurons_in_output_dense_layers))
-        print('self.activation_output_dense_layers = ' + str(self.activation_output_dense_layers))
+        print('self.num_output_dense_layers = ' +
+              str(self.num_output_dense_layers))
+        print('self.num_neurons_in_output_dense_layers = ' +
+              str(self.num_neurons_in_output_dense_layers))
+        print('self.activation_output_dense_layers = ' +
+              str(self.activation_output_dense_layers))
         print('self.optimizer = ' + str(self.optimizer))
         print('self.lr = ' + str(self.lr))
 
@@ -343,7 +362,8 @@ def print_progress():
     print('COMPLETED ' + str(num_grid_combos_completed) + ' out of ' + str(NUM_GRID_COMBINATIONS) + ' in ' + str(
         minutes_elapsed) + ' minutes')
     if num_grid_combos_completed > 0:
-        print('Minutes per combination=' + str(int(minutes_elapsed / num_grid_combos_completed)))
+        print('Minutes per combination=' +
+              str(int(minutes_elapsed / num_grid_combos_completed)))
     print('=================================================================')
 
 
@@ -467,11 +487,11 @@ def test_video(video_path, shape_predictor_file, model):
             img = cv2.resize(img, (320, 256))
 
             frames.append(img)
-            
+
     else:
         cap = cv2.VideoCapture(video_path)
         while True:
-            
+
             ret, img = cap.read()
             if not ret:
                 break
@@ -490,7 +510,8 @@ def test_video(video_path, shape_predictor_file, model):
         frame = frames[frame_num]
         img = frames[frame_num].copy()
 
-        cv2.putText(img, str(frame_num), (2, 10), font, 0.3, (255, 255, 255), 1, cv2.LINE_AA)
+        cv2.putText(img, str(frame_num), (2, 10), font,
+                    0.3, (255, 255, 255), 1, cv2.LINE_AA)
 
         (dets, facial_points_vector) = get_facial_landmark_vectors_from_frame(frame)
 
@@ -506,10 +527,13 @@ def test_video(video_path, shape_predictor_file, model):
             # print("Detection {}: Left: {} Top: {} Right: {} Bottom: {}".format(
             # 	i, d.left(), d.top(), d.right(), d.bottom()))
 
-            cv2.rectangle(img, (d.left(), d.top()), (d.right(), d.bottom()), (0, 255, 0), 2)
+            cv2.rectangle(img, (d.left(), d.top()),
+                          (d.right(), d.bottom()), (0, 255, 0), 2)
             # draw the state label below the face
-            cv2.rectangle(img, (d.left(), d.bottom()), (d.right(), d.bottom() + 10), (0, 0, 255), cv2.FILLED)
-            cv2.putText(img, state, (d.left() + 2, d.bottom() + 10 - 3), font, 0.3, (255, 255, 255), 1, cv2.LINE_AA)
+            cv2.rectangle(img, (d.left(), d.bottom()), (d.right(),
+                          d.bottom() + 10), (0, 0, 255), cv2.FILLED)
+            cv2.putText(img, state, (d.left() + 2, d.bottom() + 10 - 3),
+                        font, 0.3, (255, 255, 255), 1, cv2.LINE_AA)
 
         cv2.imshow('Video', img)
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -554,14 +578,16 @@ def test_video(video_path, shape_predictor_file, model):
 
             for k in CLASS_HASH:
                 if y_pred_max == CLASS_HASH[k]:
-                    state = k;
+                    state = k
                     break
 
             # redraw the label
             for i, d in enumerate(dets):
                 # draw the state label below the face
-                cv2.rectangle(img, (d.left(), d.bottom()), (d.right(), d.bottom() + 10), (0, 0, 255), cv2.FILLED)
-                cv2.putText(img, state, (d.left() + 2, d.bottom() + 10 - 3), font, 0.3, (255, 255, 255), 1, cv2.LINE_AA)
+                cv2.rectangle(img, (d.left(), d.bottom()), (d.right(),
+                              d.bottom() + 10), (0, 0, 255), cv2.FILLED)
+                cv2.putText(img, state, (d.left() + 2, d.bottom() +
+                            10 - 3), font, 0.3, (255, 255, 255), 1, cv2.LINE_AA)
 
             cv2.imshow('Video', img)
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -651,7 +677,8 @@ def train_in_grid_search_mode(path_to_grid_options_csv, path_to_grid_results_csv
             use_gru = results_row[3]
             dropout = results_row[4]
 
-            key = num_rnn_layers + '_' + num_neurons_in_rnn_layer + '_' + is_bidirectional + '_' + use_gru + '_' + dropout
+            key = num_rnn_layers + '_' + num_neurons_in_rnn_layer + \
+                '_' + is_bidirectional + '_' + use_gru + '_' + dropout
             results[key] = True
 
             num_grid_combos_completed += 1
@@ -674,7 +701,7 @@ def train_in_grid_search_mode(path_to_grid_options_csv, path_to_grid_results_csv
     file_writer = csv.writer(fp_obj2, delimiter=',')
     if not exists_file:
         file_writer.writerow(['num_rnn_layers', 'num_neurons_in_rnn_layer', 'is_bidirectional', 'use_gru', 'dropout',
-                          'precision', 'recall', 'f1', 'roc_auc'])
+                              'precision', 'recall', 'f1', 'roc_auc'])
 
     global start_time
     start_time = time.time()
@@ -701,7 +728,8 @@ def train_in_grid_search_mode(path_to_grid_options_csv, path_to_grid_results_csv
               optimizer='adam', lr=0.0001,
               frames_n=FRAME_SEQ_LEN, num_features=NUM_FEATURES, num_classes=NUM_CLASSES)
 
-        results = test(path_to_dataset_dir, num_rnn_layers, num_neurons_in_rnn_layer, is_bidirectional, use_gru, dropout)
+        results = test(path_to_dataset_dir, num_rnn_layers,
+                       num_neurons_in_rnn_layer, is_bidirectional, use_gru, dropout)
 
         row = grid_options + results
         file_writer.writerow(row)
@@ -712,12 +740,15 @@ def train_in_grid_search_mode(path_to_grid_options_csv, path_to_grid_results_csv
     fp_obj2.flush()
     fp_obj2.close()
 
+
 def run():
-    
-    test_video('./videos/044598381-carl-rowan-delivering-speech-a.mp4', '../../../models/shape_predictor_68_face_landmarks.dat', './models/1_32_False_True_0.25_lip_motion_net_model.h5')
+
+    test_video('E:\Projects\Style-based Video Editor\src\server\temp\scenes\Left[0ce5129a-67b6-4b3a-9c18-a5010c534b5c].mp4',
+               '../../../models/shape_predictor_68_face_landmarks.dat', './models/1_32_False_True_0.25_lip_motion_net_model.h5')
     exit(0)
 
     return
+
 
 if __name__ == '__main__':
 
@@ -747,7 +778,8 @@ if __name__ == '__main__':
         exit(0)
 
     if args['grid_options_csv']:
-        train_in_grid_search_mode(args['grid_options_csv'], args['grid_results_csv'], args['dataset'])
+        train_in_grid_search_mode(
+            args['grid_options_csv'], args['grid_results_csv'], args['dataset'])
         exit(0)
 
     if args['dataset']:
