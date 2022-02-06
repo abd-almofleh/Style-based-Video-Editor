@@ -2,9 +2,8 @@ from pathlib import Path
 from .SpeakerDiarisation import SpeakerDiarisation
 from helpers.helper import cut_video, get_frame_form_video, extract_wav_from_video
 from .SpeechToText import SpeechToText
-from threading import Thread, Lock
-_lock = Lock()
-
+from threading import Thread
+from .SpeakerVisibilityDetection import SpeakerVisibilityDetection
 
 class SceneDetection:
 
@@ -44,4 +43,6 @@ class SceneDetection:
         scene_info["image"] = get_frame_form_video(
             scene_path, time["length"]/2)
         scene_info["path"] = str(scene_path.absolute().resolve())
+        speaker_visible = SpeakerVisibilityDetection(scene_info["path"])
+        scene_info["speaker"] = speaker_visible.
         scenes[video_name][scene_num] = scene_info
