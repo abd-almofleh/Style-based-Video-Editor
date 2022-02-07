@@ -4,3 +4,16 @@ torchaudio
 librosa
 moviepy
 vosk
+DeepFace
+opencv-python
+dlib
+flask
+flask_restful
+tf2_yolov4
+numpy
+pandas
+keras
+tensorflow
+RetinaFace
+malaya_speech
+spectralcluster

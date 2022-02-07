@@ -17,8 +17,8 @@ namespace Style_based_Video_Editor_GUI.Windows
     bool _isPlaying = false;
     bool isDragging = false;
     DispatcherTimer timer;
-    List<Classes.Video> videos = new List<Classes.Video>(Classes.Constants.MAX_SHOTS); 
-    internal List<Classes.Video> Videos{ get => videos; }
+    List<Classes.View> videos = new List<Classes.View>(Classes.Constants.MAX_SHOTS); 
+    internal List<Classes.View> Videos{ get => videos; }
     bool IsPlaying { 
       get 
       {
@@ -61,27 +61,6 @@ namespace Style_based_Video_Editor_GUI.Windows
 
     private void Open_Click(object sender, RoutedEventArgs e)
     {
-      goto A;
-      string[] s = {
-        "Facebook 262328884292048",
-        "Facebook 263415364135135",
-        "Facebook 274891436369126",
-        "Facebook 324464314745171",
-        "Facebook 789740457864064",
-      };
-      for (int i = 0; i < 5; i++)
-      {
-        string videoPath = $@"G:\UN\conputer\Videos\Funny\{s[i]}.mp4";
-        Shots.ColumnDefinitions.Add(new ColumnDefinition());
-        FileInfo Thumbnail = Classes.Helper.GenerateThumbnail(videoPath);
-        Contorles.Shot shot = new Contorles.Shot(Thumbnail, "".ToString(), videos.Count);
-        shot.SetValue(Grid.ColumnProperty, videos.Count);
-        Shots.Children.Add(shot);
-        videos.Add(new Classes.Video(videoPath, Thumbnail,new Duration()));
-
-      }
-      return;
-      A:
       string filter = Classes.Constants.SUPPORTED_VIDEO_TYPES.Aggregate("", (prev, current) => prev + (prev != "" ? ";" : "") + "*." + current);
 
       OpenFileDialog openFileDialog = new OpenFileDialog
@@ -144,11 +123,11 @@ namespace Style_based_Video_Editor_GUI.Windows
       try
       {
         Shots.ColumnDefinitions.Add( new ColumnDefinition());
-        FileInfo Thumbnail = Classes.Helper.GenerateThumbnail(VideoPath.Text);
-        Contorles.Shot shot = new Contorles.Shot( Thumbnail, VideoPlayer.NaturalDuration.TimeSpan.ToString(), videos.Count);
+        FileInfo Thumbnail = Classes.Video.GenrateImage(VideoPath.Text);
+        Controls.Shot shot = new Controls.Shot( Thumbnail, VideoPlayer.NaturalDuration.TimeSpan.ToString(), videos.Count);
         shot.SetValue(Grid.ColumnProperty, videos.Count);
         Shots.Children.Add(shot);
-        videos.Add(new Classes.Video(VideoPath.Text, Thumbnail, VideoPlayer.NaturalDuration));
+        videos.Add(new Classes.View(VideoPath.Text, Thumbnail, VideoPlayer.NaturalDuration));
 
         VideoPlayer.Source = null;
         PlayPause.Content = "Play";
@@ -175,8 +154,8 @@ namespace Style_based_Video_Editor_GUI.Windows
       videos.RemoveAt(index);
       for (int i = index; i < Shots.Children.Count; i++)
       {
-        ((Contorles.Shot)Shots.Children[i]).UpdateIndex(i);
-        ((Contorles.Shot)Shots.Children[i]).SetValue(Grid.ColumnProperty, i);
+        ((Controls.Shot)Shots.Children[i]).UpdateIndex(i);
+        ((Controls.Shot)Shots.Children[i]).SetValue(Grid.ColumnProperty, i);
 
       }
       Finish.IsEnabled = videos.Count > 0;
