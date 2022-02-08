@@ -4,6 +4,7 @@ from helpers.helper import cut_video, get_frame_form_video, extract_wav_from_vid
 from .SpeechToText import SpeechToText
 from threading import Thread
 from .SpeakerVisibilityDetection import SpeakerVisibilityDetection
+from .RetinaFace import RetinaFace
 
 
 class SceneDetection:
@@ -47,5 +48,8 @@ class SceneDetection:
     else:
       scene_info["visible_speaker"] = -1
       scene_info["image"] = get_frame_form_video(scene_path, time["length"] / 2)
-
+      scene_info["faces"] = RetinaFace.ExtractFaces(scene_info["image"])
+      for i, face in enumerate(scene_info["faces"]):
+        scene_info["faces"][i]["bbox"] = face["location_info"]["facial_area"]
+        del scene_info["faces"][i]["location_info"]
     scenes[video_name][scene_num] = scene_info

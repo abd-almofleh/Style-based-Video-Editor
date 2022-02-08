@@ -1,5 +1,4 @@
 import os
-import tqdm
 import torch
 import subprocess
 import cv2
@@ -69,8 +68,8 @@ class SpeakerVisibilityDetection:
       bboxes = DET.detect_faces(imageNumpy, conf_th=0.9, scales=[SpeakerVisibilityDetection.facedetScale])
       dets.append([])
       for bbox in bboxes:
-        # dets has the frames info, bbox info, conf info
-        dets[-1].append({'frame': fidx, 'bbox': (bbox[:-1]).tolist(), 'conf': bbox[-1]})
+        # dets has the frames info, bbox info, conf (score) info
+        dets[-1].append({"frame": fidx, "path": fname, "bbox": (bbox[:-1]).tolist(), "score": bbox[-1]})
     return dets
 
   @staticmethod
@@ -241,6 +240,11 @@ class SpeakerVisibilityDetection:
 
     # Face detection for the video frames
     faces = self._inference_video()
+    res["faces"] = faces[index]
+    for i, face in enumerate(res['faces']):
+      res['faces'][i] = dict(face)
+      res['faces'][i]["bbox"] = numpy.array(res['faces'][i]["bbox"], numpy.int32).tolist()
+      del res['faces'][i]["frame"]
     if len(faces[0]) == 1:
       self.pyaviPath = os.path.join(self.savePath, 'pyavi')
       self.pycropPath = os.path.join(self.savePath, 'pycrop')
@@ -290,4 +294,6 @@ class SpeakerVisibilityDetection:
             less += 1
       score = max(final_scores)
       res["visible_speaker"] = {"speaking_frames_count": more, "silent_frames_count": less, "score": score}
+    else:
+      res["visible_speaker"] = -1
     return res
