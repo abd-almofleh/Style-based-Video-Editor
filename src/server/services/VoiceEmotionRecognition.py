@@ -8,17 +8,18 @@ class VoiceEmotion():
 
     deep_speaker = malaya_speech.emotion.deep_model(model ="deep-speaker",validate = False)
     vad = malaya_speech.vad.deep_model(model = 'vggvox-v2')
-    y, sr = malaya_speech.load(audio_path)
 
     def __init__(self) -> None:
         
-        selfdeep_speaker = malaya_speech.emotion.deep_model(model ="deep-speaker",validate = False)
+        self.deep_speaker = malaya_speech.emotion.deep_model(model ="deep-speaker",validate = False)
         self.vad = malaya_speech.vad.deep_model(model = 'vggvox-v2')        
 
-    y, sr = malaya_speech.load(audio_path)
 
-    def predict(self):
-        frames = list(malaya_speech.utils.generator.frames(self.y, 30,self.sr))
+    def predict(self,audio_path):
+
+        y, sr = malaya_speech.load(audio_path)
+
+        frames = list(malaya_speech.utils.generator.frames(y, 30,sr))
         p = Pipeline()
         pipeline = (
             p.batching(5)
@@ -40,3 +41,4 @@ class VoiceEmotion():
         result_deep_speaker.keys()
         samples_vad_deep_speaker = [(frame, result_deep_speaker['flatten'][no]) for no, frame in enumerate(samples_vad)]
         samples_vad_deep_speaker
+        return samples_vad_deep_speaker
