@@ -5,6 +5,9 @@ from .SpeechToText import SpeechToText
 from threading import Thread
 from .SpeakerVisibilityDetection import SpeakerVisibilityDetection
 from .RetinaFace import RetinaFace
+import cv2
+import os
+import uuid
 
 
 class SceneDetection:
@@ -52,4 +55,13 @@ class SceneDetection:
       for i, face in enumerate(scene_info["faces"]):
         scene_info["faces"][i]["bbox"] = face["location_info"]["facial_area"]
         del scene_info["faces"][i]["location_info"]
+        p = Path("./temp/thumbnails").joinpath("face[" + str(uuid.uuid4()).replace("-", "") + "].jpg")
+        scene_info["faces"][i]["path"] = str(p.absolute().resolve())
+
     scenes[video_name][scene_num] = scene_info
+    image = cv2.imread(scene_info["image"])
+    for face in scene_info["faces"]:
+      cv2.imwrite(face["path"],
+                  image[
+          face["bbox"][1]:face["bbox"][3],
+          face["bbox"][0]:face["bbox"][2]])
