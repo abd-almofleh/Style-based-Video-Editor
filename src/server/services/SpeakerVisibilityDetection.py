@@ -264,7 +264,7 @@ class SpeakerVisibilityDetection:
     subprocess.call(command, shell=True, stdout=None)
 
     # Extract the video frames
-    command = f"ffmpeg -y -i \"{self.videoFilePath}\" -qscale:v 2 -threads{SpeakerVisibilityDetection.nDataLoaderThread} -f image2 \"{self.pyframesPath}\" -loglevel panic" 
+    command = f"ffmpeg -y -i \"{self.videoFilePath}\" -qscale:v 2 -threads {SpeakerVisibilityDetection.nDataLoaderThread} -f image2 \"{self.pyframesPath}\" -loglevel panic"
     subprocess.call(command, shell=True, stdout=None)
 
     # Scene detection for the video frames
