@@ -34,19 +34,24 @@ warnings.filterwarnings("ignore")
 parser = argparse.ArgumentParser(
     description="TalkNet Demo or Columnbia ASD Evaluation")
 
-parser.add_argument('--videoName', type=str, default="1.aa", help='Demo video name')
-parser.add_argument('--videoFolder', type=str, default="E:\\Projects\\Style-based Video Editor\\src\\server\\temp\\scenes", help='Path for inputs, tmps and outputs')
-parser.add_argument('--pretrainModel', type=str, default="pretrain_TalkSet.model", help='Path for the pretrained TalkNet model')
+parser.add_argument('--videoName', type=str, default="a", help='Demo video name')
+parser.add_argument('--videoFolder', type=str, default="./",
+                    help='Path for inputs, tmps and outputs')
+parser.add_argument('--pretrainModel', type=str, default="pretrain_TalkSet.model",
+                    help='Path for the pretrained TalkNet model')
 
 parser.add_argument('--nDataLoaderThread', type=int, default=10, help='Number of workers')
-parser.add_argument('--facedetScale', type=float, default=0.25, help='Scale factor for face detection, the frames will be scale to 0.25 orig')
+parser.add_argument('--facedetScale', type=float, default=0.25,
+                    help='Scale factor for face detection, the frames will be scale to 0.25 orig')
 parser.add_argument('--minTrack', type=int, default=10, help='Number of min frames for each shot')
-parser.add_argument('--numFailedDet', type=int, default=10, help='Number of missed detections allowed before tracking is stopped')
+parser.add_argument('--numFailedDet', type=int, default=10,
+                    help='Number of missed detections allowed before tracking is stopped')
 parser.add_argument('--minFaceSize', type=int, default=1, help='Minimum face size in pixels')
 parser.add_argument('--cropScale', type=float, default=0.40, help='Scale bounding box')
 
 parser.add_argument('--start', type=int, default=0, help='The start time of the video')
-parser.add_argument('--duration', type=int, default=0, help='The duration of the video, when set as 0, will extract the whole video')
+parser.add_argument('--duration', type=int, default=0,
+                    help='The duration of the video, when set as 0, will extract the whole video')
 
 parser.add_argument('--evalCol', dest='evalCol', action='store_true', help='Evaluate on Columnbia dataset')
 parser.add_argument('--colSavePath', type=str, default="/data08/col", help='Path for inputs, tmps and outputs')
@@ -85,13 +90,13 @@ if args.evalCol == True:
     subprocess.call(cmd, shell=True, stdout=None)
     os.remove(args.videoFolder + '/col_labels.tar.gz')
 else:
-  args.videoPath = glob.glob(os.path.join(
-      args.videoFolder, args.videoName + '.*'))[0]
+  args.videoPath = glob.glob(os.path.join(args.videoFolder, args.videoName + '.*'))[0]
   args.savePath = os.path.join(args.videoFolder, args.videoName)
+
 
 def scene_detect(args):
   print(args.videoFilePath)
-  
+
   # CPU: Scene detection, output is the list of each shot's time duration
   videoManager = VideoManager([args.videoFilePath])
   statsManager = StatsManager()
@@ -482,6 +487,7 @@ def main():
   # Extract the video frames
   command = ("ffmpeg -y -i \"%s\" -qscale:v 2 -threads %d -f image2 \"%s\" -loglevel panic" %
              (args.videoFilePath, args.nDataLoaderThread, os.path.join(args.pyframesPath, '%06d.jpg')))
+  print(command)
   subprocess.call(command, shell=True, stdout=None)
   sys.stderr.write(time.strftime("%Y-%m-%d %H:%M:%S") +
                    " Extract the frames and save in %s \r\n" % (args.pyframesPath))
@@ -518,7 +524,7 @@ def main():
                    " Face Crop and saved in %s tracks \r\n" % args.pycropPath)
   fil = open(savePath, 'rb')
   vidTracks = pickle.load(fil)
-	
+
   # Active Speaker Detection by TalkNet
   files = glob.glob("%s/*.avi" % args.pycropPath)
   files.sort()
