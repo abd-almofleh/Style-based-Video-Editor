@@ -20,6 +20,8 @@ class SceneDetection:
 
   @staticmethod
   def extract_scenes(videos_paths):
+    SceneDetection.counter = 0
+
     scenes_times = SpeakerDiarisation.speaker_change_detection(videos_paths[0])
 
     scenes = dict()
@@ -49,7 +51,6 @@ class SceneDetection:
 
   @staticmethod
   def process_scene(scene_num, scenes, time, video_name, video_path):
-    SceneDetection.counter = 0
     scene_info = dict(time)
     scene_path = cut_video(video_path, time["start_time"], time["end_time"])
     scene_info["path"] = str(scene_path.absolute().resolve())
@@ -59,12 +60,15 @@ class SceneDetection:
     else:
       scene_info["visible_speaker"] = -1
       scene_info["image"] = get_frame_form_video(scene_path, time["length"] / 2)
-      scene_info["faces"] = RetinaFace.ExtractFaces(scene_info["image"])
-      for i, face in enumerate(scene_info["faces"]):
-        scene_info["faces"][i]["bbox"] = face["location_info"]["facial_area"]
-        del scene_info["faces"][i]["location_info"]
-        p = Path("./temp/thumbnails").joinpath("face[" + str(uuid.uuid4()).replace("-", "") + "].jpg")
-        scene_info["faces"][i]["path"] = str(p.absolute().resolve())
+
+    scene_info["faces"] = RetinaFace.ExtractFaces(scene_info["image"])
+    for i, face in enumerate(scene_info["faces"]):
+      scene_info["faces"][i]["bbox"] = face["location_info"]["facial_area"]
+      del scene_info["faces"][i]["location_info"]
+
+    for i, face in enumerate(scene_info["faces"]):
+      p = Path("./temp/thumbnails").joinpath("face[" + str(uuid.uuid4()).replace("-", "") + "].jpg")
+      scene_info["faces"][i]["path"] = str(p.absolute().resolve())
 
     scenes[video_name][scene_num] = scene_info
     image = cv2.imread(scene_info["image"])
@@ -76,6 +80,6 @@ class SceneDetection:
       face["emotion"] = list(analysis["emotion"].items())
       for i, emotion in enumerate(face["emotion"]):
         face["emotion"][i] = list(emotion)
-      with _lock:
-        SceneDetection.counter += 1
-        print(f"finish {SceneDetection.counter}/{len(scenes[video_name])*3}")
+    with _lock:
+      SceneDetection.counter += 1
+      print(f"finish {SceneDetection.counter}/{len(scenes[video_name])*3}")

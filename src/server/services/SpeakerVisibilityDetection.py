@@ -69,7 +69,7 @@ class SpeakerVisibilityDetection:
       dets.append([])
       for bbox in bboxes:
         # dets has the frames info, bbox info, conf (score) info
-        dets[-1].append({"frame": fidx, "path": fname, "bbox": (bbox[:-1]).tolist(), "score": bbox[-1]})
+        dets[-1].append({"frame": fidx, "bbox": (bbox[:-1]).tolist(), "score": bbox[-1]})
     return dets
 
   @staticmethod
@@ -240,10 +240,6 @@ class SpeakerVisibilityDetection:
     print("finish extracting frames " + str(len(images)))
     # Face detection for the video frames
     faces = self._inference_video()
-    res["faces"] = faces[index]
-    for i, face in enumerate(res['faces']):
-      res['faces'][i] = dict(face)
-      res['faces'][i]["bbox"] = numpy.array(res['faces'][i]["bbox"], numpy.int32).tolist()
     print("finish Detecting faces " + str(len(faces[0])))
 
     if len(faces[0]) == 1:
