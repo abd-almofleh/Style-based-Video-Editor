@@ -8,16 +8,16 @@ from deepface import DeepFace as DF
 
 
 class DeepFace:
-    models = ["VGG-Face", "Facenet", "Facenet512",
-              "OpenFace", "DeepFace", "DeepID", "ArcFace", "Dlib"]
-    metrics = ["cosine", "euclidean", "euclidean_l2"]
-    backends = ['opencv', 'ssd', 'dlib', 'mtcnn', 'retinaface']
+  models = ["VGG-Face", "Facenet", "Facenet512",
+            "OpenFace", "DeepFace", "DeepID", "ArcFace", "Dlib"]
+  metrics = ["cosine", "euclidean", "euclidean_l2"]
+  backends = ['opencv', 'ssd', 'dlib', 'mtcnn', 'retinaface']
 
-    def __init__(self) -> None:
-        pass
+  def __init__(self) -> None:
+    pass
 
-    @staticmethod
-    def AnalyzeFace(image):
-        result = DF.analyze(img_path=image, actions=[
-            'emotion', "age", "gender"], detector_backend=DeepFace.backends[4], prog_bar=False, enforce_detection=False)
-        return result
+  @staticmethod
+  def AnalyzeFace(image, actions=['emotion', "age", "gender"]):
+    result = DF.analyze(img_path=image, actions=actions,
+                        detector_backend=DeepFace.backends[2], prog_bar=False, enforce_detection=False)
+    return result
