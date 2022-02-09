@@ -346,7 +346,6 @@ namespace Style_based_Video_Editor_GUI.Windows
       {
         VideoPlayer.Source = new Uri(video.video.FullName);
         SceneInfoTab.Visibility = Visibility.Collapsed;
-        SceneTagsTab.Visibility = Visibility.Collapsed;
         PersonsImagesTab.Visibility = Visibility.Collapsed;
         ScriptTab.Visibility = Visibility.Collapsed;
         VideoInfoTab.IsSelected = true;
@@ -368,16 +367,14 @@ namespace Style_based_Video_Editor_GUI.Windows
         StartTime.Content = scene.StartTime.ToString(@"mm\:ss");
         EndTime.Content = scene.EndTime.ToString(@"mm\:ss");
         Length.Content = scene.length.TimeSpan.ToString(@"mm\:ss");
-        StartFrame.Content = scene.StartFrame.ToString();
-        EndFrame.Content = scene.EndFrame.ToString();
+        SpeakerVisable.Content = scene.SpeakerVisable.ToString();
+        SpeakerVisableScore.Content = scene.SpeakerVisableScore.ToString("0.00");
+        SilanceFrames.Content = scene.silent_frames_count.ToString("00");
+        SpeakingFrames.Content = scene.speaking_frames_count.ToString("00");
 
-        Tags.RowDefinitions.Clear();
-        Tags.Children.Clear();
         PersonsImages.Children.Clear();
         PersonsImages.ColumnDefinitions.Clear();
 
-        SceneTagsTab.Header = $"Scene Tags";
-        SceneTagsTab.Visibility = Visibility.Visible;
         PersonsImagesTab.Header = "Scene Persons";
         PersonsImagesTab.Visibility = Visibility.Visible;
 
@@ -386,97 +383,9 @@ namespace Style_based_Video_Editor_GUI.Windows
         else
           ShowSceneFaces(scene);
 
-        if (scene.Objects == null)
-          scene.DetectObjects(this);
-        else
-          showTags(scene);
       }
 
 
-    }
-    internal void showTags(Scene scene)
-    {
-      if (scene != SelectedVideo) return;
-
-
-      List<Structs.KeyScore> tags = scene.Objects;
-      if (tags == null)
-        return;
-      Tags.RowDefinitions.Clear();
-      Tags.Children.Clear();
-      SceneTagsTab.Header = $"Scene Tags ({tags.Count()} tags)";
-      SceneTagsTab.Visibility = Visibility.Visible;
-      RowDefinition row = new RowDefinition();
-      row.Height = new GridLength(25, GridUnitType.Pixel); ;
-      Tags.RowDefinitions.Add(row);
-
-      Label label = new Label
-      {
-        Content = "Tag",
-        HorizontalAlignment = HorizontalAlignment.Center,
-        VerticalAlignment = VerticalAlignment.Center,
-        FontSize = 14f,
-        FontWeight = FontWeights.Bold
-      };
-      Tags.Children.Add(label);
-
-      label = new Label
-      {
-        Content = "Score",
-        HorizontalAlignment = HorizontalAlignment.Center,
-        VerticalAlignment = VerticalAlignment.Center,
-        FontSize = 14f,
-        FontWeight = FontWeights.Bold
-
-      };
-      label.SetValue(Grid.ColumnProperty, 1);
-      Tags.Children.Add(label);
-
-      label = new Label
-      {
-        Content = "Count",
-        HorizontalAlignment = HorizontalAlignment.Center,
-        VerticalAlignment = VerticalAlignment.Center,
-        FontSize = 14f,
-        FontWeight = FontWeights.Bold
-
-      };
-      label.SetValue(Grid.ColumnProperty, 2);
-      Tags.Children.Add(label);
-
-
-      foreach (var tag in tags)
-      {
-        RowDefinition c = new RowDefinition();
-        c.Height = new GridLength(25, GridUnitType.Pixel); ;
-        Tags.RowDefinitions.Add(c);
-        Label key = new Label();
-        key.Content = tag.key;
-        key.HorizontalAlignment = HorizontalAlignment.Center;
-        key.VerticalAlignment = VerticalAlignment.Center;
-        key.FontSize = 14f;
-        key.SetValue(Grid.RowProperty, Tags.RowDefinitions.Count() - 1);
-        Tags.Children.Add(key);
-
-        Label value = new Label();
-        value.Content = tag.score.ToString("0.00");
-        value.HorizontalAlignment = HorizontalAlignment.Center;
-        value.VerticalAlignment = VerticalAlignment.Center;
-        value.FontSize = 14f;
-        value.SetValue(Grid.RowProperty, Tags.RowDefinitions.Count() - 1);
-        value.SetValue(Grid.ColumnProperty, 1);
-        Tags.Children.Add(value);
-
-        Label count = new Label();
-        count.Content = tag.ExtraValues["count"].ToString("0.00");
-        count.HorizontalAlignment = HorizontalAlignment.Center;
-        count.VerticalAlignment = VerticalAlignment.Center;
-        count.FontSize = 14f;
-        count.SetValue(Grid.RowProperty, Tags.RowDefinitions.Count() - 1);
-        count.SetValue(Grid.ColumnProperty, 2);
-        Tags.Children.Add(count);
-
-      }
     }
 
     internal void ShowSceneFaces(Scene scene)
@@ -556,44 +465,6 @@ namespace Style_based_Video_Editor_GUI.Windows
         label.VerticalAlignment = VerticalAlignment.Center;
         label.FontSize = 14f;
         label.SetValue(Grid.RowProperty, 1);
-        label.SetValue(Grid.ColumnProperty, 1);
-        grid.Children.Add(label);
-
-        // Age
-        label = new Label();
-        label.Content = "Age";
-        label.HorizontalAlignment = HorizontalAlignment.Center;
-        label.VerticalAlignment = VerticalAlignment.Center;
-        label.FontSize = 14f;
-        label.FontWeight = FontWeights.Bold;
-        label.SetValue(Grid.RowProperty, 2);
-        grid.Children.Add(label);
-
-        label = new Label();
-        label.Content = perosnImage.age;
-        label.HorizontalAlignment = HorizontalAlignment.Center;
-        label.VerticalAlignment = VerticalAlignment.Center;
-        label.FontSize = 14f;
-        label.SetValue(Grid.RowProperty, 2);
-        label.SetValue(Grid.ColumnProperty, 1);
-        grid.Children.Add(label);
-
-        // Age
-        label = new Label();
-        label.Content = "Gender";
-        label.HorizontalAlignment = HorizontalAlignment.Center;
-        label.VerticalAlignment = VerticalAlignment.Center;
-        label.FontSize = 14f;
-        label.FontWeight = FontWeights.Bold;
-        label.SetValue(Grid.RowProperty, 3);
-        grid.Children.Add(label);
-
-        label = new Label();
-        label.Content = perosnImage.gender;
-        label.HorizontalAlignment = HorizontalAlignment.Center;
-        label.VerticalAlignment = VerticalAlignment.Center;
-        label.FontSize = 14f;
-        label.SetValue(Grid.RowProperty, 3);
         label.SetValue(Grid.ColumnProperty, 1);
         grid.Children.Add(label);
 

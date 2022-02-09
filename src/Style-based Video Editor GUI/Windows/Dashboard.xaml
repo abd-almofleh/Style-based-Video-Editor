@@ -103,6 +103,8 @@
                                                     <RowDefinition Height="25"/>
                                                     <RowDefinition Height="25"/>
                                                     <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="25"/>
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition />
@@ -121,31 +123,23 @@
                                                 <Label Content="Length" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="3"/>
                                                 <Label x:Name="Length" Content="#Length" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="3"/>
 
-                                                <Label Content="Start Frame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="4"/>
-                                                <Label x:Name="StartFrame" Content="#StartFrame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="4"/>
+                                                <Label Content="Speaker Visable" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="4"/>
+                                                <Label x:Name="SpeakerVisable" Content="#StartFrame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="4"/>
 
-                                                <Label Content="End Frame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="5"/>
-                                                <Label x:Name="EndFrame" Content="#EndFrame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="5"/>
+                                                <Label Content="Speaker Visable Score" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="5"/>
+                                                <Label x:Name="SpeakerVisableScore" Content="#StartFrame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="5"/>
+
+                                                <Label Content="Number of silance frames" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="6"/>
+                                                <Label x:Name="SilanceFrames" Content="#EndFrame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="6"/>
+
+                                                <Label Content="Number of speaking frames" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Row="7"/>
+                                                <Label x:Name="SpeakingFrames" Content="#EndFrame" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Grid.Column="1" Grid.Row="7"/>
 
                                             </Grid>
                                         </ScrollViewer>
 
                                     </TabItem>
-                                    <TabItem x:Name="SceneTagsTab" Header="Scene Tags" Visibility="Collapsed">
-                                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="auto">
-                                            <Grid x:Name="Tags" ShowGridLines="True" >
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="25"/>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                </Grid.ColumnDefinitions>
-                                            </Grid>
-                                        </ScrollViewer>
-
-                                    </TabItem>
+                         
                                     <TabItem x:Name="PersonsImagesTab" Header="Scene Persons" Visibility="Collapsed">
                                         <ScrollViewer HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="auto">
                                             <Grid x:Name="PersonsImages" ShowGridLines="True" >

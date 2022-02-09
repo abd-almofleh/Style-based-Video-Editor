@@ -87,7 +87,7 @@ namespace Style_based_Video_Editor_GUI.Classes
     public static SceneInfo GenerateScenes(View [] views)
     {
       RestRequest request = new RestRequest(GenerateScenesRoute, DataFormat.Json);
-      request.Timeout = 10 * 60 * 1000;
+      request.Timeout = 100 * 60 * 1000;
       foreach(View v in views)
         request.AddParameter("paths", v.video.FullName);
 
@@ -109,8 +109,7 @@ namespace Style_based_Video_Editor_GUI.Classes
       for (int i = 0; i < scriptsObjects.Count; i++)
       {
         string ArabicText = (string)scriptsObjects[i].arabic_text;
-        double score = (double)scriptsObjects[i]
-          .confidence;
+        double score = (double)scriptsObjects[i].confidence;
         scripts[i] = new Script(ArabicText, score);
       }
 
@@ -133,8 +132,45 @@ namespace Style_based_Video_Editor_GUI.Classes
           string image = (string)viewInfo.image;
           TimeSpan timeOfStart = new TimeSpan(0, 0, 0, (int)startTime, (int)(startTime % (int)startTime) * 1000);
           TimeSpan timeOfEnd = new TimeSpan(0, 0, 0, (int)endTime, (int)(endTime % (int)endTime) * 1000);
+
           Scene s = new Scene(view, path, image, startTime, endTime,scripts[j]);
           all[i].Add(s);
+          if (viewInfo.visible_speaker != null)
+          {
+            if ((viewInfo.visible_speaker as JObject) != null)
+            {
+              s.SpeakerVisable = true;
+              s.speaking_frames_count = (uint) viewInfo.visible_speaker.speaking_frames_count;
+              s.silent_frames_count = (uint)viewInfo.visible_speaker.silent_frames_count;
+              s.SpeakerVisableScore = (double) viewInfo.visible_speaker.score;
+              s.SpeakerVisable = s.SpeakerVisableScore > 0 ? true: false;
+
+            }
+            else
+              s.SpeakerVisable = false;
+
+          }
+          else
+            s.SpeakerVisable = false;
+
+
+    dynamic faces = viewInfo.faces;
+          if (faces == null) return null;
+          List<PersonImage> personImages = new List<PersonImage>(faces.Count);
+          foreach (dynamic face in faces)
+          {
+            Structs.KeyScore[] emotion = new Structs.KeyScore[face.emotion.Count];
+            for (int k = 0; k < face.emotion.Count; k++)
+              emotion[k] = new Structs.KeyScore((string)face.emotion[k][0], (double)face.emotion[k][1]);
+
+            int[] bbox = Helper.GatArray<int>(face.bbox);
+
+
+            PersonImage p = new PersonImage((string)face.path, (double)face.score, (string)face.dominant_emotion, emotion, bbox); ;
+            personImages.Add(p);
+
+          }
+          s.personImages = personImages;
         }
       }
 

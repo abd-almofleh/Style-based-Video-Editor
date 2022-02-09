@@ -31,6 +31,12 @@ namespace Style_based_Video_Editor_GUI.Classes
     public FileInfo Image { get => image; }
     public View OriginalVideo { get => originalVideo; }
 
+    public bool SpeakerVisable;
+
+    public uint speaking_frames_count;
+    public uint silent_frames_count;
+    public double SpeakerVisableScore;
+
     internal List<Structs.KeyScore> Objects;
     internal List<Person> Persons;
     internal List<PersonImage> personImages; 
@@ -61,22 +67,6 @@ namespace Style_based_Video_Editor_GUI.Classes
       this.startTime = GetVideoLength(startTime).TimeSpan;
       this.endTime = GetVideoLength(endTime).TimeSpan;
       this.script = script;
-    }
-
-    public void DetectObjects(Windows.Dashboard window)
-    {
-      Scene that = this;
-
-      Thread t = new Thread(() =>
-      {
-        Objects = Web.DetectObjects(Image.FullName);
-        window.Dispatcher.Invoke(() =>
-        {
-          window.showTags(that);
-        });
-      });
-      t.IsBackground = true;
-      t.Start();
     }
 
     public void DetectPersons(Windows.Dashboard window)
