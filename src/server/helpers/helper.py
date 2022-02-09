@@ -19,7 +19,7 @@ def extract_wav_from_video(video_path, output_folder_name=""):
       "video_path": str(video.absolute().resolve()),
       "wav_path": str(output_file.absolute().resolve())
   }
-  command = 'ffmpeg -i "%(video_path)s" -loglevel quiet -ab 160k -ac 2 -ar 44100 -vn "%(wav_path)s"' % paths
+  command = 'ffmpeg -i "%(video_path)s" -loglevel quiet -ab 160k -threads 10 -ac 2 -ar 44100 -vn "%(wav_path)s"' % paths
   subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   return output_file
 
@@ -38,7 +38,7 @@ def cut_video(video_path, start_time, end_time, output_folder_name=""):
       "end_time": end_time
 
   }
-  command = 'ffmpeg -i "%(video_path)s" -ss %(start_time)s -loglevel quiet -c copy -to %(end_time)s "%(cuted_video_path)s"' % paths
+  command = 'ffmpeg -i "%(video_path)s" -ss %(start_time)s -loglevel quiet -threads 10  -c copy -to %(end_time)s "%(cuted_video_path)s"' % paths
   subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
   return output_file
@@ -59,7 +59,7 @@ def get_frame_form_video(video_path, second=1, output_folder_name=""):
       "tn[" + str(uuid.uuid4()).replace("-", "") + "].jpg").absolute().resolve())
   video = Path(video_path)
   video_path = str(video.absolute().resolve())
-  command = f"ffmpeg -i \"{video_path}\" -ss {second} -vframes 1 -f image2 -vcodec mjpeg \"{output_path}\" -y"
+  command = f"ffmpeg -i \"{video_path}\" -ss {second} -vframes 1 -threads 10  -f image2 -vcodec mjpeg \"{output_path}\" -y"
   subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   return output_path
 
@@ -75,6 +75,6 @@ def extract_mp3_from_video(video_path, output_folder_name=""):
       "video_path": str(video.absolute().resolve()),
       "wav_path": str(output_file.absolute().resolve())
   }
-  command = 'ffmpeg -i "%(video_path)s" -q:a 0 -map a "%(wav_path)s"' % paths
+  command = 'ffmpeg -i "%(video_path)s" -q:a 0 -map a -threads 10  "%(wav_path)s"' % paths
   subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   return output_file

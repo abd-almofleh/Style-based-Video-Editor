@@ -6,12 +6,14 @@ from threading import Thread
 from .SpeakerVisibilityDetection import SpeakerVisibilityDetection
 from .RetinaFace import RetinaFace
 import cv2
-import os
 import uuid
 from .DeepFace import DeepFace
+from threading import Lock
+_lock = Lock()
 
 
 class SceneDetection:
+  counter = 0
 
   def __init__(self) -> None:
     pass
@@ -32,6 +34,10 @@ class SceneDetection:
                    args=(i, scenes, time, video_name, video_path), daemon=True)
         threads.append(x)
         x.start()
+        if len(threads) >= 5:
+          for thread in threads:
+            thread.join()
+          threads.clear()
 
     recognizer = SpeechToText()
     result = recognizer.arabic_speech_recognition(videos_paths[0])
@@ -43,6 +49,7 @@ class SceneDetection:
 
   @staticmethod
   def process_scene(scene_num, scenes, time, video_name, video_path):
+    SceneDetection.counter = 0
     scene_info = dict(time)
     scene_path = cut_video(video_path, time["start_time"], time["end_time"])
     scene_info["path"] = str(scene_path.absolute().resolve())
@@ -62,8 +69,13 @@ class SceneDetection:
     scenes[video_name][scene_num] = scene_info
     image = cv2.imread(scene_info["image"])
     for face in scene_info["faces"]:
-      face_image = image[face["bbox"][1]:face["bbox"][3], face["bbox"][0]:face["bbox"][2]]
+      face_image = image[face["bbox"][1]: face["bbox"][3], face["bbox"][0]: face["bbox"][2]]
       cv2.imwrite(face["path"], face_image)
       analysis = DeepFace.AnalyzeFace(face_image, actions=['emotion'])
       face["dominant_emotion"] = analysis["dominant_emotion"]
       face["emotion"] = list(analysis["emotion"].items())
+      for i, emotion in enumerate(face["emotion"]):
+        face["emotion"][i] = list(emotion)
+      with _lock:
+        SceneDetection.counter += 1
+        print(f"finish {SceneDetection.counter}/{len(scenes[video_name])*3}")

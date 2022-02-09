@@ -237,14 +237,15 @@ class SpeakerVisibilityDetection:
     images = list(map(lambda x: str(x), list(Path(self.pyframesPath).glob("*.jpg"))))
     index = int(len(images) / 2)
     res["image"] = images[index]
-
+    print("finish extracting frames " + str(len(images)))
     # Face detection for the video frames
     faces = self._inference_video()
     res["faces"] = faces[index]
     for i, face in enumerate(res['faces']):
       res['faces'][i] = dict(face)
       res['faces'][i]["bbox"] = numpy.array(res['faces'][i]["bbox"], numpy.int32).tolist()
-      del res['faces'][i]["frame"]
+    print("finish Detecting faces " + str(len(faces[0])))
+
     if len(faces[0]) == 1:
       self.pyaviPath = os.path.join(self.savePath, 'pyavi')
       self.pycropPath = os.path.join(self.savePath, 'pycrop')
@@ -259,6 +260,7 @@ class SpeakerVisibilityDetection:
       self.audioFilePath = os.path.join(self.pyaviPath, 'audio.wav')
       command = f"ffmpeg -y -i \"{self.videoPath}\" -qscale:a 0 -ac 1 -vn -threads {SpeakerVisibilityDetection.nDataLoaderThread} -ar 16000 \"{self.audioFilePath}\" -loglevel panic"
       subprocess.call(command, shell=True, stdout=None)
+      print("finish Extract audio ")
 
       # Face tracking
       allTracks = SpeakerVisibilityDetection._track_shot(faces)
@@ -266,11 +268,13 @@ class SpeakerVisibilityDetection:
       vidTracks = []
       for ii, track in enumerate(allTracks):
         vidTracks.append(self._crop_video(track, os.path.join(self.pycropPath, '%05d' % ii)))
+      print("finish Face clips cropping ")
 
       # Active Speaker Detection by TalkNet
       files = list(map(lambda x: str(x), list(Path(self.pycropPath).glob("*.avi"))))
       files.sort()
       scores = self._evaluate_network(files)
+      print("finish _evaluate_network ")
 
       flist = list(map(lambda x: str(x), list(Path(self.pyframesPath).glob("*.jpg"))))
       flist.sort()
@@ -296,4 +300,6 @@ class SpeakerVisibilityDetection:
       res["visible_speaker"] = {"speaking_frames_count": more, "silent_frames_count": less, "score": score}
     else:
       res["visible_speaker"] = -1
+    print("finish")
+
     return res
