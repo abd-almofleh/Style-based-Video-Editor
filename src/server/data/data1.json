@@ -1,0 +1,3121 @@
+{
+  "Center_24": [
+    {
+      "speaker": -1,
+      "start_time": 0,
+      "end_time": 1.53,
+      "length": 1.53,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[0c238dba34c24f6e8f60e6308738e500].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[df813aa8ce1d4399a688f48cfe76055e].jpg",
+      "faces": [
+        {
+          "score": 0.9991610050201416,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[d529336c6e96451d889f08021c49860c].jpg",
+          "bbox": [
+            363,
+            187,
+            454,
+            325
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.8067337796092033
+            ],
+            [
+              "disgust",
+              1.8435159648833022e-9
+            ],
+            [
+              "fear",
+              3.367098793387413
+            ],
+            [
+              "happy",
+              0.0024152783225872554
+            ],
+            [
+              "sad",
+              15.366920828819275
+            ],
+            [
+              "surprise",
+              0.00004605247170275106
+            ],
+            [
+              "neutral",
+              80.45678734779358
+            ]
+          ]
+        },
+        {
+          "score": 0.9991393089294434,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[03fbda2d48f0417bbb09f8041d2db7d3].jpg",
+          "bbox": [
+            1423,
+            144,
+            1511,
+            275
+          ],
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.17599434243853943
+            ],
+            [
+              "disgust",
+              0.000001884911184019565
+            ],
+            [
+              "fear",
+              0.09479873680241327
+            ],
+            [
+              "happy",
+              3.056373336738132e-7
+            ],
+            [
+              "sad",
+              99.72042439701703
+            ],
+            [
+              "surprise",
+              2.2458451368866291e-10
+            ],
+            [
+              "neutral",
+              0.00878041007620864
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 0,
+      "start_time": 1.53,
+      "end_time": 2.94,
+      "length": 1.41,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[1fc6a28491964d79beee34b6632ae517].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[1fc6a28491964d79beee34b6632ae517]\\pyframes\\000018.jpg",
+      "faces": [
+        {
+          "frame": 17,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[1fc6a28491964d79beee34b6632ae517]\\pyframes\\000018.jpg",
+          "bbox": [
+            360,
+            194,
+            456,
+            323
+          ],
+          "score": 0.999461829662323,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.05185935879126191
+            ],
+            [
+              "disgust",
+              2.786490114169149e-11
+            ],
+            [
+              "fear",
+              0.2961306367069483
+            ],
+            [
+              "happy",
+              0.0012779721146216616
+            ],
+            [
+              "sad",
+              0.310212024487555
+            ],
+            [
+              "surprise",
+              0.0002229784968221793
+            ],
+            [
+              "neutral",
+              99.34030175209045
+            ]
+          ]
+        },
+        {
+          "frame": 17,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[1fc6a28491964d79beee34b6632ae517]\\pyframes\\000018.jpg",
+          "bbox": [
+            1426,
+            134,
+            1522,
+            266
+          ],
+          "score": 0.9991648197174072,
+          "dominant_emotion": "happy",
+          "emotion": [
+            [
+              "angry",
+              0.1060295500792563
+            ],
+            [
+              "disgust",
+              0.012019655696349218
+            ],
+            [
+              "fear",
+              1.591380126774311
+            ],
+            [
+              "happy",
+              76.40632390975952
+            ],
+            [
+              "sad",
+              21.875078976154327
+            ],
+            [
+              "surprise",
+              0.00007777098289807327
+            ],
+            [
+              "neutral",
+              0.009089557715924457
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": 1,
+      "start_time": 2.94,
+      "end_time": 6.39,
+      "length": 3.45,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[a4c72e54487c4b18afdcf412a31eb39e].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[a4c72e54487c4b18afdcf412a31eb39e]\\pyframes\\000044.jpg",
+      "faces": [
+        {
+          "frame": 43,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[a4c72e54487c4b18afdcf412a31eb39e]\\pyframes\\000044.jpg",
+          "bbox": [
+            340,
+            156,
+            434,
+            293
+          ],
+          "score": 0.9995520710945129,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.0018884132475787288
+            ],
+            [
+              "disgust",
+              1.7929924441052332e-23
+            ],
+            [
+              "fear",
+              0.0000036397599994054977
+            ],
+            [
+              "happy",
+              4.306475680347258e-12
+            ],
+            [
+              "sad",
+              0.9311798583674347
+            ],
+            [
+              "surprise",
+              5.951934433144771e-13
+            ],
+            [
+              "neutral",
+              99.06693095367736
+            ]
+          ]
+        },
+        {
+          "frame": 43,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[a4c72e54487c4b18afdcf412a31eb39e]\\pyframes\\000044.jpg",
+          "bbox": [
+            1423,
+            143,
+            1516,
+            276
+          ],
+          "score": 0.999108612537384,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.014618484419770539
+            ],
+            [
+              "disgust",
+              1.8622252628830438e-7
+            ],
+            [
+              "fear",
+              0.03823165607172996
+            ],
+            [
+              "happy",
+              1.2263463855521906e-8
+            ],
+            [
+              "sad",
+              99.94509816169739
+            ],
+            [
+              "surprise",
+              4.031273199370938e-11
+            ],
+            [
+              "neutral",
+              0.002053968455584254
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": 0,
+      "start_time": 6.39,
+      "end_time": 7.83,
+      "length": 1.44,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[fb47f9913c424340b97636c4dc018449].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[fb47f9913c424340b97636c4dc018449]\\pyframes\\000018.jpg",
+      "faces": [
+        {
+          "frame": 17,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[fb47f9913c424340b97636c4dc018449]\\pyframes\\000018.jpg",
+          "bbox": [
+            360,
+            192,
+            454,
+            320
+          ],
+          "score": 0.9993448853492737,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.05210882518440485
+            ],
+            [
+              "disgust",
+              3.879343027368698e-10
+            ],
+            [
+              "fear",
+              1.8395552411675453
+            ],
+            [
+              "happy",
+              0.01365399657515809
+            ],
+            [
+              "sad",
+              1.0137551464140415
+            ],
+            [
+              "surprise",
+              0.0017140464478870854
+            ],
+            [
+              "neutral",
+              97.07921147346497
+            ]
+          ]
+        },
+        {
+          "frame": 17,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[fb47f9913c424340b97636c4dc018449]\\pyframes\\000018.jpg",
+          "bbox": [
+            1427,
+            130,
+            1525,
+            263
+          ],
+          "score": 0.9988940358161926,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.1531338876118593
+            ],
+            [
+              "disgust",
+              0.01392168716153873
+            ],
+            [
+              "fear",
+              17.70094887619906
+            ],
+            [
+              "happy",
+              26.196257841364016
+            ],
+            [
+              "sad",
+              53.48046740773126
+            ],
+            [
+              "surprise",
+              0.014853757760152683
+            ],
+            [
+              "neutral",
+              2.440418262208597
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": 1,
+      "start_time": 7.83,
+      "end_time": 11.28,
+      "length": 3.45,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[f337acd2c17a457b8099613d92116293].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[f337acd2c17a457b8099613d92116293]\\pyframes\\000043.jpg",
+      "faces": [
+        {
+          "frame": 42,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[f337acd2c17a457b8099613d92116293]\\pyframes\\000043.jpg",
+          "bbox": [
+            350,
+            173,
+            443,
+            308
+          ],
+          "score": 0.9994966983795166,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.003993540303781629
+            ],
+            [
+              "disgust",
+              1.3068850862388504e-19
+            ],
+            [
+              "fear",
+              0.004925911343889311
+            ],
+            [
+              "happy",
+              4.607984566834533e-10
+            ],
+            [
+              "sad",
+              3.3381376415491104
+            ],
+            [
+              "surprise",
+              3.8894533210473425e-11
+            ],
+            [
+              "neutral",
+              96.65294885635376
+            ]
+          ]
+        },
+        {
+          "frame": 42,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[f337acd2c17a457b8099613d92116293]\\pyframes\\000043.jpg",
+          "bbox": [
+            1424,
+            134,
+            1521,
+            269
+          ],
+          "score": 0.9992225170135498,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              5.707710203987968
+            ],
+            [
+              "disgust",
+              0.19886303947049613
+            ],
+            [
+              "fear",
+              10.469229398323858
+            ],
+            [
+              "happy",
+              18.97362434706833
+            ],
+            [
+              "sad",
+              60.87106829113175
+            ],
+            [
+              "surprise",
+              0.028349277506911904
+            ],
+            [
+              "neutral",
+              3.7511574477647214
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": 0,
+      "start_time": 11.28,
+      "end_time": 13.32,
+      "length": 2.04,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[1c51547d80da4905a77a838c23a6ad56].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[1c51547d80da4905a77a838c23a6ad56]\\pyframes\\000026.jpg",
+      "faces": [
+        {
+          "frame": 25,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[1c51547d80da4905a77a838c23a6ad56]\\pyframes\\000026.jpg",
+          "bbox": [
+            340,
+            157,
+            434,
+            296
+          ],
+          "score": 0.9996111989021301,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.4182287026196718
+            ],
+            [
+              "disgust",
+              1.9479474768358261e-16
+            ],
+            [
+              "fear",
+              0.18923371098935604
+            ],
+            [
+              "happy",
+              5.923728868539868e-9
+            ],
+            [
+              "sad",
+              1.237715594470501
+            ],
+            [
+              "surprise",
+              3.8834710447410714e-8
+            ],
+            [
+              "neutral",
+              98.15481901168823
+            ]
+          ]
+        },
+        {
+          "frame": 25,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[1c51547d80da4905a77a838c23a6ad56]\\pyframes\\000026.jpg",
+          "bbox": [
+            1414,
+            144,
+            1506,
+            280
+          ],
+          "score": 0.998842179775238,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.17147620674222708
+            ],
+            [
+              "disgust",
+              1.4008830762080038e-7
+            ],
+            [
+              "fear",
+              0.11024766135960817
+            ],
+            [
+              "happy",
+              6.425244225560789e-8
+            ],
+            [
+              "sad",
+              99.64801669120789
+            ],
+            [
+              "surprise",
+              5.554940188390312e-10
+            ],
+            [
+              "neutral",
+              0.0702632765751332
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": 1,
+      "start_time": 13.32,
+      "end_time": 17.1,
+      "length": 3.78,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[0bc64dfa3aee47d996ba94d5aafd73d3].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[0bc64dfa3aee47d996ba94d5aafd73d3]\\pyframes\\000047.jpg",
+      "faces": [
+        {
+          "frame": 46,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[0bc64dfa3aee47d996ba94d5aafd73d3]\\pyframes\\000047.jpg",
+          "bbox": [
+            361,
+            191,
+            456,
+            320
+          ],
+          "score": 0.9994598031044006,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.04048346699505693
+            ],
+            [
+              "disgust",
+              1.8342315755713704e-8
+            ],
+            [
+              "fear",
+              19.474514487443628
+            ],
+            [
+              "happy",
+              0.1928775690604664
+            ],
+            [
+              "sad",
+              1.2467419173727134
+            ],
+            [
+              "surprise",
+              0.013790359473632637
+            ],
+            [
+              "neutral",
+              79.03158914666305
+            ]
+          ]
+        },
+        {
+          "frame": 46,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[0bc64dfa3aee47d996ba94d5aafd73d3]\\pyframes\\000047.jpg",
+          "bbox": [
+            1430,
+            137,
+            1523,
+            269
+          ],
+          "score": 0.9992194175720215,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.0017913207557285205
+            ],
+            [
+              "disgust",
+              1.640700686422747e-7
+            ],
+            [
+              "fear",
+              0.06748817977495492
+            ],
+            [
+              "happy",
+              0.000001081764366972493
+            ],
+            [
+              "sad",
+              99.92062449455261
+            ],
+            [
+              "surprise",
+              2.223182358693232e-10
+            ],
+            [
+              "neutral",
+              0.010098098573507741
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": -1,
+      "start_time": 17.1,
+      "end_time": 18.18,
+      "length": 1.08,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[0c10034442e14492b26436b9994ccd6b].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[7a833a1cdeda42909eeac1e9f9a211d6].jpg",
+      "faces": [
+        {
+          "score": 0.9992307424545288,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[52bffc1ad6dc4480ad6714b38f860fa0].jpg",
+          "bbox": [
+            333,
+            148,
+            430,
+            297
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              1.9894842058420181
+            ],
+            [
+              "disgust",
+              4.002807055227396e-15
+            ],
+            [
+              "fear",
+              0.002994530768773984
+            ],
+            [
+              "happy",
+              2.923485412087423e-9
+            ],
+            [
+              "sad",
+              3.1595509499311447
+            ],
+            [
+              "surprise",
+              2.3654887076896003e-9
+            ],
+            [
+              "neutral",
+              94.847971200943
+            ]
+          ]
+        },
+        {
+          "score": 0.9987751841545105,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[56f09a523bbd499796ba5f8f061aa254].jpg",
+          "bbox": [
+            1423,
+            132,
+            1514,
+            271
+          ],
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              1.8484663218259811
+            ],
+            [
+              "disgust",
+              0.000010400902539231538
+            ],
+            [
+              "fear",
+              0.7566493935883045
+            ],
+            [
+              "happy",
+              0.30847073066979647
+            ],
+            [
+              "sad",
+              56.465935707092285
+            ],
+            [
+              "surprise",
+              0.000022046971537292848
+            ],
+            [
+              "neutral",
+              40.6204491853714
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 18.18,
+      "end_time": 26.94,
+      "length": 8.76,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[a4e832023d2242a4a69fe7ae25e83684].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[a4e832023d2242a4a69fe7ae25e83684]\\pyframes\\000106.jpg",
+      "faces": [
+        {
+          "frame": 105,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[a4e832023d2242a4a69fe7ae25e83684]\\pyframes\\000106.jpg",
+          "bbox": [
+            335,
+            157,
+            428,
+            298
+          ],
+          "score": 0.9995177984237671,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.00040401787104617107
+            ],
+            [
+              "disgust",
+              1.332950438603513e-22
+            ],
+            [
+              "fear",
+              0.0001016450248036411
+            ],
+            [
+              "happy",
+              2.979049984616004e-9
+            ],
+            [
+              "sad",
+              0.022361299733401868
+            ],
+            [
+              "surprise",
+              4.963521189389442e-10
+            ],
+            [
+              "neutral",
+              99.97712970052604
+            ]
+          ]
+        },
+        {
+          "frame": 105,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[a4e832023d2242a4a69fe7ae25e83684]\\pyframes\\000106.jpg",
+          "bbox": [
+            1428,
+            137,
+            1520,
+            272
+          ],
+          "score": 0.9991511106491089,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.006792762078785846
+            ],
+            [
+              "disgust",
+              3.199682900371465e-7
+            ],
+            [
+              "fear",
+              0.02738075599049848
+            ],
+            [
+              "happy",
+              0.0000055046107572710215
+            ],
+            [
+              "sad",
+              99.91086124311224
+            ],
+            [
+              "surprise",
+              8.886481499746562e-9
+            ],
+            [
+              "neutral",
+              0.05496189769834551
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": 0,
+      "start_time": 26.94,
+      "end_time": 29.7,
+      "length": 2.76,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[b7034381acc547d48375dec31bdfb74d].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[b7034381acc547d48375dec31bdfb74d]\\pyframes\\000036.jpg",
+      "faces": [
+        {
+          "frame": 35,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[b7034381acc547d48375dec31bdfb74d]\\pyframes\\000036.jpg",
+          "bbox": [
+            330,
+            152,
+            421,
+            287
+          ],
+          "score": 0.9994416832923889,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.3463706181714676
+            ],
+            [
+              "disgust",
+              5.233570097691192e-18
+            ],
+            [
+              "fear",
+              0.0003249276620307851
+            ],
+            [
+              "happy",
+              6.581544254522434e-10
+            ],
+            [
+              "sad",
+              4.438610158993025
+            ],
+            [
+              "surprise",
+              2.716736664959283e-10
+            ],
+            [
+              "neutral",
+              95.21469416793515
+            ]
+          ]
+        },
+        {
+          "frame": 35,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[b7034381acc547d48375dec31bdfb74d]\\pyframes\\000036.jpg",
+          "bbox": [
+            1424,
+            126,
+            1523,
+            264
+          ],
+          "score": 0.9987812638282776,
+          "dominant_emotion": "angry",
+          "emotion": [
+            [
+              "angry",
+              48.115718364715576
+            ],
+            [
+              "disgust",
+              0.000031054079840941995
+            ],
+            [
+              "fear",
+              0.2808294491842389
+            ],
+            [
+              "happy",
+              2.729075960814953
+            ],
+            [
+              "sad",
+              4.380635917186737
+            ],
+            [
+              "surprise",
+              0.007012321293586865
+            ],
+            [
+              "neutral",
+              44.48670744895935
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": -1,
+      "start_time": 29.7,
+      "end_time": 34.14,
+      "length": 4.44,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[c3bdcc8f1d5c405b802561d002e4e381].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[c4b73624aa704ff5bb26ac11c84552bd].jpg",
+      "faces": [
+        {
+          "score": 0.9993804693222046,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[2a8d9b7dff9b468180241abe2eae122b].jpg",
+          "bbox": [
+            334,
+            162,
+            431,
+            307
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.000008019084418720013
+            ],
+            [
+              "disgust",
+              5.87258905463359e-20
+            ],
+            [
+              "fear",
+              8.551091501551866e-8
+            ],
+            [
+              "happy",
+              3.1929951846594584e-11
+            ],
+            [
+              "sad",
+              31.713950634002686
+            ],
+            [
+              "surprise",
+              5.349076864576137e-26
+            ],
+            [
+              "neutral",
+              68.28604340553284
+            ]
+          ]
+        },
+        {
+          "score": 0.9988154172897339,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[08a394c5b5724a18a36351c6b75a37e4].jpg",
+          "bbox": [
+            1422,
+            138,
+            1509,
+            270
+          ],
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.00046045233830227517
+            ],
+            [
+              "disgust",
+              8.153437126845464e-10
+            ],
+            [
+              "fear",
+              0.022228107263799757
+            ],
+            [
+              "happy",
+              7.164986937091555e-8
+            ],
+            [
+              "sad",
+              99.97594952583313
+            ],
+            [
+              "surprise",
+              3.641046001485147e-12
+            ],
+            [
+              "neutral",
+              0.0013575587217928842
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 34.14,
+      "end_time": 37.02,
+      "length": 2.88,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[c33a5c274cdf435197427a17b7bf23cc].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[c33a5c274cdf435197427a17b7bf23cc]\\pyframes\\000037.jpg",
+      "faces": [
+        {
+          "frame": 36,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[c33a5c274cdf435197427a17b7bf23cc]\\pyframes\\000037.jpg",
+          "bbox": [
+            338,
+            180,
+            431,
+            316
+          ],
+          "score": 0.9993957281112671,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.00017323045331582942
+            ],
+            [
+              "disgust",
+              2.7804174136771023e-15
+            ],
+            [
+              "fear",
+              0.0038091701747139752
+            ],
+            [
+              "happy",
+              0.00009952628992788038
+            ],
+            [
+              "sad",
+              0.03554560085743378
+            ],
+            [
+              "surprise",
+              0.000030263908767438852
+            ],
+            [
+              "neutral",
+              99.96034502510369
+            ]
+          ]
+        },
+        {
+          "frame": 36,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[c33a5c274cdf435197427a17b7bf23cc]\\pyframes\\000037.jpg",
+          "bbox": [
+            1433,
+            126,
+            1528,
+            262
+          ],
+          "score": 0.998654842376709,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.10478011014698622
+            ],
+            [
+              "disgust",
+              0.0007010627615366518
+            ],
+            [
+              "fear",
+              0.19143448490312875
+            ],
+            [
+              "happy",
+              0.00007397347558630701
+            ],
+            [
+              "sad",
+              99.69943765408544
+            ],
+            [
+              "surprise",
+              0.000001079882454622654
+            ],
+            [
+              "neutral",
+              0.0035707496244637743
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": -1,
+      "start_time": 37.02,
+      "end_time": 39.24,
+      "length": 2.22,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[7e748e0c675b482f95af0f6d3dff504c].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[363f600a26674225b411eb12a444cb05].jpg",
+      "faces": [
+        {
+          "score": 0.9996299743652344,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[f6c056803efe464a8c7405317028384c].jpg",
+          "bbox": [
+            258,
+            129,
+            367,
+            243
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              1.0151860304176807
+            ],
+            [
+              "disgust",
+              4.7234321353317385e-12
+            ],
+            [
+              "fear",
+              0.002059678445220925
+            ],
+            [
+              "happy",
+              0.010706928878789768
+            ],
+            [
+              "sad",
+              0.05453216144815087
+            ],
+            [
+              "surprise",
+              0.000029722596650572086
+            ],
+            [
+              "neutral",
+              98.91748428344727
+            ]
+          ]
+        },
+        {
+          "score": 0.9907970428466797,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[9e7e76bda2aa45c8bf2fca245cf7fed3].jpg",
+          "bbox": [
+            1402,
+            150,
+            1481,
+            286
+          ],
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.00013900477971202894
+            ],
+            [
+              "disgust",
+              2.5943547360604385e-11
+            ],
+            [
+              "fear",
+              0.05529930096972292
+            ],
+            [
+              "happy",
+              3.1049939471762194e-8
+            ],
+            [
+              "sad",
+              99.94319677014332
+            ],
+            [
+              "surprise",
+              3.591544593680809e-12
+            ],
+            [
+              "neutral",
+              0.001364226308765806
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 39.24,
+      "end_time": 42.63,
+      "length": 3.39,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[8e92d89aa56840aa94c37c96c436a9d6].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[8e92d89aa56840aa94c37c96c436a9d6]\\pyframes\\000043.jpg",
+      "faces": [
+        {
+          "frame": 42,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[8e92d89aa56840aa94c37c96c436a9d6]\\pyframes\\000043.jpg",
+          "bbox": [
+            325,
+            145,
+            420,
+            287
+          ],
+          "score": 0.9995492100715637,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              3.3768143504858017
+            ],
+            [
+              "disgust",
+              1.7191600396643974e-14
+            ],
+            [
+              "fear",
+              0.04170674073975533
+            ],
+            [
+              "happy",
+              7.995734074839334e-8
+            ],
+            [
+              "sad",
+              8.003580570220947
+            ],
+            [
+              "surprise",
+              3.759301758776701e-8
+            ],
+            [
+              "neutral",
+              88.57790231704712
+            ]
+          ]
+        },
+        {
+          "frame": 42,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[8e92d89aa56840aa94c37c96c436a9d6]\\pyframes\\000043.jpg",
+          "bbox": [
+            1356,
+            175,
+            1450,
+            303
+          ],
+          "score": 0.9985900521278381,
+          "dominant_emotion": "fear",
+          "emotion": [
+            [
+              "angry",
+              0.008027719013625756
+            ],
+            [
+              "disgust",
+              1.410859207240378e-8
+            ],
+            [
+              "fear",
+              51.299554109573364
+            ],
+            [
+              "happy",
+              3.360745683312416
+            ],
+            [
+              "sad",
+              19.83291804790497
+            ],
+            [
+              "surprise",
+              5.889014154672623
+            ],
+            [
+              "neutral",
+              19.609731435775757
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": 0,
+      "start_time": 42.63,
+      "end_time": 46.2,
+      "length": 3.57,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[4ac5fab4edf647088d07313f1ee1a3b6].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[4ac5fab4edf647088d07313f1ee1a3b6]\\pyframes\\000046.jpg",
+      "faces": [
+        {
+          "frame": 45,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[4ac5fab4edf647088d07313f1ee1a3b6]\\pyframes\\000046.jpg",
+          "bbox": [
+            333,
+            150,
+            426,
+            289
+          ],
+          "score": 0.9995179176330566,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.004929702845402062
+            ],
+            [
+              "disgust",
+              2.6893160417703577e-15
+            ],
+            [
+              "fear",
+              0.006173075234983116
+            ],
+            [
+              "happy",
+              0.00002938938905572286
+            ],
+            [
+              "sad",
+              0.05468566669151187
+            ],
+            [
+              "surprise",
+              0.0001957494987436803
+            ],
+            [
+              "neutral",
+              99.93398785591125
+            ]
+          ]
+        },
+        {
+          "frame": 45,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[4ac5fab4edf647088d07313f1ee1a3b6]\\pyframes\\000046.jpg",
+          "bbox": [
+            1410,
+            137,
+            1502,
+            274
+          ],
+          "score": 0.9987499713897705,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.0004740600505683697
+            ],
+            [
+              "disgust",
+              4.782346836872862e-7
+            ],
+            [
+              "fear",
+              0.008035855486672835
+            ],
+            [
+              "happy",
+              0.00020762497368757927
+            ],
+            [
+              "sad",
+              99.99125003919005
+            ],
+            [
+              "surprise",
+              3.962561056528864e-9
+            ],
+            [
+              "neutral",
+              0.00002882706778252993
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": 1,
+      "start_time": 46.2,
+      "end_time": 64.44,
+      "length": 18.24,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[ced15f952d3c44878fb4184e163b8922].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[ced15f952d3c44878fb4184e163b8922]\\pyframes\\000221.jpg",
+      "faces": [
+        {
+          "frame": 220,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[ced15f952d3c44878fb4184e163b8922]\\pyframes\\000221.jpg",
+          "bbox": [
+            347,
+            186,
+            443,
+            316
+          ],
+          "score": 0.9994739890098572,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.0006750661616398574
+            ],
+            [
+              "disgust",
+              3.7260154866438444e-11
+            ],
+            [
+              "fear",
+              0.2836268564240251
+            ],
+            [
+              "happy",
+              0.00022927569264157845
+            ],
+            [
+              "sad",
+              1.2322280359106086
+            ],
+            [
+              "surprise",
+              0.00013848822079668392
+            ],
+            [
+              "neutral",
+              98.48310342330358
+            ]
+          ]
+        },
+        {
+          "frame": 220,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[ced15f952d3c44878fb4184e163b8922]\\pyframes\\000221.jpg",
+          "bbox": [
+            1434,
+            124,
+            1532,
+            263
+          ],
+          "score": 0.9989662170410156,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.48765125684440136
+            ],
+            [
+              "disgust",
+              0.00023203958789963508
+            ],
+            [
+              "fear",
+              13.702915608882904
+            ],
+            [
+              "happy",
+              0.27758702635765076
+            ],
+            [
+              "sad",
+              85.50339341163635
+            ],
+            [
+              "surprise",
+              0.00005605432988886605
+            ],
+            [
+              "neutral",
+              0.02816813939716667
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": 0,
+      "start_time": 64.44,
+      "end_time": 66.09,
+      "length": 1.65,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[c792f4d3830d4950896f71b993443290].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[c792f4d3830d4950896f71b993443290]\\pyframes\\000022.jpg",
+      "faces": [
+        {
+          "frame": 21,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[c792f4d3830d4950896f71b993443290]\\pyframes\\000022.jpg",
+          "bbox": [
+            347,
+            188,
+            441,
+            317
+          ],
+          "score": 0.9993001222610474,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.0038343154301401228
+            ],
+            [
+              "disgust",
+              4.119915739402187e-13
+            ],
+            [
+              "fear",
+              0.03401149879209697
+            ],
+            [
+              "happy",
+              0.00024582352580182487
+            ],
+            [
+              "sad",
+              0.7643054705113173
+            ],
+            [
+              "surprise",
+              0.000011691970769334148
+            ],
+            [
+              "neutral",
+              99.19759631156921
+            ]
+          ]
+        },
+        {
+          "frame": 21,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[c792f4d3830d4950896f71b993443290]\\pyframes\\000022.jpg",
+          "bbox": [
+            1432,
+            126,
+            1529,
+            263
+          ],
+          "score": 0.9988716244697571,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.04863358333250384
+            ],
+            [
+              "disgust",
+              0.0006759152152822563
+            ],
+            [
+              "fear",
+              6.097026151064176
+            ],
+            [
+              "happy",
+              1.135438909135927
+            ],
+            [
+              "sad",
+              92.60256798297978
+            ],
+            [
+              "surprise",
+              0.002291488363289284
+            ],
+            [
+              "neutral",
+              0.11336887442620092
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": -1,
+      "start_time": 66.09,
+      "end_time": 67.11,
+      "length": 1.02,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[76691f79adf44660a8c11dd25d4bb3e5].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[3f6c8f6f82d94a74a31613c57a36b83a].jpg",
+      "faces": [
+        {
+          "score": 0.9991881251335144,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[84c25f6bb99b49ffbac60aee8cd8c0b2].jpg",
+          "bbox": [
+            350,
+            182,
+            447,
+            319
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.00916825065437522
+            ],
+            [
+              "disgust",
+              1.4262042918253392e-10
+            ],
+            [
+              "fear",
+              0.9330235977782964
+            ],
+            [
+              "happy",
+              0.00015829370829481966
+            ],
+            [
+              "sad",
+              2.739131427653517
+            ],
+            [
+              "surprise",
+              0.0000055645145144362895
+            ],
+            [
+              "neutral",
+              96.31851293554979
+            ]
+          ]
+        },
+        {
+          "score": 0.9988040924072266,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[c5f890828ce64ba99ad616c81170749b].jpg",
+          "bbox": [
+            1422,
+            145,
+            1508,
+            276
+          ],
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.023235188704818343
+            ],
+            [
+              "disgust",
+              4.813004975909336e-8
+            ],
+            [
+              "fear",
+              0.1767435249656707
+            ],
+            [
+              "happy",
+              1.8992673223780223e-8
+            ],
+            [
+              "sad",
+              99.79892971528415
+            ],
+            [
+              "surprise",
+              2.029901747786802e-11
+            ],
+            [
+              "neutral",
+              0.001087561902250933
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 67.11,
+      "end_time": 70.65,
+      "length": 3.54,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[2c34a90ce265446b9ac5ebf9e4c32860].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[2c34a90ce265446b9ac5ebf9e4c32860]\\pyframes\\000044.jpg",
+      "faces": [
+        {
+          "frame": 43,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[2c34a90ce265446b9ac5ebf9e4c32860]\\pyframes\\000044.jpg",
+          "bbox": [
+            346,
+            176,
+            437,
+            311
+          ],
+          "score": 0.9994069337844849,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.019646072746536403
+            ],
+            [
+              "disgust",
+              3.0553859064838585e-20
+            ],
+            [
+              "fear",
+              0.0024399304313132584
+            ],
+            [
+              "happy",
+              5.797804253321891e-9
+            ],
+            [
+              "sad",
+              0.34074979497494756
+            ],
+            [
+              "surprise",
+              9.53023136984665e-10
+            ],
+            [
+              "neutral",
+              99.63716272864787
+            ]
+          ]
+        },
+        {
+          "frame": 43,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[2c34a90ce265446b9ac5ebf9e4c32860]\\pyframes\\000044.jpg",
+          "bbox": [
+            1428,
+            142,
+            1519,
+            274
+          ],
+          "score": 0.9990112781524658,
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.20067321602255106
+            ],
+            [
+              "disgust",
+              0.00000479190447322253
+            ],
+            [
+              "fear",
+              0.4002137575298548
+            ],
+            [
+              "happy",
+              1.5110200868306833e-7
+            ],
+            [
+              "sad",
+              99.37892556190491
+            ],
+            [
+              "surprise",
+              3.486932314070157e-10
+            ],
+            [
+              "neutral",
+              0.020187518384773284
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    },
+    {
+      "speaker": -1,
+      "start_time": 70.65,
+      "end_time": 75.06,
+      "length": 4.41,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[c58508afca5b4343a2a8385180d4e901].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[c0e2ba1a0e6c4c4da10aa2ff0aff6f5e].jpg",
+      "faces": [
+        {
+          "score": 0.9994910955429077,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[c504e1a93bec42db8be403976af35a1a].jpg",
+          "bbox": [
+            295,
+            156,
+            409,
+            302
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.14714447315782309
+            ],
+            [
+              "disgust",
+              0.00007375086852334789
+            ],
+            [
+              "fear",
+              0.011643710604403168
+            ],
+            [
+              "happy",
+              0.26303408667445183
+            ],
+            [
+              "sad",
+              4.727507382631302
+            ],
+            [
+              "surprise",
+              0.0008288195203931537
+            ],
+            [
+              "neutral",
+              94.84976530075073
+            ]
+          ]
+        },
+        {
+          "score": 0.9994783997535706,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[2bed7c128ea14deea438f42a8f53599c].jpg",
+          "bbox": [
+            1454,
+            123,
+            1556,
+            254
+          ],
+          "dominant_emotion": "angry",
+          "emotion": [
+            [
+              "angry",
+              76.80815138719662
+            ],
+            [
+              "disgust",
+              0.21036681539662894
+            ],
+            [
+              "fear",
+              2.700775353518086
+            ],
+            [
+              "happy",
+              0.34516775591161775
+            ],
+            [
+              "sad",
+              3.4208416586110997
+            ],
+            [
+              "surprise",
+              0.8643546042615647
+            ],
+            [
+              "neutral",
+              15.65033308859669
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 75.06,
+      "end_time": 78.76,
+      "length": 3.7,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[bed84ad243084d8c924752fa8562c314].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[bed84ad243084d8c924752fa8562c314]\\pyframes\\000045.jpg",
+      "faces": [
+        {
+          "frame": 44,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[bed84ad243084d8c924752fa8562c314]\\pyframes\\000045.jpg",
+          "bbox": [
+            291,
+            161,
+            404,
+            304
+          ],
+          "score": 0.9998986721038818,
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.001254414548574743
+            ],
+            [
+              "disgust",
+              1.150802351921588e-9
+            ],
+            [
+              "fear",
+              0.0000478585576606369
+            ],
+            [
+              "happy",
+              0.0068986348670559295
+            ],
+            [
+              "sad",
+              0.02074238996953979
+            ],
+            [
+              "surprise",
+              0.000024849275408561983
+            ],
+            [
+              "neutral",
+              99.97103214091254
+            ]
+          ]
+        },
+        {
+          "frame": 44,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Center_24[bed84ad243084d8c924752fa8562c314]\\pyframes\\000045.jpg",
+          "bbox": [
+            1447,
+            121,
+            1555,
+            252
+          ],
+          "score": 0.9997709393501282,
+          "dominant_emotion": "happy",
+          "emotion": [
+            [
+              "angry",
+              0.00001768937920587632
+            ],
+            [
+              "disgust",
+              2.6338498981641478e-11
+            ],
+            [
+              "fear",
+              8.538930118540122e-8
+            ],
+            [
+              "happy",
+              85.977703332901
+            ],
+            [
+              "sad",
+              0.000024424011257906386
+            ],
+            [
+              "surprise",
+              0.0000048161016508174725
+            ],
+            [
+              "neutral",
+              14.022248983383179
+            ]
+          ]
+        }
+      ],
+      "visible_speaker": -1
+    }
+  ],
+  "Left_24": [
+    {
+      "speaker": -1,
+      "start_time": 0,
+      "end_time": 1.53,
+      "length": 1.53,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[bf015ef30e3146b79fc1209a3ed23654].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[bd2f6286ac7447c7ac765b2e2dca8301].jpg",
+      "faces": [
+        {
+          "score": 0.9997543692588806,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[a2685bb876f44a489536b9711484779a].jpg",
+          "bbox": [
+            863,
+            127,
+            1122,
+            462
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              12.4043308198452
+            ],
+            [
+              "disgust",
+              0.0001047528940034681
+            ],
+            [
+              "fear",
+              0.11634284164756536
+            ],
+            [
+              "happy",
+              0.0007551636826974573
+            ],
+            [
+              "sad",
+              4.195880517363548
+            ],
+            [
+              "surprise",
+              0.0000417849719269725
+            ],
+            [
+              "neutral",
+              83.28254818916321
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 0,
+      "start_time": 1.53,
+      "end_time": 2.94,
+      "length": 1.41,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[b50cbccaa3a546f0a203a1d95bcb920d].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[b50cbccaa3a546f0a203a1d95bcb920d]\\pyframes\\000018.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 19,
+        "silent_frames_count": 16,
+        "score": 3.700000047683716
+      }
+    },
+    {
+      "speaker": 1,
+      "start_time": 2.94,
+      "end_time": 6.39,
+      "length": 3.45,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[1ee5ff72456a4d6db23eec82c00cf99c].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[1ee5ff72456a4d6db23eec82c00cf99c]\\pyframes\\000044.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 86,
+        "score": 0
+      }
+    },
+    {
+      "speaker": 0,
+      "start_time": 6.39,
+      "end_time": 7.83,
+      "length": 1.44,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[517448cc62da46c1a51d279b5d50c2de].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[517448cc62da46c1a51d279b5d50c2de]\\pyframes\\000018.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 15,
+        "silent_frames_count": 20,
+        "score": 1.2799999713897705
+      }
+    },
+    {
+      "speaker": 1,
+      "start_time": 7.83,
+      "end_time": 11.28,
+      "length": 3.45,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[b8a504b40c124e4789616951b2d58af7].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[b8a504b40c124e4789616951b2d58af7]\\pyframes\\000043.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 61,
+        "silent_frames_count": 24,
+        "score": 3.699999952316284
+      }
+    },
+    {
+      "speaker": 0,
+      "start_time": 11.28,
+      "end_time": 13.32,
+      "length": 2.04,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[2d6420a2fc024028892591c151ece0dc].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[2d6420a2fc024028892591c151ece0dc]\\pyframes\\000026.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 16,
+        "silent_frames_count": 34,
+        "score": 2.800000031789144
+      }
+    },
+    {
+      "speaker": 1,
+      "start_time": 13.32,
+      "end_time": 17.1,
+      "length": 3.78,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[2450d406645f470898847560a5ad7197].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[2450d406645f470898847560a5ad7197]\\pyframes\\000047.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 93,
+        "score": -1.2666666507720947
+      }
+    },
+    {
+      "speaker": -1,
+      "start_time": 17.1,
+      "end_time": 18.18,
+      "length": 1.08,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[0c0af0534dfa46ada4be13ce8f4e0c7e].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[3b61e3cff46f4cda9f51ca08e6791860].jpg",
+      "faces": [
+        {
+          "score": 0.9998714923858643,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[a98ddd8c57e74fecb43f4e026fa8b3e2].jpg",
+          "bbox": [
+            838,
+            89,
+            1092,
+            441
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              24.166688323020935
+            ],
+            [
+              "disgust",
+              0.007480315980501473
+            ],
+            [
+              "fear",
+              1.9909605383872986
+            ],
+            [
+              "happy",
+              0.009709863661555573
+            ],
+            [
+              "sad",
+              9.590442478656769
+            ],
+            [
+              "surprise",
+              0.0006529212441819254
+            ],
+            [
+              "neutral",
+              64.23406600952148
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 18.18,
+      "end_time": 26.94,
+      "length": 8.76,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[3e4f8ad84e2f45cba974f22c98fc1fef].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[3e4f8ad84e2f45cba974f22c98fc1fef]\\pyframes\\000106.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 211,
+        "score": -0.7600000023841857
+      }
+    },
+    {
+      "speaker": 0,
+      "start_time": 26.94,
+      "end_time": 29.7,
+      "length": 2.76,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[f4a05dbd96e8478d920db4703d8fd307].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[f4a05dbd96e8478d920db4703d8fd307]\\pyframes\\000036.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 33,
+        "silent_frames_count": 37,
+        "score": 1.8399999856948852
+      }
+    },
+    {
+      "speaker": -1,
+      "start_time": 29.7,
+      "end_time": 34.14,
+      "length": 4.44,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[6130bef1eee9442198fd631866ad54cf].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[61d9c25eb64b4cceb0c9cb6560e13850].jpg",
+      "faces": [
+        {
+          "score": 0.9998458623886108,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[44a41f360c34462eae58c8f7443e679a].jpg",
+          "bbox": [
+            825,
+            108,
+            1087,
+            445
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.17991445492953062
+            ],
+            [
+              "disgust",
+              7.349414410384725e-7
+            ],
+            [
+              "fear",
+              0.007566991553176194
+            ],
+            [
+              "happy",
+              0.006582083005923778
+            ],
+            [
+              "sad",
+              0.016656758089084178
+            ],
+            [
+              "surprise",
+              0.0007641901902388781
+            ],
+            [
+              "neutral",
+              99.78851675987244
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 34.14,
+      "end_time": 37.02,
+      "length": 2.88,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[8a1592434fa543b2a66046084236ec2e].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[8a1592434fa543b2a66046084236ec2e]\\pyframes\\000037.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 73,
+        "score": -1.3799999713897706
+      }
+    },
+    {
+      "speaker": -1,
+      "start_time": 37.02,
+      "end_time": 39.24,
+      "length": 2.22,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[2c849c87fed74026ac6f747c4c774c42].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[8677c063229348549205ee93fe1cd985].jpg",
+      "faces": [
+        {
+          "score": 0.9996428489685059,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[73d335176c4f46b68c147d7770bbdfb8].jpg",
+          "bbox": [
+            730,
+            124,
+            965,
+            483
+          ],
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              0.061531374406076936
+            ],
+            [
+              "disgust",
+              0.002959462284662841
+            ],
+            [
+              "fear",
+              0.10220910798887062
+            ],
+            [
+              "happy",
+              23.517422289694686
+            ],
+            [
+              "sad",
+              75.88089560752485
+            ],
+            [
+              "surprise",
+              0.000006572835467984392
+            ],
+            [
+              "neutral",
+              0.4349795895057672
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 39.24,
+      "end_time": 42.63,
+      "length": 3.39,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[aac25ca21e6b4ace865670449febaeeb].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[aac25ca21e6b4ace865670449febaeeb]\\pyframes\\000043.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 84,
+        "score": -1.5599999904632569
+      }
+    },
+    {
+      "speaker": 0,
+      "start_time": 42.63,
+      "end_time": 46.2,
+      "length": 3.57,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[1caf4dc8c6b64bd88399e5ee308c6edc].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[1caf4dc8c6b64bd88399e5ee308c6edc]\\pyframes\\000046.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 63,
+        "silent_frames_count": 27,
+        "score": 2.3800000667572023
+      }
+    },
+    {
+      "speaker": 1,
+      "start_time": 46.2,
+      "end_time": 64.44,
+      "length": 18.24,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[c5548c1422ea42b2a6df1c291e6cb572].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[c5548c1422ea42b2a6df1c291e6cb572]\\pyframes\\000221.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 440,
+        "score": -0.600000011920929
+      }
+    },
+    {
+      "speaker": 0,
+      "start_time": 64.44,
+      "end_time": 66.09,
+      "length": 1.65,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[8507b3afee8d453ab3e24a9fb8c9bacd].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[8507b3afee8d453ab3e24a9fb8c9bacd]\\pyframes\\000022.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 42,
+        "score": -0.20000000298023224
+      }
+    },
+    {
+      "speaker": -1,
+      "start_time": 66.09,
+      "end_time": 67.11,
+      "length": 1.02,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[8b3d66346a874d158b1c08d8585b8dea].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[e8a523fd8d624810ad03a198b700c3a9].jpg",
+      "faces": [
+        {
+          "score": 0.9997766613960266,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[b02b7ca53d9247c49343556028126cfd].jpg",
+          "bbox": [
+            824,
+            123,
+            1089,
+            453
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              1.9899192520927937
+            ],
+            [
+              "disgust",
+              0.000030233777107606163
+            ],
+            [
+              "fear",
+              0.010841380490547373
+            ],
+            [
+              "happy",
+              0.012579268536132934
+            ],
+            [
+              "sad",
+              0.8970945676919561
+            ],
+            [
+              "surprise",
+              0.00046932339569828225
+            ],
+            [
+              "neutral",
+              97.08906394774102
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 67.11,
+      "end_time": 70.65,
+      "length": 3.54,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[4badcfe1ebe442ac98054e5bde30254c].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[4badcfe1ebe442ac98054e5bde30254c]\\pyframes\\000044.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 86,
+        "score": -1.600000023841858
+      }
+    },
+    {
+      "speaker": -1,
+      "start_time": 70.65,
+      "end_time": 75.06,
+      "length": 4.41,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[e81efc3f4ba04b808f37c510c9099514].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[2712cc05f4b848e59411a16b73d24fb0].jpg",
+      "faces": [
+        {
+          "score": 0.9996179342269897,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[9c4113114f2e4f2aab81792ff35a39a5].jpg",
+          "bbox": [
+            908,
+            73,
+            1166,
+            407
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              7.9117268323898315
+            ],
+            [
+              "disgust",
+              1.2335528154494568e-7
+            ],
+            [
+              "fear",
+              0.9195239283144474
+            ],
+            [
+              "happy",
+              0.008157756383297965
+            ],
+            [
+              "sad",
+              1.6418371349573135
+            ],
+            [
+              "surprise",
+              0.019820370653178543
+            ],
+            [
+              "neutral",
+              89.49893116950989
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 75.06,
+      "end_time": 78.76,
+      "length": 3.7,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[c94ef657a2ab4a7cb7e93846394a1052].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Left_24[c94ef657a2ab4a7cb7e93846394a1052]\\pyframes\\000045.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 88,
+        "score": -0.2800000041723251
+      }
+    }
+  ],
+  "Right_24": [
+    {
+      "speaker": -1,
+      "start_time": 0,
+      "end_time": 1.53,
+      "length": 1.53,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[a8d76099977b4bf88d5f56823e92fc96].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[3a564678abc04bee886d7caf611d38ff].jpg",
+      "faces": [
+        {
+          "score": 0.9996157884597778,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[53562ee91b6043aa9b95f86da65669b2].jpg",
+          "bbox": [
+            854,
+            302,
+            1060,
+            566
+          ],
+          "dominant_emotion": "sad",
+          "emotion": [
+            [
+              "angry",
+              6.935964524745941
+            ],
+            [
+              "disgust",
+              0.018909225764218718
+            ],
+            [
+              "fear",
+              7.654392719268799
+            ],
+            [
+              "happy",
+              0.00290581720037153
+            ],
+            [
+              "sad",
+              83.19754600524902
+            ],
+            [
+              "surprise",
+              0.00002060813670823336
+            ],
+            [
+              "neutral",
+              2.190263383090496
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 0,
+      "start_time": 1.53,
+      "end_time": 2.94,
+      "length": 1.41,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[bd8dc42504094eb7a983f001145df624].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[bd8dc42504094eb7a983f001145df624]\\pyframes\\000018.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 35,
+        "score": -1
+      }
+    },
+    {
+      "speaker": 1,
+      "start_time": 2.94,
+      "end_time": 6.39,
+      "length": 3.45,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[ca3903310cbe4d57a584e2522ff5ac3b].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[ca3903310cbe4d57a584e2522ff5ac3b]\\pyframes\\000044.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 26,
+        "silent_frames_count": 60,
+        "score": 1.0399999976158143
+      }
+    },
+    {
+      "speaker": 0,
+      "start_time": 6.39,
+      "end_time": 7.83,
+      "length": 1.44,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[d54a029a3c964965a75ee69454bb5ae0].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[d54a029a3c964965a75ee69454bb5ae0]\\pyframes\\000018.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 35,
+        "score": -1.2999999523162842
+      }
+    },
+    {
+      "speaker": 1,
+      "start_time": 7.83,
+      "end_time": 11.28,
+      "length": 3.45,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[789f17ceb17b4d6abdcfa6cd6b953990].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[789f17ceb17b4d6abdcfa6cd6b953990]\\pyframes\\000043.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 4,
+        "silent_frames_count": 81,
+        "score": 0.0800000011920929
+      }
+    },
+    {
+      "speaker": 0,
+      "start_time": 11.28,
+      "end_time": 13.32,
+      "length": 2.04,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[0e236c38ff8540e48ef035b7e1c7c6ec].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[0e236c38ff8540e48ef035b7e1c7c6ec]\\pyframes\\000026.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 50,
+        "score": -1.1800000429153443
+      }
+    },
+    {
+      "speaker": 1,
+      "start_time": 13.32,
+      "end_time": 17.1,
+      "length": 3.78,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[30aa0709170d43628f5caae710b9b539].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[30aa0709170d43628f5caae710b9b539]\\pyframes\\000047.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 63,
+        "silent_frames_count": 30,
+        "score": 1.6600000143051148
+      }
+    },
+    {
+      "speaker": -1,
+      "start_time": 17.1,
+      "end_time": 18.18,
+      "length": 1.08,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[dc3283167d1d4da1900f2d59bb2474a3].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[5d9ea0068be445f08247ea0babe184ce].jpg",
+      "faces": [
+        {
+          "score": 0.9996935129165649,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[c9934ce9473c41e4a72ae994bceda1ff].jpg",
+          "bbox": [
+            827,
+            228,
+            1033,
+            512
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.03925229248125106
+            ],
+            [
+              "disgust",
+              2.2847559955074814e-8
+            ],
+            [
+              "fear",
+              0.05230153328739107
+            ],
+            [
+              "happy",
+              0.00017879532379083685
+            ],
+            [
+              "sad",
+              9.599487483501434
+            ],
+            [
+              "surprise",
+              9.68915880861232e-7
+            ],
+            [
+              "neutral",
+              90.30877947807312
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 18.18,
+      "end_time": 26.94,
+      "length": 8.76,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[a770e3b143a049678777562a0b7536bd].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[a770e3b143a049678777562a0b7536bd]\\pyframes\\000106.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 17,
+        "silent_frames_count": 194,
+        "score": 0.3800000101327896
+      }
+    },
+    {
+      "speaker": 0,
+      "start_time": 26.94,
+      "end_time": 29.7,
+      "length": 2.76,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[9fe274bc206345c1b750ac178e6e41f1].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[9fe274bc206345c1b750ac178e6e41f1]\\pyframes\\000036.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 70,
+        "score": -0.6333333452542623
+      }
+    },
+    {
+      "speaker": -1,
+      "start_time": 29.7,
+      "end_time": 34.14,
+      "length": 4.44,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[da57bcdaf6654eae85965f6ea0d8d40f].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[011c682107c042659564dd53cb7590c3].jpg",
+      "faces": [
+        {
+          "score": 0.9998282194137573,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[49fd130966844256b11f71af6718570a].jpg",
+          "bbox": [
+            840,
+            257,
+            1043,
+            532
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              3.3178875337772094
+            ],
+            [
+              "disgust",
+              0.0012060950930778273
+            ],
+            [
+              "fear",
+              16.668259600893236
+            ],
+            [
+              "happy",
+              0.00487695389857986
+            ],
+            [
+              "sad",
+              27.7796344625732
+            ],
+            [
+              "surprise",
+              0.000028012211110588638
+            ],
+            [
+              "neutral",
+              52.22810818124462
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 34.14,
+      "end_time": 37.02,
+      "length": 2.88,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[f81c1a0809a344f097e73a2b2d825328].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[f81c1a0809a344f097e73a2b2d825328]\\pyframes\\000037.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 29,
+        "silent_frames_count": 44,
+        "score": 1.1800000190734863
+      }
+    },
+    {
+      "speaker": -1,
+      "start_time": 37.02,
+      "end_time": 39.24,
+      "length": 2.22,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[b96702a8899a4f659900e8c5dbc9ee98].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[0349d49d760446fca587fde64a6d1226].jpg",
+      "faces": [
+        {
+          "score": 0.9993417859077454,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[4581b6407edd4fe19ced0a444f66fd1d].jpg",
+          "bbox": [
+            824,
+            190,
+            1016,
+            413
+          ],
+          "dominant_emotion": "neutral",
+          "emotion": [
+            [
+              "angry",
+              0.005711269477615133
+            ],
+            [
+              "disgust",
+              9.99164972981248e-8
+            ],
+            [
+              "fear",
+              0.1330776372924447
+            ],
+            [
+              "happy",
+              0.0069449459260795265
+            ],
+            [
+              "sad",
+              4.769774153828621
+            ],
+            [
+              "surprise",
+              0.00022751021333533572
+            ],
+            [
+              "neutral",
+              95.08426785469055
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 39.24,
+      "end_time": 42.63,
+      "length": 3.39,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[9860b99d74f74bf18ec7997abf5f62c7].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[9860b99d74f74bf18ec7997abf5f62c7]\\pyframes\\000043.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 85,
+        "score": -1.3399999856948852
+      }
+    },
+    {
+      "speaker": 0,
+      "start_time": 42.63,
+      "end_time": 46.2,
+      "length": 3.57,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[d8d7b05e883547779e5df541794cbff6].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[d8d7b05e883547779e5df541794cbff6]\\pyframes\\000046.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 90,
+        "score": -0.9799999952316284
+      }
+    },
+    {
+      "speaker": 1,
+      "start_time": 46.2,
+      "end_time": 64.44,
+      "length": 18.24,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[035a5e83613e4cfa8d6a9dc4e5ae7583].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[035a5e83613e4cfa8d6a9dc4e5ae7583]\\pyframes\\000221.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 17,
+        "silent_frames_count": 423,
+        "score": 0.42000000476837157
+      }
+    },
+    {
+      "speaker": 0,
+      "start_time": 64.44,
+      "end_time": 66.09,
+      "length": 1.65,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[cf2570094fa34a12bef8df7f6df778d8].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[cf2570094fa34a12bef8df7f6df778d8]\\pyframes\\000022.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 42,
+        "score": -1.6333333651224773
+      }
+    },
+    {
+      "speaker": -1,
+      "start_time": 66.09,
+      "end_time": 67.11,
+      "length": 1.02,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[bd4eeb5edf714c33b925e89a27b7a4ef].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[5826999dfb1a4b998e44de7690c22838].jpg",
+      "faces": [
+        {
+          "score": 0.9997010231018066,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[cbed102c3c6e418783ba2b3b5a03e493].jpg",
+          "bbox": [
+            850,
+            284,
+            1055,
+            556
+          ],
+          "dominant_emotion": "fear",
+          "emotion": [
+            [
+              "angry",
+              1.424900239694147
+            ],
+            [
+              "disgust",
+              0.03417200466992017
+            ],
+            [
+              "fear",
+              45.69528647605019
+            ],
+            [
+              "happy",
+              0.3955468541290586
+            ],
+            [
+              "sad",
+              44.01349055927879
+            ],
+            [
+              "surprise",
+              0.007985877388568879
+            ],
+            [
+              "neutral",
+              8.428624532058778
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 67.11,
+      "end_time": 70.65,
+      "length": 3.54,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[e8bd36442e7e41acbdc85f97016c00be].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[e8bd36442e7e41acbdc85f97016c00be]\\pyframes\\000044.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 0,
+        "silent_frames_count": 86,
+        "score": -0.800000011920929
+      }
+    },
+    {
+      "speaker": -1,
+      "start_time": 70.65,
+      "end_time": 75.06,
+      "length": 4.41,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[c099ed60fff446089c692ea64f58d57a].mp4",
+      "visible_speaker": -1,
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\tn[373bc992890a4e7b9dcff451227cbe09].jpg",
+      "faces": [
+        {
+          "score": 0.9998613595962524,
+          "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\thumbnails\\face[22fc46c3f08c41a3b57d2b8be2f30870].jpg",
+          "bbox": [
+            770,
+            249,
+            969,
+            539
+          ],
+          "dominant_emotion": "happy",
+          "emotion": [
+            [
+              "angry",
+              0.035320419478702215
+            ],
+            [
+              "disgust",
+              1.2513332262658505e-9
+            ],
+            [
+              "fear",
+              0.10186700990375935
+            ],
+            [
+              "happy",
+              98.87028329791328
+            ],
+            [
+              "sad",
+              0.0026282772271286163
+            ],
+            [
+              "surprise",
+              0.000007272712288453907
+            ],
+            [
+              "neutral",
+              0.9898963043031874
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "speaker": 1,
+      "start_time": 75.06,
+      "end_time": 78.76,
+      "length": 3.7,
+      "path": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[fde7720999654e25aee75fd700cce8d9].mp4",
+      "image": "D:\\Projects\\@Imp\\Style-based Video Editor\\src\\server\\temp\\scenes\\Right_24[fde7720999654e25aee75fd700cce8d9]\\pyframes\\000045.jpg",
+      "faces": [],
+      "visible_speaker": {
+        "speaking_frames_count": 4,
+        "silent_frames_count": 84,
+        "score": 0.06000000238418579
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "arabic_text": "",
+      "confidence": 1
+    },
+    {
+      "arabic_text": "السلام عليكم",
+      "confidence": 0.9442802369594574
+    },
+    {
+      "arabic_text": "و عليكم السلام و رحمته و بركاته",
+      "confidence": 0.967748727117266
+    },
+    {
+      "arabic_text": "اليوم",
+      "confidence": 0.9168881177902222
+    },
+    {
+      "arabic_text": "حاولت الاتصال بأكثر من مرة",
+      "confidence": 0.9089046835899353
+    },
+    {
+      "arabic_text": "خيرا",
+      "confidence": 0.9465318322181702
+    },
+    {
+      "arabic_text": "قط مع الأسف لقد حدث",
+      "confidence": 0.9258283376693726
+    },
+    {
+      "arabic_text": "",
+      "confidence": 1
+    },
+    {
+      "arabic_text": "هل أصابك لا الحمد لله إلا بخير و قد مرت سيارة مسرعة على الطريق و إصابة ابن و ابنه",
+      "confidence": 0.8872246946159162
+    },
+    {
+      "arabic_text": "لا حول و لاقوه إلا بالله",
+      "confidence": 0.9945127765337626
+    },
+    {
+      "arabic_text": "هل كان",
+      "confidence": 1
+    },
+    {
+      "arabic_text": "للاسف إصابات بالغة",
+      "confidence": 0.9670172929763794
+    },
+    {
+      "arabic_text": "",
+      "confidence": 1
+    },
+    {
+      "arabic_text": "يفاوض أما إصابة بسيطة",
+      "confidence": 0.9067630171775818
+    },
+    {
+      "arabic_text": "بهذه هل ذهبت",
+      "confidence": 0.9185602068901062
+    },
+    {
+      "arabic_text": "معهم الاستشفاء بعض فعندما رأيت حابس اتصلت بالأفعال ليتم إسعافهم في أسرع وقت و بعد أن وصلنا إلى اقرب مستشفى قمت بالاتصال بالشرطة الإبلاغ عن برقم السيارة",
+      "confidence": 0.9091744014510402
+    },
+    {
+      "arabic_text": "وماذا ذلك",
+      "confidence": 0.8466383814811707
+    },
+    {
+      "arabic_text": "",
+      "confidence": 1
+    },
+    {
+      "arabic_text": "الأب إلى غرفة العمليات",
+      "confidence": 0.9886635690927505
+    },
+    {
+      "arabic_text": "",
+      "confidence": 1
+    },
+    {
+      "arabic_text": "",
+      "confidence": 0
+    }
+  ]
+}
