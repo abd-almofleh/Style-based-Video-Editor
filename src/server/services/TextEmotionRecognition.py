@@ -219,17 +219,13 @@ class TextEmotion:
     
     def Demo(self,sentence):
         doc = sentence
-        while(True):
-            if doc == 'break':
-                print("إلى اللقاء")
-                break
-            else:
-                embedded_vector = self.embed_doc(doc)
-                shape = np.shape(embedded_vector)
-                embedded_vector = np.array(embedded_vector).reshape(1,shape[0],shape[1])
-                #label = emotional_model.predict_classes(embedded_vector)
-                predict_x = self.emotional_model.predict(embedded_vector) 
-                classes_x = np.argmax(predict_x,axis=1)
-                textlabel = traslate_label(classes_x)
-                print ("الحالة:",textlabel)
+ 
+        embedded_vector = self.embed_doc(doc)
+        shape = np.shape(embedded_vector)
+        embedded_vector = np.array(embedded_vector).reshape(1,shape[0],shape[1])
+        #label = emotional_model.predict_classes(embedded_vector)
+        predict_x = self.emotional_model.predict(embedded_vector) 
+        classes_x = np.argmax(predict_x,axis=1)
+        textlabel = traslate_label(classes_x)
+        print ("الحالة:",textlabel)
     x = TextEmotion()
