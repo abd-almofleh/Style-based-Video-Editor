@@ -5,7 +5,6 @@ from .SpeechToText import SpeechToText
 from threading import Thread, Lock
 _lock = Lock()
 
-
 class SceneDetection:
 
     def __init__(self) -> None:
