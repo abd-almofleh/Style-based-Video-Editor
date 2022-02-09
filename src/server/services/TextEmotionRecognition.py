@@ -33,25 +33,25 @@ class TextEmotion:
     english_punctuations = string.punctuation
     english_numbers = "0123456789"
     punctuations_list = arabic_punctuations + english_punctuations + english_numbers
-
-
     arabic_diacritics = re.compile("""
-                             ّ    | # Tashdid
-                             َ    | # Fatha
-                             ً    | # Tanwin Fath
-                             ُ    | # Damma
-                             ٌ    | # Tanwin Damm
-                             ِ    | # Kasra
-                             ٍ    | # Tanwin Kasr
-                             ْ    | # Sukun
-                         """, re.VERBOSE)
+                ّ    | # Tashdid
+                َ    | # Fatha
+                ً    | # Tanwin Fath
+                ُ    | # Damma
+                ٌ    | # Tanwin Damm
+                ِ    | # Kasra
+                ٍ    | # Tanwin Kasr
+                ْ    | # Sukun
+            """, re.VERBOSE)
+
+
 
 
     def __init__(self) -> None:
         
         self.t_model= gensim.models.Word2Vec.load(TextEmotion._aravec_model_name +'.mdl')
         self.emotional_model = load_model(TextEmotion._emotional_modle_name)
-        
+
     
 
     @staticmethod
@@ -77,12 +77,12 @@ class TextEmotion:
 
     @staticmethod
     def remove_diacritics(text):
-        text = re.sub(arabic_diacritics, '', text)
+        text = re.sub(TextEmotion.arabic_diacritics, '', text)
         return text
 
     @staticmethod
     def remove_punctuations(text):
-        translator = str.maketrans('', '', punctuations_list)
+        translator = str.maketrans('', '',TextEmotion.punctuations_list)
         return text.translate(translator)
 
     @staticmethod
@@ -105,7 +105,12 @@ class TextEmotion:
 
             ch = 0
 
-        return result
+        return 
+    
+    @staticmethod
+    def remove_repeating_char(text):
+        return re.sub(r'(.)\1+', r'\1', text)
+
     #_______________________________________
     @staticmethod
     #Rooting words
@@ -128,32 +133,32 @@ class TextEmotion:
     @staticmethod
     def preprocess1(text):
         text = str(text)
-        text = remove_diacritics(text)
-        text = remove_punctuations(text)
-        text = normalize_arabic(text)
-        text = remove_repeating_char(text)
+        text = TextEmotion.remove_diacritics(text)
+        text = TextEmotion.remove_punctuations(text)
+        text = TextEmotion.normalize_arabic(text)
+        text = TextEmotion.remove_repeating_char(text)
         tokens = re.split(" ", text)
-        tokens = remove_english(tokens)
+        tokens = TextEmotion.remove_english(tokens)
         return tokens
 
     @staticmethod
     def preprocess2(text):
         text = str(text)
-        text = remove_diacritics(text)
-        text = remove_punctuations(text)
-        text = normalize_arabic(text)
-        text = remove_repeating_char(text)
-        text = tokens_remove_stopwords(text)
-        text = remove_english(text)
-        text = rooting(text)
+        text = TextEmotion.remove_diacritics(text)
+        text = TextEmotion.remove_punctuations(text)
+        text = TextEmotion.normalize_arabic(text)
+        text = TextEmotion.remove_repeating_char(text)
+        text = TextEmotion.tokens_remove_stopwords(text)
+        text = TextEmotion.remove_english(text)
+        text = TextEmotion.rooting(text)
         return text
 
     
     def embed_doc(self,text):
-        preprocessed_text = preprocess1(text)
+        preprocessed_text = TextEmotion.preprocess1(text)
         #print(preprocessed_text)
         
-        embedded_vectors = np.zeros(shape=(_number_of_inputs,_vector_size))#np array of arrays (array of 100/300 float number per word)
+        embedded_vectors = np.zeros(shape=(TextEmotion._number_of_inputs,TextEmotion._vector_size))#np array of arrays (array of 100/300 float number per word)
         embedded_vectors_index = 0
         for i in range(len(preprocessed_text)):
             try:
@@ -161,12 +166,12 @@ class TextEmotion:
                 embedded_vectors_index = embedded_vectors_index + 1
             except:
                 try:
-                    result = rooting([preprocessed_text[i]])[0]
+                    result = TextEmotion.rooting([preprocessed_text[i]])[0]
                     embedded_vectors[embedded_vectors_index] = self.t_model.wv[result]
                     embedded_vectors_index = embedded_vectors_index + 1
                 except:
                     try:
-                        search_output = google_search(preprocessed_text[i])
+                        search_output = TextEmotion.google_search(preprocessed_text[i])
                         tokens = re.split(" ", search_output)
                         for j in range(len(tokens)):
                             try:
@@ -198,7 +203,7 @@ class TextEmotion:
             return 7
     
     @staticmethod
-    def traslate_label(label):
+    def translate_label(label):
         if label == 0:
             return  "غضب"
         if label == 1:
@@ -217,15 +222,15 @@ class TextEmotion:
             return "حب"
 
     
-    def Demo(self,sentence):
+    def Predict(self,sentence):
         doc = sentence
- 
+
         embedded_vector = self.embed_doc(doc)
         shape = np.shape(embedded_vector)
         embedded_vector = np.array(embedded_vector).reshape(1,shape[0],shape[1])
         #label = emotional_model.predict_classes(embedded_vector)
         predict_x = self.emotional_model.predict(embedded_vector) 
         classes_x = np.argmax(predict_x,axis=1)
-        textlabel = traslate_label(classes_x)
+        textlabel = TextEmotion.translate_label(classes_x)
         print ("الحالة:",textlabel)
-    x = TextEmotion()
+    
